@@ -1,0 +1,19 @@
+.App {
+  background-color: #282c34;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Title {
+  color: #fff;
+}
+
+.Emojis {
+  letter-spacing: 2px;
+  margin-top: 10px;
+  text-align: center;
+}
