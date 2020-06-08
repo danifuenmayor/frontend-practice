@@ -8,9 +8,9 @@ Now you learn to gitflow in this project
 
 You can only generate branch under this pattern **featured|fix|enhancement**
 
-> feature/xxxXxxx
-> fix/xxxXxxx
-> enhancement/xxxXxxx
+> feature/xxx_xxx
+> fix/xxx_xxx
+> enhancement/xxx_xxx
 
 ### IMPORTANT! For commit
 
@@ -25,8 +25,3 @@ After we select the option, it will ask the details of that commit:
 ### For merge
 
 You need open pull request **feature|fix|enhancement** into master and you should wait for the review of one of your team and at least an official developer of sely
-
-## Summary
-
-Now let’s take a look at the example of development workflow
-![flow](https://miro.medium.com/max/1400/1*Kn5eVSpS8sew-T4reO9tBw.png)
