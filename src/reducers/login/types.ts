@@ -5,7 +5,7 @@ export interface Form {
 }
 
 export interface StateForm {
-  formUser: Form;
+  formUser: Form[];
 }
 
 export const SEND_FORM = "EXAMPLE/SEND_FORM";
