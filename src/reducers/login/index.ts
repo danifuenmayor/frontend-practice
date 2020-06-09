@@ -1,7 +1,5 @@
-//example
-
-import { StateForm } from './types';
+import { StateForm } from "./types";
 
 const StateInitialForm: StateForm = {
-    formUser: [//define type],
+  formUser: [],
 };
