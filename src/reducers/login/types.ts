@@ -1,12 +1,12 @@
 //example
 export interface Form {
-    fullname: string;
-    mail: string;
+  fullname: string;
+  mail: string;
 }
 
 export interface StateForm {
-    formUser: Form;
-  }
+  formUser: Form;
+}
 
 export const SEND_FORM = "EXAMPLE/SEND_FORM";
 
@@ -15,5 +15,4 @@ export interface SendFormExample {
   payload: Form;
 }
 
-export type ExampleSendForm =
-  | SendFormExample
+export type ExampleSendForm = SendFormExample;

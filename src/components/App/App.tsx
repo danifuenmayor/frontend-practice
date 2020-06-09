@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./App.module.scss";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Button, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
@@ -24,8 +24,8 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path={'/'} component={LoginUser} />
-        <Route exact path={'/login'} component={LoginUser} />
+        <Route exact path={"/"} component={LoginUser} />
+        <Route exact path={"/login"} component={LoginUser} />
         {/* <Route exact path={'/register'} component={Register} />
         <Route exact path={'/login-admin'} component={LoginAdmin} />
         <Route exact path={'/register-admin'} component={RegisterAdmin} />
@@ -34,8 +34,7 @@ const App = () => {
         <Route exact path={'/sales-charts'} component={SalesChart} />
         <Route render={() => <h1>Not found!</h1>} /> */}
 
-
-          {/* <div className={classes.App}>
+        {/* <div className={classes.App}>
             <Typography variant="h4" component="h1" className={classes.Title}>
               Welcome to Selyt!
             </Typography>
@@ -46,7 +45,7 @@ const App = () => {
           </div> */}
       </Switch>
     </Router>
- );   
+  );
 };
 
 export default App;
