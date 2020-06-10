@@ -2,19 +2,13 @@ import React from "react";
 import { Formik, Form } from "formik";
 import LoginSchema from "./LoginSchema";
 import TextInput from "./TextInput";
-import classes from "./App.module.scss";
-import {
-  Container,
-  Button,
-  Typography,
-  FormControl,
-  TextField,
-} from "@material-ui/core";
+import classes from "../components/App/App.module.scss";
+import { Container, Button, Typography } from "@material-ui/core";
 
 const LoginForm = () => {
   return (
     <>
-      <Container>
+      <Container maxWidth="xs">
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={LoginSchema}
@@ -25,26 +19,20 @@ const LoginForm = () => {
             }, 1000);
           }}
         >
-          {/* {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => ( */}
           {(props) => (
             <form>
-              <Typography>Login</Typography>
+              <Typography color="primary" variant="h4">
+                Login
+              </Typography>
               <TextInput
                 label="Email"
                 name="email"
                 type="email"
                 placeholder="danifuenmayor@gmail.com"
               />
+              <br />
               <TextInput label="Password" name="password" type="password" />
-
+              <br />
               <Button type="submit" variant="contained">
                 {props.isSubmitting ? "Loading" : "Submit"}
               </Button>
