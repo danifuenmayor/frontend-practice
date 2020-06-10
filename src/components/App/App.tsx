@@ -5,8 +5,7 @@ import { Button, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { SEND_MESSAGE } from "../../reducers/example/types";
-// import LoginForm from "../LoginForm";
-import LoginUser from "../LoginUser";
+import LoginForm from "../LoginUser/LoginForm";
 import RegisterUser from "../Register/RegisterUser";
 
 const App = () => {
@@ -25,8 +24,8 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path={"/"} component={LoginUser} />
-        <Route path="/login" component={LoginUser} />
+        <Route exact path={"/"} component={LoginForm} />
+        <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterUser} />
         {/* <Route exact path={'/login-admin'} component={LoginAdmin} />
         <Route exact path={'/register-admin'} component={RegisterAdmin} />

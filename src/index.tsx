@@ -1,21 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import "jquery";
-import "popper.js";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-free/css/all.css";
 import "./index.scss";
 import { App } from "./components";
 import * as serviceWorker from "./serviceWorker";
-
+import { ThemeProvider } from "@material-ui/core/styles";
 import store from "./store";
+import theme from "./components/theme";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
