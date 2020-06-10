@@ -1,26 +1,25 @@
 import React from "react";
-import { useField } from "formik";
-
-// const ProfileForm = () => {
-//     <div>
-//         <Formik>
-
-//         </Formik>
-//     </div>
-// }
+import { useField, ErrorMessage } from "formik";
+import { FormGroup, Box, TextField } from "@material-ui/core";
 
 const CustomTextField = (props: any) => {
-  const { label } = props;
-  const [field, meta] = useField(props);
+  const { label, type } = props;
+  const [field] = useField(props);
 
   return (
-    <div>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </div>
+    <Box marginBottom={3}>
+      <FormGroup>
+        <TextField
+          margin="dense"
+          id="outlined-basic"
+          label={label}
+          variant="outlined"
+          inputProps={field}
+          type={type}
+        ></TextField>
+        <ErrorMessage name={props.name} />
+      </FormGroup>
+    </Box>
   );
 };
 
