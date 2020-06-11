@@ -3,15 +3,14 @@ import { useField } from "formik";
 import { TextField } from "@material-ui/core";
 
 const TextInput = (props: any) => {
-  const { label } = props;
-  const { type } = props;
+  const { type, name, label } = props;
   const [field, meta] = useField(props);
 
   return (
     <>
       <TextField
         margin="dense"
-        id="outlined-basic"
+        name={name}
         label={label}
         variant="outlined"
         inputProps={field}

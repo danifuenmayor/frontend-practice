@@ -2,10 +2,20 @@ import React from "react";
 import { Formik, Form } from "formik";
 import LoginSchema from "./LoginSchema";
 import TextInput from "./TextInput";
-import classes from "../components/App/App.module.scss";
+import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Typography } from "@material-ui/core";
+import { SEND_LOGIN } from "../../reducers/user/types";
+import { RootState } from "../../reducers";
 
 const LoginForm = () => {
+  const userState = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  const handleSubmit = (values: any) => {
+    dispatch({
+      type: SEND_LOGIN,
+      payload: values,
+    });
+  };
   return (
     <>
       <Container maxWidth="xs">
@@ -13,15 +23,12 @@ const LoginForm = () => {
           initialValues={{ email: "", password: "" }}
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 1000);
+            handleSubmit(values);
           }}
         >
           {(props) => (
-            <form>
-              <Typography color="primary" variant="h4">
+            <Form>
+              <Typography color="secondary" variant="h4">
                 Login
               </Typography>
               <TextInput
@@ -33,10 +40,12 @@ const LoginForm = () => {
               <br />
               <TextInput label="Password" name="password" type="password" />
               <br />
+              {userState.error && <p>{userState.error}</p>}
+              <br />
               <Button type="submit" variant="contained">
-                {props.isSubmitting ? "Loading" : "Submit"}
+                {props.isSubmitting ? "Loading..." : "Submit"}
               </Button>
-            </form>
+            </Form>
           )}
         </Formik>
       </Container>
