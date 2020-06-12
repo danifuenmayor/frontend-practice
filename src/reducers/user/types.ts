@@ -6,10 +6,11 @@ export interface PayloadLogin {
 // Register payload
 export interface PayloadRegister {
   name: string;
-  lastname: string;
+  lastName: string;
   email: string;
   rut: string;
   password: string;
+  confirmPassword: string;
 }
 
 // User state

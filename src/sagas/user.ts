@@ -47,7 +47,7 @@ function* register() {
 
       const response = yield call(axios.post, "http://localhost:3000/users", {
         name: payload.name,
-        lastname: payload.lastname,
+        lastName: payload.lastName,
         email: payload.email,
         rut: payload.rut,
         password: payload.password,

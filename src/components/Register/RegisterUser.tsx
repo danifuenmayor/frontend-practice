@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import RegisterSchema from "./RegisterShemaValidation";
 import { RootState } from "../../reducers";
 import { SEND_REGISTER } from "../../reducers/user/types";
-import CustomTextField from "./CustomTextField";
+import CustomTextField from "./RegisterCustomTextField";
 import { Container, Typography, Button, makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,6 +19,7 @@ const RegisterUser = (props: any) => {
   const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const handleSubmit = (values: any) => {
+    console.log("values :",values);
     dispatch({
       type: SEND_REGISTER,
       payload: values,
@@ -31,19 +32,20 @@ const RegisterUser = (props: any) => {
         <Formik
           initialValues={{
             name: "",
-            lastname: "",
-            mail: "",
+            lastName: "",
+            email: "",
             rut: "",
             password: "",
             confirmPassword: "",
           }}
           validationSchema={RegisterSchema}
           onSubmit={(values, { setSubmitting }) => {
+            console.log("values:", values);
             handleSubmit(values);
           }}
         >
-          {(props: any) => (
-            <Form>
+          {({isSubmitting, isValid}) => (
+            <Form >
               <Typography variant="h4">Create a new account</Typography>
               <br />
               <br />
@@ -55,7 +57,7 @@ const RegisterUser = (props: any) => {
               />
               <CustomTextField
                 label="Last name"
-                name="lastname"
+                name="lastName"
                 type="text"
                 placeholder="Last Name"
               />
@@ -78,7 +80,7 @@ const RegisterUser = (props: any) => {
               />
               <CustomTextField
                 label="Confirm Password"
-                name="newpassword"
+                name="confirmPassword"
                 type="password"
               />
               <br />
@@ -86,7 +88,7 @@ const RegisterUser = (props: any) => {
               <br />
               <Button
                 type="submit"
-                // disabled={props.isSubmmiting || props.isValidating}
+                disabled={isSubmitting || !isValid}
                 variant="contained"
                 color="primary"
                 fullWidth
