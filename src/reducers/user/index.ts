@@ -39,7 +39,10 @@ export const UserReducer = (
       return state;
 
     case SEND_REGISTER_FAIL:
-      return state;
+      return {
+        ...state,
+        error: action.payload,
+      };
 
     case SEND_REGISTER_SUCCESS:
       return state;

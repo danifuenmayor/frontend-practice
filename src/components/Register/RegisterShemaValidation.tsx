@@ -10,10 +10,11 @@ const RegisterSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Must be at least 5 characters")
     .max(10, "Must be shorter than 10 character")
+    .matches(/(?=.*[0-9])/, "Password must contain a number.")
     .required("Password is required"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), undefined], "Password must match")
-    .required("Password confirm is required"),
+    .required("Please, confirm your password"),
 });
 
 export default RegisterSchema;

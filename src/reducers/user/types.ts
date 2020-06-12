@@ -8,8 +8,8 @@ export interface PayloadRegister {
   name: string;
   lastname: string;
   email: string;
-  password: string;
   rut: string;
+  password: string;
 }
 
 // User state
