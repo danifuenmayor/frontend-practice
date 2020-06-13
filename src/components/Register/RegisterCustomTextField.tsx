@@ -11,7 +11,6 @@ const CustomTextField = (props: any) => {
       <FormGroup>
         <TextField
           margin="dense"
-          id="outlined-basic"
           label={label}
           variant="outlined"
           inputProps={field}
