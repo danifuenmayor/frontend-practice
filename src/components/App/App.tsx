@@ -9,6 +9,7 @@ import LoginForm from "../LoginUser/LoginForm";
 import RegisterUser from "../Register/RegisterUser";
 import NavBar from "../Home/NavBar";
 import Home from "../Home/Home";
+import Brands from "../Brands/brands";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,9 +31,9 @@ const App = () => {
         <Route exact path={"/"} component={Home} />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterUser} />
+        <Route exact path={"/brands"} component={Brands} />
         {/* <Route exact path={'/login-admin'} component={LoginAdmin} />
-        <Route exact path={'/register-admin'} component={RegisterAdmin} />
-        <Route exact path={'/brands'} component={Brands} />
+        <Route exact path={'/register-admin'} component={RegisterAdmin} />        
         <Route exact path={'/products'} component={Products} />
         <Route exact path={'/sales-charts'} component={SalesChart} /> */}
         <Route render={() => <h1>Not found!</h1>} />

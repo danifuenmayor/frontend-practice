@@ -7,6 +7,12 @@ import {
   SendLoginFailAction,
   SEND_LOGIN_FAIL,
   SEND_LOGIN,
+  SEND_REGISTER,
+  SendRegisterAction,
+  SendRegisterSuccessAction,
+  SEND_REGISTER_SUCCESS,
+  SendRegisterFailAction,
+  SEND_REGISTER_FAIL,
 } from "../reducers/user/types";
 
 function* login() {
@@ -32,6 +38,34 @@ function* login() {
   });
 }
 
+function* register() {
+  yield takeLatest(SEND_REGISTER, function* (action: SendRegisterAction) {
+    try {
+      const { payload } = action;
+
+      const response = yield call(axios.post, "http://localhost:3000/users", {
+        name: payload.name,
+        lastName: payload.lastName,
+        email: payload.email,
+        rut: payload.rut,
+        password: payload.password,
+      });
+      console.log("response", response);
+
+      yield put<SendRegisterSuccessAction>({
+        type: SEND_REGISTER_SUCCESS,
+        payload: response.data,
+      });
+    } catch (err) {
+      yield put<SendRegisterFailAction>({
+        type: SEND_REGISTER_FAIL,
+        payload: err.message,
+      });
+    }
+  });
+}
+
 export default function* saga() {
   yield fork(login);
+  yield fork(register);
 }
