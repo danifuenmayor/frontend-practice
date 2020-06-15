@@ -21,3 +21,11 @@
 .form {
   color: green;
 }
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.card {
+  width: 100px;
+}

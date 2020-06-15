@@ -21,13 +21,11 @@ function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
     try {
       const { payload } = action;
-      console.log("payload", payload);
 
       const response = yield call(axios.post, "http://localhost:3000/login", {
         email: payload.email,
         password: payload.password,
       });
-      console.log("response", response);
 
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,

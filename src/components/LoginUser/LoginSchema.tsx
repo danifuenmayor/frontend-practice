@@ -2,12 +2,12 @@ import * as Yup from "yup";
 // Simply validates what data will be here and ahow to validate it, and also what message to show there
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
-    .min(10, "Must be at least 10 characters")
-    .max(20, "Must be shorter than 20 characters")
-    .required("Required"),
+    .min(10, "Deben ser al menos 10 caracteres")
+    .max(20, "Deben ser menos de 20 caracteres")
+    .required("Este campo es obligatorio"),
   password: Yup.string()
-    .min(5, "Must be at least 5 characters")
-    .max(10, "Must be shorter than 10 characters")
-    .required("Required"),
+    .min(6, "Deben ser al menos 6 caracteres")
+    .max(10, "Deben ser menos de 10 caracteress")
+    .required("Este campo es obligatorio"),
 });
 export default LoginSchema;
