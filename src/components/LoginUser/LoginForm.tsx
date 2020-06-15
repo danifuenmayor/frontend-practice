@@ -10,10 +10,11 @@ import { RootState } from "../../reducers";
 const LoginForm = () => {
   const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  // This is Redux
   const handleSubmit = (values: any) => {
     dispatch({
-      type: SEND_LOGIN,
-      payload: values,
+      type: SEND_LOGIN, // Type of action
+      payload: values, //email and password
     });
   };
   return (

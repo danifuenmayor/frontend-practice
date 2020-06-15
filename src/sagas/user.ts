@@ -15,6 +15,8 @@ import {
   SEND_REGISTER_FAIL,
 } from "../reducers/user/types";
 
+
+// SAgas yield es propio de sagas
 function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
     try {

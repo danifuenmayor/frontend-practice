@@ -18,6 +18,7 @@ const initialStateUser: UserState = {
   access_token: "",
 };
 
+// Reducers
 export const UserReducer = (
   state = initialStateUser,
   action: UserActions

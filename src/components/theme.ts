@@ -3,7 +3,7 @@ import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 
 export {};
-
+// Material UI
 const theme = createMuiTheme({
   palette: {
     primary: purple,
