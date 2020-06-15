@@ -7,6 +7,8 @@ import { RootState } from "../../reducers";
 import { SEND_MESSAGE } from "../../reducers/example/types";
 import LoginForm from "../LoginUser/LoginForm";
 import RegisterUser from "../Register/RegisterUser";
+import NavBar from "../Home/NavBar";
+import Home from "../Home/Home";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,8 +25,9 @@ const App = () => {
 
   return (
     <Router>
+      <NavBar />
       <Switch>
-        <Route exact path={"/"} component={LoginForm} />
+        <Route exact path={"/"} component={Home} />
         <Route path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterUser} />
         {/* <Route exact path={'/login-admin'} component={LoginAdmin} />
