@@ -1,8 +1,8 @@
 import {
   PayloadBrand,
-  GET_All_BRANDS,
-  GET_All_BRANDS_SUCCESS,
-  GET_All_BRANDS_FAIL,
+  GET_ALL_BRANDS,
+  GET_ALL_BRANDS_SUCCESS,
+  GET_ALL_BRANDS_FAIL,
   GetAllBrandsAction,
   GetAllBrandsSuccessAction,
   GetAllBrandsFailAction,
@@ -23,7 +23,7 @@ import {
 // Get All Actions
 export function getAllBrands(getBrands: PayloadBrand): GetAllBrandsAction {
   return {
-    type: GET_All_BRANDS,
+    type: GET_ALL_BRANDS,
     payload: getBrands,
   };
 }
@@ -31,13 +31,13 @@ export function getAllBrandsSuccess(
   getBrands: PayloadBrand
 ): GetAllBrandsSuccessAction {
   return {
-    type: GET_All_BRANDS_SUCCESS,
+    type: GET_ALL_BRANDS_SUCCESS,
     payload: getBrands,
   };
 }
 export function getAllBrandsFail(error: string): GetAllBrandsFailAction {
   return {
-    type: GET_All_BRANDS_FAIL,
+    type: GET_ALL_BRANDS_FAIL,
     payload: error,
   };
 }

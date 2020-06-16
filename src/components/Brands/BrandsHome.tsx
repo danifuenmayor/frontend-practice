@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RootState } from "../../reducers";
-import { GET_All_BRANDS } from "../../reducers/brands/types";
+import { GET_ALL_BRANDS } from "../../reducers/brands/types";
 import { useSelector, useDispatch } from "react-redux";
 import Brands from "./brands";
 import Typography from "@material-ui/core/Typography";
@@ -17,7 +17,7 @@ const BrandsHome = (props: any) => {
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
-        type: GET_All_BRANDS,
+        type: GET_ALL_BRANDS,
       });
     } else {
       props.history.push("/login");

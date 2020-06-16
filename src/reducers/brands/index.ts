@@ -1,9 +1,9 @@
 import {
   BrandState,
   BrandsActions,
-  GET_All_BRANDS,
-  GET_All_BRANDS_FAIL,
-  GET_All_BRANDS_SUCCESS,
+  GET_ALL_BRANDS,
+  GET_ALL_BRANDS_FAIL,
+  GET_ALL_BRANDS_SUCCESS,
   CREATE_ONE_BRAND,
   CREATE_ONE_BRAND_SUCCESS,
   CREATE_ONE_BRAND_FAIL,
@@ -21,13 +21,13 @@ export const BrandsReducer = (
   action: BrandsActions
 ): BrandState => {
   switch (action.type) {
-    case GET_All_BRANDS:
+    case GET_ALL_BRANDS:
       return state;
 
-    case GET_All_BRANDS_FAIL:
+    case GET_ALL_BRANDS_FAIL:
       return state;
 
-    case GET_All_BRANDS_SUCCESS:
+    case GET_ALL_BRANDS_SUCCESS:
       return {
         brands: [...state.brands, action.payload],
       };

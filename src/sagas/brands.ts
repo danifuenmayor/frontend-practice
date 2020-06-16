@@ -2,9 +2,9 @@ import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
 
 import {
-  GET_All_BRANDS,
-  GET_All_BRANDS_SUCCESS,
-  GET_All_BRANDS_FAIL,
+  GET_ALL_BRANDS,
+  GET_ALL_BRANDS_SUCCESS,
+  GET_ALL_BRANDS_FAIL,
   GetAllBrandsAction,
   GetAllBrandsSuccessAction,
   GetAllBrandsFailAction,
@@ -23,18 +23,18 @@ import {
 } from "../reducers/brands/types";
 
 function* getBrands() {
-  yield takeLatest(GET_All_BRANDS, function* (action: GetAllBrandsAction) {
+  yield takeLatest(GET_ALL_BRANDS, function* (action: GetAllBrandsAction) {
     try {
       const response = yield call(axios.get, "http://localhost:3000/brands");
       console.log("response", response);
 
       yield put<GetAllBrandsSuccessAction>({
-        type: GET_All_BRANDS_SUCCESS,
+        type: GET_ALL_BRANDS_SUCCESS,
         payload: response.data,
       });
     } catch (err) {
       yield put<GetAllBrandsFailAction>({
-        type: GET_All_BRANDS_FAIL,
+        type: GET_ALL_BRANDS_FAIL,
         payload: err.message,
       });
     }

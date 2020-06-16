@@ -10,9 +10,9 @@ export interface BrandState {
 }
 
 // Brands action names
-export const GET_All_BRANDS = "USER/GET_ALL_BRANDS";
-export const GET_All_BRANDS_SUCCESS = "USER/GET_All_BRANDS_SUCCESS";
-export const GET_All_BRANDS_FAIL = "USER/GET_All_BRANDS_FAIL";
+export const GET_ALL_BRANDS = "USER/GET_ALL_BRANDS";
+export const GET_ALL_BRANDS_SUCCESS = "USER/GET_ALL_BRANDS_SUCCESS";
+export const GET_ALL_BRANDS_FAIL = "USER/GET_ALL_BRANDS_FAIL";
 
 export const CREATE_ONE_BRAND = "ADMIN/CREATE_ONE_BRAND";
 export const CREATE_ONE_BRAND_SUCCESS = "ADMIN/CREATE_ONE_BRAND_SUCCESS";
@@ -24,15 +24,15 @@ export const DELETE_ONE_BRAND_FAIL = "ADMIN/DELETE_ONE_BRAND_FAIL";
 
 // Get All Brands action types
 export interface GetAllBrandsAction {
-  type: typeof GET_All_BRANDS;
+  type: typeof GET_ALL_BRANDS;
   payload: PayloadBrand;
 }
 export interface GetAllBrandsFailAction {
-  type: typeof GET_All_BRANDS_FAIL;
+  type: typeof GET_ALL_BRANDS_FAIL;
   payload: string;
 }
 export interface GetAllBrandsSuccessAction {
-  type: typeof GET_All_BRANDS_SUCCESS;
+  type: typeof GET_ALL_BRANDS_SUCCESS;
   payload: PayloadBrand;
 }
 
