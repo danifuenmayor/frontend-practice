@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../reducers";
 import { GET_All_BRANDS } from "../../reducers/brands/types";
 import { useSelector, useDispatch } from "react-redux";
-import Brands from "./Brands";
+import Brands from "./brands";
 import Typography from "@material-ui/core/Typography";
 
 const BrandsHome = (props: any) => {
