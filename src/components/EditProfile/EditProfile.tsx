@@ -51,7 +51,6 @@ const EditProfile = (props: any) => {
                 />
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
-                2:14
                 {user.accessToken ? (
                   <Redirect to="/user-profile" />
                 ) : (
