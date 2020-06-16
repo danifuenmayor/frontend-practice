@@ -12,11 +12,8 @@ const LoginForm = () => {
   const history = useHistory();
   const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-<<<<<<< HEAD
   // This is Redux
-=======
 
->>>>>>> 8615287943e997b35466b6ce77dba1b626192d8c
   const handleSubmit = (values: any) => {
     dispatch({
       type: SEND_LOGIN, // Type of action
