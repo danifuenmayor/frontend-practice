@@ -20,15 +20,24 @@ function* login() {
     try {
       const { payload } = action;
 
-      const response = yield call(axios.post, "http://localhost:3000/login", {
+      const response = yield call(axios.post, "http://localhost:8080/login", {
         email: payload.email,
         password: payload.password,
       });
 
+      const respUser = yield call(axios.get, "http://localhost:8080/users/me", {
+        headers: {
+          Authorization: `Bearer ${response.data.accessToken}`,
+        },
+      });
+
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
-        payload: response.data,
+        payload: respUser.data,
       });
+
+      const { accessToken } = response.data;
+      localStorage.setItem("accessToken", accessToken);
     } catch (err) {
       yield put<SendLoginFailAction>({
         type: SEND_LOGIN_FAIL,

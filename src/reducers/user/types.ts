@@ -2,6 +2,12 @@
 export interface PayloadLogin {
   email: string;
   password: string;
+  name: string;
+  lastName: string;
+  role: string;
+  access_token: string;
+  error?: string;
+  id: string;
 }
 // Register payload
 export interface PayloadRegister {
@@ -16,11 +22,12 @@ export interface PayloadRegister {
 // User state
 export interface UserState {
   name: string;
-  lastname: string;
+  lastName: string;
   email: string;
   rut: string;
   role: string;
   access_token: string;
+  id: string;
   error?: string;
 }
 
