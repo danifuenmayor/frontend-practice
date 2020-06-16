@@ -2,26 +2,34 @@
 export interface PayloadLogin {
   email: string;
   password: string;
+  name: string;
+  lastName: string;
+  role: string;
+  accessToken: string;
+  error?: string;
+  id: string;
 }
 // Register payload
 export interface PayloadRegister {
   name: string;
   lastName: string;
   email: string;
-  rut: string;
   password: string;
   confirmPassword: string;
+  isActive: string;
 }
 
 // User state
 export interface UserState {
   name: string;
-  lastname: string;
+  lastName: string;
   email: string;
   rut: string;
   role: string;
-  access_token: string;
+  accessToken: string;
+  id: string;
   error?: string;
+  isActive?: string;
 }
 
 // Login action names

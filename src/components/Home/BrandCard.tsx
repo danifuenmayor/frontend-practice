@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardActionArea, CardMedia, makeStyles } from "@material-ui/core";
-import metrogasImage from "../img/vtr.png";
+// import metrogasImage from "../img/vtr.png";
 
 const useStyles = makeStyles((theme) => ({
   card: {

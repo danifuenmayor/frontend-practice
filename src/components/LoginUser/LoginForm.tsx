@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Typography, Box } from "@material-ui/core";
 import { SEND_LOGIN } from "../../reducers/user/types";
 import { RootState } from "../../reducers";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 const LoginForm = () => {
   const history = useHistory();
@@ -19,6 +19,7 @@ const LoginForm = () => {
       payload: values,
     });
   };
+
   return (
     <>
       <Box m={4}>
@@ -51,7 +52,12 @@ const LoginForm = () => {
                 <br />
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
-                {userState.error && <p>{userState.error}</p>}
+                {/* {userState.error && <p>{userState.error}</p>} */}
+                {userState.accessToken ? (
+                  <Redirect to="/brands" />
+                ) : (
+                  <p>{userState.error}</p>
+                )}
                 <br />
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}

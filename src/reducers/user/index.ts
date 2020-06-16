@@ -9,13 +9,15 @@ import {
   SEND_REGISTER_SUCCESS,
 } from "./types";
 
+
 const initialStateUser: UserState = {
   name: "",
-  lastname: "",
+  lastName: "",
   email: "",
   rut: "",
   role: "",
-  access_token: "",
+  accessToken: "",
+  id: "",
 };
 
 export const UserReducer = (
@@ -33,7 +35,15 @@ export const UserReducer = (
       };
 
     case SEND_LOGIN_SUCCESS:
-      return state;
+      return  {
+        ...state,
+        name: action.payload.name,
+        lastName: action.payload.lastName,
+        email: action.payload.email,
+        role: action.payload.role,
+        accessToken: action.payload.accessToken,
+        id: action.payload.id,
+      };
 
     case SEND_REGISTER:
       return state;
@@ -45,7 +55,11 @@ export const UserReducer = (
       };
 
     case SEND_REGISTER_SUCCESS:
-      return state;
+      return {
+        ...state,
+        email: action.payload.email,
+        isActive: action.payload.isActive,
+      };
 
     default:
       return state;
