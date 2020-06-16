@@ -34,7 +34,7 @@ export const UserReducer = (
     case SEND_LOGIN_FAIL:
       return {
         ...state,
-        error: undefined,
+        error: action.payload,
       };
 
     case SEND_LOGIN_SUCCESS:
@@ -55,7 +55,7 @@ export const UserReducer = (
     case SEND_REGISTER_FAIL:
       return {
         ...state,
-        error: undefined,
+        error: action.payload,
       };
 
     case SEND_REGISTER_SUCCESS:
@@ -71,7 +71,7 @@ export const UserReducer = (
     case EDIT_PROFILE_FAIL:
       return {
         ...state,
-        error: undefined,
+        error: action.payload,
       };
 
     case EDIT_PROFILE_SUCCESS:
