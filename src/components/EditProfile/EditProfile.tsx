@@ -51,11 +51,11 @@ const EditProfile = (props: any) => {
                 />
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
-                {user.accessToken ? (
+                {/* {user.accessToken ? (
                   <Redirect to="/user-profile" />
                 ) : (
                   <p>{user.error}</p>
-                )}
+                )} */}
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
                 </Button>

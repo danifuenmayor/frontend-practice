@@ -18,7 +18,7 @@ import {
 function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
     try {
-      const response = yield call(axios.get, "http://localhost:3000/products");
+      const response = yield call(axios.get, "http://localhost:8080/products");
 
       yield put<GetProductsSuccessAction>({
         type: GET_PRODUCTS_SUCCESS,
