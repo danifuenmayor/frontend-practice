@@ -7,9 +7,12 @@ import { RootState } from "../../reducers";
 import { SEND_MESSAGE } from "../../reducers/example/types";
 import LoginForm from "../LoginUser/LoginForm";
 import RegisterUser from "../Register/RegisterUser";
-import NavBar from "../Home/NavBar";
+import NavBar from "../NavBar/NavBar";
 import Home from "../Home/Home";
-import Brands from "../Brands/BrandsHome";
+import Brands from "../Brands/brands";
+import Products from "../Products/products";
+import UserProfile from "../UserProfile/UserProfile";
+import EditProfile from "../EditProfile/EditProfile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,11 +33,13 @@ const App = () => {
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path="/login" component={LoginForm} />
+        <Route path="/user-profile" component={UserProfile} />
+        <Route path="/edit-profile" component={EditProfile} />
         <Route path="/register" component={RegisterUser} />
-        <Route path={"/brands"} component={Brands} />
+        <Route exact path={"/brands"} component={Brands} />
+        <Route exact path={"/products"} component={Products} />
         {/* <Route exact path={'/login-admin'} component={LoginAdmin} />
         <Route exact path={'/register-admin'} component={RegisterAdmin} />        
-        <Route exact path={'/products'} component={Products} />
         <Route exact path={'/sales-charts'} component={SalesChart} /> */}
         <Route render={() => <h1>Not found!</h1>} />
         <div className={classes.App}>

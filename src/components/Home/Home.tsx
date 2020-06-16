@@ -9,11 +9,11 @@ import {
   CardMedia,
   CardActionArea,
 } from "@material-ui/core";
-import vtrImage from "../img/vtr.png";
-import metrogasImage from "../img/metrogas.png";
-import maxusImage from "../img/maxus.png";
-import happypersonImage from "../img/happyperson.jpg";
-import mundangoImage from "../img/mundango.png";
+import vtrImage from "../images/vtr.png";
+import metrogasImage from "../images/metrogas.png";
+import maxusImage from "../images/maxus.png";
+import happypersonImage from "../images/happyperson.jpg";
+import mundangoImage from "../images/mundango.png";
 import classes from "../App/App.module.scss";
 import BrandCard from "./BrandCard";
 

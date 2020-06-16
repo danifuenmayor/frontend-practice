@@ -8,25 +8,23 @@ import {
   GetAllBrandsAction,
   GetAllBrandsSuccessAction,
   GetAllBrandsFailAction,
-//   CREATE_ONE_BRAND,
-//   CREATE_ONE_BRAND_SUCCESS,
-//   CREATE_ONE_BRAND_FAIL,
-//   CreateOneBrandAction,
-//   CreateOneBrandFailAction,
-//   CreateOneBrandSuccessAction,
-//   DELETE_ONE_BRAND,
-//   DELETE_ONE_BRAND_FAIL,
-//   DELETE_ONE_BRAND_SUCCESS,
-//   DeleteOneBrandAction,
-//   DeleteOneBrandFailAction,
-//   DeleteOneBrandSuccessAction,
+  //   CREATE_ONE_BRAND,
+  //   CREATE_ONE_BRAND_SUCCESS,
+  //   CREATE_ONE_BRAND_FAIL,
+  //   CreateOneBrandAction,
+  //   CreateOneBrandFailAction,
+  //   CreateOneBrandSuccessAction,
+  //   DELETE_ONE_BRAND,
+  //   DELETE_ONE_BRAND_FAIL,
+  //   DELETE_ONE_BRAND_SUCCESS,
+  //   DeleteOneBrandAction,
+  //   DeleteOneBrandFailAction,
+  //   DeleteOneBrandSuccessAction,
 } from "../reducers/brands/types";
 
 function* getBrands() {
   yield takeLatest(GET_All_BRANDS, function* (action: GetAllBrandsAction) {
     try {
-    //   const { payload } = action;
-
       const response = yield call(axios.get, "http://localhost:3000/brands");
       console.log("response", response);
 

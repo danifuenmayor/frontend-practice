@@ -1,6 +1,11 @@
 import React from "react";
-import { Card, CardActionArea, CardMedia, makeStyles } from "@material-ui/core";
-// import metrogasImage from "../img/vtr.png";
+import {
+  Card,
+  CardActionArea,
+  CardMedia,
+  makeStyles,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -19,7 +24,7 @@ const BrandCard = (props: any) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="vtr"
+          alt="img"
           image={props.image}
           title="brand"
         />

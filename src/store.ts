@@ -5,7 +5,6 @@ import { rootReducer } from "./reducers";
 import "regenerator-runtime/runtime";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
-
 import storage from "redux-persist/lib/storage";
 
 const sagaMiddleware = createSagaMiddleware();
