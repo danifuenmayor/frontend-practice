@@ -20,6 +20,6 @@ export const store: any = createStore(
   persistedReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
-export const persistor = persistStore(store);
 
+export const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);

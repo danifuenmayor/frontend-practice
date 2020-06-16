@@ -12,6 +12,7 @@ import {
   EDIT_PROFILE_SUCCESS,
 } from "./types";
 
+
 const initialStateUser: UserState = {
   name: "",
   lastName: "",
@@ -58,7 +59,11 @@ export const UserReducer = (
       };
 
     case SEND_REGISTER_SUCCESS:
-      return state;
+      return {
+        ...state,
+        email: action.payload.email,
+        isActive: action.payload.isActive,
+      };
 
     case EDIT_PROFILE:
       return state;
