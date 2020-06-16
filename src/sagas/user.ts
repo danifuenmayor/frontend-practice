@@ -13,6 +13,12 @@ import {
   SEND_REGISTER_SUCCESS,
   SendRegisterFailAction,
   SEND_REGISTER_FAIL,
+  EDIT_PROFILE,
+  EditProfileAction,
+  EditProfileSuccessAction,
+  EDIT_PROFILE_SUCCESS,
+  EditProfileFailAction,
+  EDIT_PROFILE_FAIL,
 } from "../reducers/user/types";
 
 function* login() {
@@ -33,7 +39,10 @@ function* login() {
 
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
-        payload: respUser.data,
+        payload: {
+          ...respUser.data,
+          ...response.data,
+        },
       });
 
       const { accessToken } = response.data;
@@ -73,8 +82,42 @@ function* register() {
     }
   });
 }
+function* editUserProfile() {
+  yield takeLatest(EDIT_PROFILE, function* (action: EditProfileAction) {
+    try {
+      const { payload } = action;
+
+      const response = yield call(
+        axios.put,
+        "http://localhost:8080/users/me",
+        {
+          name: payload.name,
+          lastName: payload.lastName,
+          email: payload.email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      console.log("response", response);
+
+      yield put<EditProfileSuccessAction>({
+        type: EDIT_PROFILE_SUCCESS,
+        payload: response.data,
+      });
+    } catch (err) {
+      yield put<EditProfileFailAction>({
+        type: EDIT_PROFILE_FAIL,
+        payload: err.message,
+      });
+    }
+  });
+}
 
 export default function* saga() {
   yield fork(login);
   yield fork(register);
+  yield fork(editUserProfile);
 }
