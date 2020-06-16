@@ -11,11 +11,12 @@ import {
 
 const initialStateUser: UserState = {
   name: "",
-  lastname: "",
+  lastName: "",
   email: "",
   rut: "",
   role: "",
   access_token: "",
+  id: "",
 };
 
 export const UserReducer = (
@@ -33,7 +34,14 @@ export const UserReducer = (
       };
 
     case SEND_LOGIN_SUCCESS:
-      return state;
+      return {
+        ...state,
+        name: action.payload.name,
+        lastName: action.payload.lastName,
+        email: action.payload.email,
+        role: action.payload.role,
+        id: action.payload.id,
+      };
 
     case SEND_REGISTER:
       return state;
