@@ -25,23 +25,26 @@ function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
     try {
       const { payload } = action;
-
-      const response = yield call(axios.post, "http://localhost:8080/login", {
+      const response = yield call(axios.post, "http://localhost:3000/login", {
         email: payload.email,
         password: payload.password,
       });
 
-      const respUser = yield call(axios.get, "http://localhost:8080/users/me", {
+      console.log("response", response);
+
+      const respUser = yield call(axios.get, "http://localhost:3000/users/me", {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
       });
 
+      console.log("respUser:", respUser);
+
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
         payload: {
-          ...respUser.data,
           ...response.data,
+          ...respUser.data,
         },
       });
 
@@ -65,7 +68,6 @@ function* register() {
         name: payload.name,
         lastName: payload.lastName,
         email: payload.email,
-        rut: payload.rut,
         password: payload.password,
       });
       console.log("response", response);
@@ -75,6 +77,7 @@ function* register() {
         payload: response.data,
       });
     } catch (err) {
+      console.log(err.message);
       yield put<SendRegisterFailAction>({
         type: SEND_REGISTER_FAIL,
         payload: err.message,

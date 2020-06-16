@@ -14,9 +14,9 @@ export interface PayloadRegister {
   name: string;
   lastName: string;
   email: string;
-  rut: string;
   password: string;
   confirmPassword: string;
+  isActive: string;
 }
 
 // Edit Payload
@@ -36,6 +36,7 @@ export interface UserState {
   accessToken: string;
   id: string;
   error?: string;
+  isActive?: string;
 }
 
 // Login action names

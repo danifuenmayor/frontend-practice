@@ -6,8 +6,8 @@ import { App } from "./components";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { store, persistor } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
 import theme from "./components/theme";
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.render(
   <React.StrictMode>
