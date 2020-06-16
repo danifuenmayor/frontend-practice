@@ -7,6 +7,9 @@ import {
   UserActions,
   SEND_REGISTER_FAIL,
   SEND_REGISTER_SUCCESS,
+  EDIT_PROFILE,
+  EDIT_PROFILE_FAIL,
+  EDIT_PROFILE_SUCCESS,
 } from "./types";
 
 const initialStateUser: UserState = {
@@ -15,7 +18,7 @@ const initialStateUser: UserState = {
   email: "",
   rut: "",
   role: "",
-  access_token: "",
+  accessToken: "",
   id: "",
 };
 
@@ -41,6 +44,8 @@ export const UserReducer = (
         email: action.payload.email,
         role: action.payload.role,
         id: action.payload.id,
+        error: undefined,
+        accessToken: action.payload.accessToken,
       };
 
     case SEND_REGISTER:
@@ -55,6 +60,22 @@ export const UserReducer = (
     case SEND_REGISTER_SUCCESS:
       return state;
 
+    case EDIT_PROFILE:
+      return state;
+
+    case EDIT_PROFILE_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case EDIT_PROFILE_SUCCESS:
+      return {
+        ...state,
+        name: action.payload.name,
+        lastName: action.payload.lastName,
+        email: action.payload.email,
+      };
     default:
       return state;
   }

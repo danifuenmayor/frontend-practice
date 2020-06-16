@@ -11,6 +11,8 @@ import NavBar from "../NavBar/NavBar";
 import Home from "../Home/Home";
 import Brands from "../Brands/brands";
 import Products from "../Products/products";
+import UserProfile from "../UserProfile/UserProfile";
+import EditProfile from "../EditProfile/EditProfile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,8 @@ const App = () => {
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path="/login" component={LoginForm} />
+        <Route path="/user-profile" component={UserProfile} />
+        <Route path="/edit-profile" component={EditProfile} />
         <Route path="/register" component={RegisterUser} />
         <Route exact path={"/brands"} component={Brands} />
         <Route exact path={"/products"} component={Products} />
