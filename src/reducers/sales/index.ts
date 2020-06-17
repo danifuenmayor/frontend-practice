@@ -40,7 +40,7 @@ export const SaleReducer = (
     case SALE_PRODUCT_SUCCESS:
       return {
         ...state,
-        sales: action.payload.sales,
+        sales: [action.payload],
       };
     case GET_SALES:
       return state;
@@ -54,7 +54,7 @@ export const SaleReducer = (
     case GET_SALES_SUCCESS:
       return {
         ...state,
-        sales: action.payload.sales,
+        sales: [action.payload],
       };
 
     case DELETE_ONE_SALE:

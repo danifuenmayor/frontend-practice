@@ -6,7 +6,6 @@ import {
   makeStyles,
   Button,
   CardActions,
-  CardHeader,
   CardContent,
   Typography,
   Box,

@@ -14,6 +14,9 @@ import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
 import SalesProducts from "../SalesProducts/SalesProducts";
 import BrandsHome from "../Brands/BrandsHome";
+import AdminLogin from "../AdminLogin/AdminLogin";
+import AdminProfile from "../AdminProfile/AdminProfile";
+import UserList from "../UserList/UserList";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,9 +43,10 @@ const App = () => {
         <Route exact path={"/brands"} component={BrandsHome} />
         <Route exact path={"/products"} component={Products} />
         <Route exact path={"/sales"} component={SalesProducts} />
-        {/* <Route exact path={'/login-admin'} component={LoginAdmin} />
-        <Route exact path={'/register-admin'} component={RegisterAdmin} />        
-        <Route exact path={'/sales-charts'} component={SalesChart} /> */}
+        <Route exact path={"/admin-login"} component={AdminLogin} />
+        <Route exact path={"/admin-profile"} component={AdminProfile} />
+        <Route exact path={"/show-users"} component={UserList} />
+        {/* <Route exact path={"/sales-charts"} component={SalesChart} /> */}
         <Route render={() => <h1>Not found!</h1>} />
         <div className={classes.App}>
           <Typography variant="h4" component="h1" className={classes.Title}>

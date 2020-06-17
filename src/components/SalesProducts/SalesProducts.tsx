@@ -10,8 +10,16 @@ import { SALE_PRODUCT } from "../../reducers/sales/types";
 
 const SalesProducts = (props: any) => {
   const history = useHistory();
-  const userState = useSelector((state: RootState) => state.sales);
   const dispatch = useDispatch();
+  const userState = useSelector((state: RootState) => state.user);
+
+  // useEffect(() => {
+  //   if (userState.accessToken !== "") {
+
+  //   } else {
+  //     props.history.push("/login");
+  //   }
+  // }, [dispatch, props.history, userState.accessToken]);
 
   const handleSubmit = (values: any) => {
     dispatch({
@@ -40,7 +48,7 @@ const SalesProducts = (props: any) => {
               address: "",
             }}
             validationSchema={SaleProductSchema}
-            onSubmit={(values) => {
+            onSubmit={(values, { setSubmitting }) => {
               handleSubmit(values);
             }}
           >
@@ -63,7 +71,7 @@ const SalesProducts = (props: any) => {
                 ) : null}
 
                 <Button type="submit" variant="contained" color="secondary">
-                  Vender Producto
+                  {props.isSubmitting ? "Enviando.." : "Vender Producto"}
                 </Button>
               </Form>
             )}

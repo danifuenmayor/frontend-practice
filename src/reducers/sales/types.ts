@@ -6,7 +6,7 @@ export interface PayloadSales {
   phone: string;
   address: string;
   userId: string;
-  sales: [];
+  sales: any[];
 }
 // Sale state
 export interface SaleProductState {
@@ -18,7 +18,7 @@ export interface SaleProductState {
   sold: boolean;
   userId: string;
   error?: string;
-  sales: [];
+  sales: any[];
 }
 
 // Sales action names

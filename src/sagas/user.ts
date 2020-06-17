@@ -1,5 +1,6 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
+import urlServer from "./index";
 import {
   SendLoginAction,
   SendLoginSuccessAction,
@@ -25,12 +26,12 @@ function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
     try {
       const { payload } = action;
-      const response = yield call(axios.post, "http://localhost:3000/login", {
+      const response = yield call(axios.post, `${urlServer}login`, {
         email: payload.email,
         password: payload.password,
       });
 
-      const respUser = yield call(axios.get, "http://localhost:3000/users/me", {
+      const respUser = yield call(axios.get,`${urlServer}users/me`, {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
@@ -60,7 +61,7 @@ function* register() {
     try {
       const { payload } = action;
 
-      const response = yield call(axios.post, "http://localhost:3000/users", {
+      const response = yield call(axios.post, `${urlServer}users`, {
         name: payload.name,
         lastName: payload.lastName,
         email: payload.email,
@@ -86,7 +87,7 @@ function* editUserProfile() {
 
       const response = yield call(
         axios.put,
-        "http://localhost:8080/users/me",
+        `${urlServer}users/me`,
         {
           name: payload.name,
           lastName: payload.lastName,

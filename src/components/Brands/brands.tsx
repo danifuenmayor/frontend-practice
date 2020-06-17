@@ -14,7 +14,7 @@ const Brands = (props: any) => {
                 key={brand.id}
                 title={brand.name}
                 image={brand.image}
-                setProducts={props.setProducts}
+                id={brand.id}
               />
             );
           })}

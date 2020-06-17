@@ -24,7 +24,7 @@ const BrandsHome = (props: any) => {
 
   // const setProducts = (e: any) => {
   //   e.preventDefault();
-
+  
   // };
 
   return (
@@ -32,7 +32,7 @@ const BrandsHome = (props: any) => {
       <div className="brands">
         <Typography variant="h2">Brands</Typography>
         <div>
-          <Brands brands={brandsState} />
+          <Brands brands={brandsState}  />
         </div>
         <br />
         <Link to="/">Home</Link>

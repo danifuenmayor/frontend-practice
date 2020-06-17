@@ -1,12 +1,10 @@
 // products payload
 export interface PayloadProducts {
+  error?: string;
   products: object;
 }
 // Products state
 export interface ProductState {
-  name: string;
-  description: string;
-  sold: boolean;
   error?: string;
   products: object;
 }
