@@ -1,5 +1,6 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
+import urlServer from "./index";
 import {
   SendLoginAction,
   SendLoginSuccessAction,
@@ -25,20 +26,16 @@ function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
     try {
       const { payload } = action;
-      const response = yield call(axios.post, "http://localhost:3000/login", {
+      const response = yield call(axios.post, `${urlServer}login`, {
         email: payload.email,
         password: payload.password,
       });
 
-      console.log("response", response);
-
-      const respUser = yield call(axios.get, "http://localhost:3000/users/me", {
+      const respUser = yield call(axios.get,`${urlServer}users/me`, {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
       });
-
-      console.log("respUser:", respUser);
 
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
@@ -64,20 +61,18 @@ function* register() {
     try {
       const { payload } = action;
 
-      const response = yield call(axios.post, "http://localhost:3000/users", {
+      const response = yield call(axios.post, `${urlServer}users`, {
         name: payload.name,
         lastName: payload.lastName,
         email: payload.email,
         password: payload.password,
       });
-      console.log("response", response);
 
       yield put<SendRegisterSuccessAction>({
         type: SEND_REGISTER_SUCCESS,
         payload: response.data,
       });
     } catch (err) {
-      console.log(err.message);
       yield put<SendRegisterFailAction>({
         type: SEND_REGISTER_FAIL,
         payload: err.message,
@@ -92,7 +87,7 @@ function* editUserProfile() {
 
       const response = yield call(
         axios.put,
-        "http://localhost:3000/users/me",
+        `${urlServer}users/me`,
         {
           name: payload.name,
           lastName: payload.lastName,
@@ -104,7 +99,6 @@ function* editUserProfile() {
           },
         }
       );
-      console.log("response", response);
 
       yield put<EditProfileSuccessAction>({
         type: EDIT_PROFILE_SUCCESS,

@@ -1,5 +1,6 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
+import urlServer from "./index";
 import {
   GetProductsAction,
   GET_PRODUCTS,
@@ -18,7 +19,7 @@ import {
 function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
     try {
-      const response = yield call(axios.get, "http://localhost:3000/products");
+      const response = yield call(axios.get, `${urlServer}products`);
 
       yield put<GetProductsSuccessAction>({
         type: GET_PRODUCTS_SUCCESS,
@@ -35,7 +36,7 @@ function* getProducts() {
 function* createProduct() {
   yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
     try {
-      const response = yield call(axios.get, "http://localhost:3000/products");
+      const response = yield call(axios.get, `${urlServer}products`);
 
       yield put<CreateProductSuccessAction>({
         type: CREATE_PRODUCT_SUCCESS,

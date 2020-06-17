@@ -1,12 +1,14 @@
 // Brand payload
 
-export interface PayloadBrand {
-  image: string;
-  name: string;
+export interface PayloadBrands {
+  brands: object;
 }
 
 export interface BrandState {
-  brands: PayloadBrand[];
+  name: string;
+  image: string;
+  error?: string
+  brands: object;
 }
 
 // Brands action names
@@ -25,7 +27,7 @@ export const DELETE_ONE_BRAND_FAIL = "ADMIN/DELETE_ONE_BRAND_FAIL";
 // Get All Brands action types
 export interface GetAllBrandsAction {
   type: typeof GET_ALL_BRANDS;
-  payload: PayloadBrand;
+  payload: PayloadBrands;
 }
 export interface GetAllBrandsFailAction {
   type: typeof GET_ALL_BRANDS_FAIL;
@@ -33,13 +35,13 @@ export interface GetAllBrandsFailAction {
 }
 export interface GetAllBrandsSuccessAction {
   type: typeof GET_ALL_BRANDS_SUCCESS;
-  payload: PayloadBrand;
+  payload: PayloadBrands;
 }
 
 // Create One Brand action types
 export interface CreateOneBrandAction {
   type: typeof CREATE_ONE_BRAND;
-  payload: PayloadBrand;
+  payload: PayloadBrands;
 }
 export interface CreateOneBrandFailAction {
   type: typeof CREATE_ONE_BRAND_FAIL;
@@ -47,14 +49,14 @@ export interface CreateOneBrandFailAction {
 }
 export interface CreateOneBrandSuccessAction {
   type: typeof CREATE_ONE_BRAND_SUCCESS;
-  payload: PayloadBrand;
+  payload: PayloadBrands;
 }
 
 //Delete One Brand action types
 
 export interface DeleteOneBrandAction {
   type: typeof DELETE_ONE_BRAND;
-  payload: PayloadBrand;
+  payload: PayloadBrands;
 }
 export interface DeleteOneBrandFailAction {
   type: typeof DELETE_ONE_BRAND_FAIL;
@@ -62,7 +64,7 @@ export interface DeleteOneBrandFailAction {
 }
 export interface DeleteOneBrandSuccessAction {
   type: typeof DELETE_ONE_BRAND_SUCCESS;
-  payload: PayloadBrand;
+  payload: PayloadBrands;
 }
 
 export type BrandsActions =
