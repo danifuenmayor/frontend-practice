@@ -19,7 +19,7 @@ const RegisterUser = (props: any) => {
   const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const handleSubmit = (values: any) => {
-    console.log("values :",values);
+    console.log("values :", values);
     dispatch({
       type: SEND_REGISTER,
       payload: values,
@@ -34,18 +34,16 @@ const RegisterUser = (props: any) => {
             name: "",
             lastName: "",
             email: "",
-            rut: "",
             password: "",
             confirmPassword: "",
           }}
           validationSchema={RegisterSchema}
           onSubmit={(values, { setSubmitting }) => {
-            console.log("values:", values);
             handleSubmit(values);
           }}
         >
-          {({isSubmitting, isValid}) => (
-            <Form >
+          {({ isSubmitting, isValid }) => (
+            <Form>
               <Typography variant="h4">Create a new account</Typography>
               <br />
               <br />
@@ -68,12 +66,6 @@ const RegisterUser = (props: any) => {
                 placeholder="Email"
               />
               <CustomTextField
-                label="Rut"
-                name="rut"
-                type="text"
-                placeholder="Rut"
-              />
-              <CustomTextField
                 label="Password"
                 name="password"
                 type="password"
@@ -84,7 +76,13 @@ const RegisterUser = (props: any) => {
                 type="password"
               />
               <br />
-              {userState.error && <p>{userState.error}</p>}
+
+              {userState.isActive ? (
+                props.history.push("login")
+              ) : (
+                <p>{userState.error}</p>
+              )}
+
               <br />
               <Button
                 type="submit"

@@ -3,7 +3,7 @@ import * as Yup from "yup";
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .min(10, "Deben ser al menos 10 caracteres")
-    .max(20, "Deben ser menos de 20 caracteres")
+    .max(40, "Deben ser menos de 40 caracteres")
     .required("Este campo es obligatorio"),
   password: Yup.string()
     .min(6, "Deben ser al menos 6 caracteres")

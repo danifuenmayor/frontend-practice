@@ -13,6 +13,13 @@ import {
   SendRegisterFailAction,
   SendRegisterSuccessAction,
   SEND_REGISTER_FAIL,
+  PayloadEdit,
+  EditProfileAction,
+  EDIT_PROFILE,
+  EditProfileSuccessAction,
+  EDIT_PROFILE_SUCCESS,
+  EditProfileFailAction,
+  EDIT_PROFILE_FAIL,
 } from "./types";
 
 // Login Actions
@@ -54,6 +61,27 @@ export function sendRegisterSuccess(
 export function sendRegisterFail(error: string): SendRegisterFailAction {
   return {
     type: SEND_REGISTER_FAIL,
+    payload: error,
+  };
+}
+// EditProfile Actions
+export function editProfile(newProfile: PayloadEdit): EditProfileAction {
+  return {
+    type: EDIT_PROFILE,
+    payload: newProfile,
+  };
+}
+export function editProfileSuccess(
+  newProfile: PayloadEdit
+): EditProfileSuccessAction {
+  return {
+    type: EDIT_PROFILE_SUCCESS,
+    payload: newProfile,
+  };
+}
+export function editProfileFail(error: string): EditProfileFailAction {
+  return {
+    type: EDIT_PROFILE_FAIL,
     payload: error,
   };
 }
