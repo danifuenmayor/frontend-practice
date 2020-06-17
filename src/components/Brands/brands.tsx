@@ -8,7 +8,7 @@ const Brands = (props: any) => {
     <Container>
       <Grid container spacing={3}>
         <div>
-          {props.brands.map((brand: any) => {
+          {/* {props.brands.map((brand: any) => {
             return (
               <BrandCardDescription
                 key={brand.id}
@@ -17,7 +17,7 @@ const Brands = (props: any) => {
                 setProducts={props.setProducts}
               />
             );
-          })}
+          })} */}
         </div>
       </Grid>
     </Container>

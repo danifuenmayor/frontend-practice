@@ -12,7 +12,7 @@ import {
 function* getUsers() {
   yield takeLatest(GET_USERS, function* (action: GetUsersAction) {
     try {
-      const response = yield call(axios.get, "http://localhost:8080/users", {
+      const response = yield call(axios.get, "http://localhost:3000/users", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
