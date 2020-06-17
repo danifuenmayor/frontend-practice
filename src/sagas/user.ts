@@ -92,7 +92,7 @@ function* editUserProfile() {
 
       const response = yield call(
         axios.put,
-        "http://localhost:8080/users/me",
+        "http://localhost:3000/users/me",
         {
           name: payload.name,
           lastName: payload.lastName,

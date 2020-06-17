@@ -10,9 +10,7 @@ import {
 } from "./types";
 
 const initialStateProducts: ProductState = {
-  name: "",
-  description: "",
-  sold: false,
+  error: undefined,
   products: [],
 };
 
@@ -33,7 +31,7 @@ export const ProductReducer = (
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload.products,
+        products: action.payload,
       };
     case CREATE_PRODUCT:
       return state;

@@ -3,7 +3,14 @@ import exampleSaga from "./example";
 import userSaga from "./user";
 import brandSaga from "./brands";
 import productsSaga from "./products";
+import adminSaga from "./admin";
 
 export default function* rootSaga() {
-  yield all([exampleSaga(), userSaga(), brandSaga(), productsSaga()]);
+  yield all([
+    exampleSaga(),
+    userSaga(),
+    productsSaga(),
+    adminSaga(),
+    brandSaga(),
+  ]);
 }
