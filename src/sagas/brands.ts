@@ -22,11 +22,16 @@ import {
   //   DeleteOneBrandSuccessAction,
 } from "../reducers/brands/types";
 
-function* getBrands() {
+
+
+function* getAllBrands() {
   yield takeLatest(GET_ALL_BRANDS, function* (action: GetAllBrandsAction) {
     try {
+      const { payload } = action;
+      console.log("payload", payload);
+
       const response = yield call(axios.get, "http://localhost:3000/brands");
-      console.log("response", response);
+      console.log("brands", response);
 
       yield put<GetAllBrandsSuccessAction>({
         type: GET_ALL_BRANDS_SUCCESS,
@@ -42,5 +47,5 @@ function* getBrands() {
 }
 
 export default function* saga() {
-  yield fork(getBrands);
+  yield fork(getAllBrands);
 }

@@ -12,7 +12,7 @@ const Brands = (props: any) => {
             return (
               <BrandCardDescription
                 key={brand.id}
-                title={brand.title}
+                title={brand.name}
                 image={brand.image}
                 setProducts={props.setProducts}
               />

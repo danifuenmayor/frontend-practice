@@ -1,6 +1,6 @@
 // products payload
 export interface PayloadProducts {
-  products: [];
+  products: object;
 }
 // Products state
 export interface ProductState {
@@ -8,7 +8,7 @@ export interface ProductState {
   description: string;
   sold: boolean;
   error?: string;
-  products: [];
+  products: object;
 }
 
 // Product action names

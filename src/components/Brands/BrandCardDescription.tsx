@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BrandCardDescription = (props: any) => {
   const classes = useStyles();
+  console.log(props);
 
   return (
     <Grid item xs>
@@ -46,7 +47,7 @@ const BrandCardDescription = (props: any) => {
         </CardActionArea>
         <CardActions>
           <Button
-            onClick={props.setProducts.bind(props.id)}
+            onClick={()=> props.setProducts(props.id)}
             size="small"
             color="primary"
           >

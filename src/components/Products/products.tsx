@@ -12,6 +12,8 @@ const Products = (props: any) => {
       type: GET_PRODUCTS,
     });
   }, []);
+
+  
   return (
     <>
       <Grid container>

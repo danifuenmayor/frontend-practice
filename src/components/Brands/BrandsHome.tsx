@@ -7,13 +7,9 @@ import Brands from "./brands";
 import Typography from "@material-ui/core/Typography";
 
 const BrandsHome = (props: any) => {
-
   const dispatch = useDispatch();
-  const brandsState = useSelector((state: RootState) => state.brands.brands);
   const userState = useSelector((state: RootState) => state.user);
-
-  console.log(brandsState);
-
+ 
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
@@ -24,17 +20,20 @@ const BrandsHome = (props: any) => {
     }
   }, [dispatch, props.history, userState.accessToken]);
 
-  const setProducts = (e: any) => {
-    e.preventDefault();
-    console.log(e.target);
-  };
+  const brandsState = useSelector((state: RootState) => state.brands.brands);
+  console.log("Brands State :", brandsState);
+
+  // const setProducts = (e: any) => {
+  //   e.preventDefault();
+  //   console.log(e.target);
+  // };
 
   return (
     <>
       <div className="brands">
         <Typography variant="h2">Brands</Typography>
         <div>
-          <Brands brands={brandsState} setProducts={setProducts} />
+          <Brands brands={brandsState} />
         </div>
         <br />
         <Link to="/">Home</Link>
