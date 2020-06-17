@@ -3,10 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { Grid, Typography } from "@material-ui/core";
 import ProductCard from "./ProductCard";
 import Imagedefault from "../images/default.jpg";
-import { GET_PRODUCTS, PayloadProducts } from "../../reducers/products/types";
+import { GET_PRODUCTS } from "../../reducers/products/types";
+import { RootState } from "../../reducers";
+import { useParams } from "react-router-dom";
 
 const Products = (props: any) => {
+  const { brandId } = useParams();
   const dispatch = useDispatch();
+  const products = useSelector(
+    (state: RootState) => state.products.products[0]
+  );
+  console.log(products);
   useEffect(() => {
     dispatch({
       type: GET_PRODUCTS,
@@ -15,12 +22,12 @@ const Products = (props: any) => {
   return (
     <>
       <Grid container>
-        <Typography variant="h2" align="center" color="secondary">
-          {props.brand}
-        </Typography>
-        <ProductCard image={Imagedefault} />
-        <ProductCard image={Imagedefault} />
-        <ProductCard image={Imagedefault} />
+        {!!products &&
+          products
+            .filter((product: any) => product.brandId[0] === brandId)
+            .map((product: any) => {
+              return <ProductCard product={product} image={Imagedefault} />;
+            })}
       </Grid>
     </>
   );

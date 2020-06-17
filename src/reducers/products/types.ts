@@ -1,12 +1,12 @@
 // products payload
 export interface PayloadProducts {
   error?: string;
-  products: object;
+  products: any[];
 }
 // Products state
 export interface ProductState {
   error?: string;
-  products: object;
+  products: any[];
 }
 
 // Product action names

@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 const UserList = (props: any) => {
   const history = useHistory();
   const users = useSelector((state: RootState) => state.admin.users[0]);
-  console.log(users);
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
