@@ -5,6 +5,8 @@ import brandSaga from "./brands";
 import productsSaga from "./products";
 import salesSaga from "./sales"
 
+export const urlServer = "http://localhost:3000/";
+
 export default function* rootSaga() {
   yield all([exampleSaga(), userSaga(), brandSaga(), productsSaga(), salesSaga()]);
 }

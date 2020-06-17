@@ -30,15 +30,11 @@ function* login() {
         password: payload.password,
       });
 
-      console.log("response", response);
-
       const respUser = yield call(axios.get, "http://localhost:3000/users/me", {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
       });
-
-      console.log("respUser:", respUser);
 
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
@@ -70,14 +66,12 @@ function* register() {
         email: payload.email,
         password: payload.password,
       });
-      console.log("response", response);
 
       yield put<SendRegisterSuccessAction>({
         type: SEND_REGISTER_SUCCESS,
         payload: response.data,
       });
     } catch (err) {
-      console.log(err.message);
       yield put<SendRegisterFailAction>({
         type: SEND_REGISTER_FAIL,
         payload: err.message,
@@ -104,7 +98,6 @@ function* editUserProfile() {
           },
         }
       );
-      console.log("response", response);
 
       yield put<EditProfileSuccessAction>({
         type: EDIT_PROFILE_SUCCESS,

@@ -1,6 +1,6 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
-
+import urlServer from "./index"
 import {
   GET_ALL_BRANDS,
   GET_ALL_BRANDS_SUCCESS,
@@ -22,16 +22,11 @@ import {
   //   DeleteOneBrandSuccessAction,
 } from "../reducers/brands/types";
 
-
-
 function* getAllBrands() {
   yield takeLatest(GET_ALL_BRANDS, function* (action: GetAllBrandsAction) {
     try {
-      const { payload } = action;
-      console.log("payload", payload);
-
-      const response = yield call(axios.get, "http://localhost:3000/brands");
-      console.log("brands", response);
+      
+      const response = yield call(axios.get, `${urlServer}brands`);
 
       yield put<GetAllBrandsSuccessAction>({
         type: GET_ALL_BRANDS_SUCCESS,
