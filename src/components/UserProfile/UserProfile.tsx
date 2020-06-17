@@ -30,33 +30,41 @@ const UserProfile = (props: any) => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="secondary">
-          Nombre completo:
+    <>
+      {!!user && user.role && user.role === "user" ? (
+        <Card className={classes.root}>
+          <CardContent>
+            <Typography className={classes.title} color="secondary">
+              Nombre completo:
+            </Typography>
+            <Typography variant="h5" component="h4">
+              {capitalizeFirstLetter(user.name.toLowerCase())}{" "}
+              {capitalizeFirstLetter(user.lastName.toLowerCase())}
+            </Typography>
+            <Typography className={classes.title} color="secondary">
+              Correo electronico:
+            </Typography>
+            <Typography variant="h5" component="h4">
+              {user.email.toLowerCase()}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button
+              href="/edit-profile"
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Editar perfil
+            </Button>
+          </CardActions>
+        </Card>
+      ) : (
+        <Typography variant="h2" color="secondary" align="center">
+          You are not a user
         </Typography>
-        <Typography variant="h5" component="h4">
-          {capitalizeFirstLetter(user.name.toLowerCase())}{" "}
-          {capitalizeFirstLetter(user.lastName.toLowerCase())}
-        </Typography>
-        <Typography className={classes.title} color="secondary">
-          Correo electronico:
-        </Typography>
-        <Typography variant="h5" component="h4">
-          {user.email.toLowerCase()}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button
-          href="/edit-profile"
-          size="small"
-          variant="outlined"
-          color="secondary"
-        >
-          Editar perfil
-        </Button>
-      </CardActions>
-    </Card>
+      )}
+    </>
   );
 };
 export default UserProfile;

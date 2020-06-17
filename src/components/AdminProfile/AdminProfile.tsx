@@ -21,9 +21,9 @@ const useStyles = makeStyles({
     fontSize: 20,
   },
 });
-// function capitalizeFirstLetter(string: any) {
-//   return string[0].toUpperCase() + string.slice(1);
-// }
+function capitalizeFirstLetter(string: any) {
+  return string[0].toUpperCase() + string.slice(1);
+}
 
 const AdminProfile = (props: any) => {
   const classes = useStyles();
@@ -36,7 +36,10 @@ const AdminProfile = (props: any) => {
           Nombre completo:
         </Typography>
         <Typography variant="h5" component="h4">
-          {user && user.name && user.name.toLowerCase()}
+          {user && user.name && capitalizeFirstLetter(user.name.toLowerCase())}{" "}
+          {user &&
+            user.name &&
+            capitalizeFirstLetter(user.lastName.toLowerCase())}
         </Typography>
         <Typography className={classes.title} color="secondary">
           Correo electronico:
@@ -55,7 +58,7 @@ const AdminProfile = (props: any) => {
           Ver todos los usuarios
         </Button>
         <Button
-          href="/show-users"
+          href="/brands"
           size="small"
           variant="outlined"
           color="secondary"

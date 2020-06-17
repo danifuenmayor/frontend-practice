@@ -10,7 +10,7 @@ import RegisterUser from "../Register/RegisterUser";
 import NavBar from "../NavBar/NavBar";
 import Home from "../Home/Home";
 import Brands from "../Brands/brands";
-import Products from "../Products/products";
+import Products from "../Products/Products";
 import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
 import AdminLogin from "../AdminLogin/AdminLogin";

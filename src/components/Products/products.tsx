@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Typography } from "@material-ui/core";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 import Imagedefault from "../images/default.jpg";
 import { GET_PRODUCTS, PayloadProducts } from "../../reducers/products/types";
 
