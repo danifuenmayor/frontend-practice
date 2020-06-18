@@ -9,8 +9,7 @@ import LoginForm from "../LoginUser/LoginForm";
 import RegisterUser from "../Register/RegisterUser";
 import NavBar from "../NavBar/NavBar";
 import Home from "../Home/Home";
-import Brands from "../Brands/brands";
-import Products from "../Products/Products";
+import Products from "../Products/products";
 import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
 import SalesProducts from "../SalesProducts/SalesProducts";
@@ -41,7 +40,6 @@ const App = () => {
         <Route path="/user-profile" component={UserProfile} />
         <Route path="/edit-profile" component={EditProfile} />
         <Route path="/register" component={RegisterUser} />
-        <Route exact path={"/brands"} component={Brands} />
         <Route exact path={"/brands/:brandId/products"} component={Products} />
         <Route exact path={"/brands"} component={BrandsHome} />
         <Route exact path={"/sales"} component={SalesProducts} />
