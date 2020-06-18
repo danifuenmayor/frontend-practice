@@ -13,6 +13,8 @@ import Brands from "../Brands/brands";
 import Products from "../Products/Products";
 import UserProfile from "../UserProfile/UserProfile";
 import EditProfile from "../EditProfile/EditProfile";
+import SalesProducts from "../SalesProducts/SalesProducts";
+import BrandsHome from "../Brands/BrandsHome";
 import AdminLogin from "../AdminLogin/AdminLogin";
 import AdminProfile from "../AdminProfile/AdminProfile";
 import UserList from "../UserList/UserList";
@@ -41,6 +43,8 @@ const App = () => {
         <Route path="/register" component={RegisterUser} />
         <Route exact path={"/brands"} component={Brands} />
         <Route exact path={"/brands/:brandId/products"} component={Products} />
+        <Route exact path={"/brands"} component={BrandsHome} />
+        <Route exact path={"/sales"} component={SalesProducts} />
         <Route exact path={"/admin-login"} component={AdminLogin} />
         <Route exact path={"/admin-profile"} component={AdminProfile} />
         <Route exact path={"/show-users"} component={UserList} />

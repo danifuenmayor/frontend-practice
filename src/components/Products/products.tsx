@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Typography } from "@material-ui/core";
-import ProductCard from "./ProductCard";
+import ProductCard from "./productCard";
 import Imagedefault from "../images/default.jpg";
 import { GET_PRODUCTS } from "../../reducers/products/types";
 import { RootState } from "../../reducers";
@@ -13,12 +13,12 @@ const Products = (props: any) => {
   const products = useSelector(
     (state: RootState) => state.products.products[0]
   );
-  console.log(products);
   useEffect(() => {
     dispatch({
       type: GET_PRODUCTS,
     });
   }, []);
+
   return (
     <>
       <Grid container>

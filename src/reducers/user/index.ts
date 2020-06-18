@@ -10,8 +10,10 @@ import {
   EDIT_PROFILE,
   EDIT_PROFILE_FAIL,
   EDIT_PROFILE_SUCCESS,
+  SEND_LOGOUT,
+  SEND_LOGOUT_FAIL,
+  SEND_LOGOUT_SUCCESS,
 } from "./types";
-
 
 const initialStateUser: UserState = {
   name: "",
@@ -21,6 +23,7 @@ const initialStateUser: UserState = {
   role: "",
   accessToken: "",
   id: "",
+  error: undefined,
 };
 
 export const UserReducer = (
@@ -81,6 +84,20 @@ export const UserReducer = (
         lastName: action.payload.lastName,
         email: action.payload.email,
       };
+    case SEND_LOGOUT:
+      return {
+        ...state,
+        accessToken: "",
+      };
+
+    case SEND_LOGOUT_FAIL:
+      return {
+        ...state,
+        error: undefined,
+      };
+
+    case SEND_LOGOUT_SUCCESS:
+      return state;
     default:
       return state;
   }

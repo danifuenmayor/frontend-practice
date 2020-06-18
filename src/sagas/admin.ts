@@ -1,5 +1,6 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
+import urlServer from "./index";
 import {
   GetUsersSuccessAction,
   GET_USERS,
@@ -12,7 +13,7 @@ import {
 function* getUsers() {
   yield takeLatest(GET_USERS, function* (action: GetUsersAction) {
     try {
-      const response = yield call(axios.get, "http://localhost:3000/users", {
+      const response = yield call(axios.get, `${urlServer}users`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },

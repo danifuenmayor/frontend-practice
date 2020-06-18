@@ -30,51 +30,69 @@ const AdminProfile = (props: any) => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="secondary">
-          Nombre completo:
-        </Typography>
-        <Typography variant="h5" component="h4">
-          {user && user.name && capitalizeFirstLetter(user.name.toLowerCase())}{" "}
-          {user &&
-            user.name &&
-            capitalizeFirstLetter(user.lastName.toLowerCase())}
-        </Typography>
-        <Typography className={classes.title} color="secondary">
-          Correo electronico:
-        </Typography>
-        <Typography variant="h5" component="h4">
-          {user.email.toLowerCase()}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button
-          href="/show-users"
-          size="small"
-          variant="outlined"
+    <>
+      {!!user &&
+      user.role &&
+      user.role === "admin" &&
+      user.accessToken !== "" ? (
+        <Card className={classes.root}>
+          <CardContent>
+            <Typography className={classes.title} color="secondary">
+              Nombre completo:
+            </Typography>
+            <Typography variant="h5" component="h4">
+              {user &&
+                user.name &&
+                capitalizeFirstLetter(user.name.toLowerCase())}{" "}
+              {user &&
+                user.name &&
+                capitalizeFirstLetter(user.lastName.toLowerCase())}
+            </Typography>
+            <Typography className={classes.title} color="secondary">
+              Correo electronico:
+            </Typography>
+            <Typography variant="h5" component="h4">
+              {user.email.toLowerCase()}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button
+              href="/show-users"
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Ver todos los usuarios
+            </Button>
+            <Button
+              href="/brands"
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Ver marcas
+            </Button>
+            <Button
+              href="/show-users"
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Ver ventas
+            </Button>
+          </CardActions>
+        </Card>
+      ) : (
+        <Typography
+          variant="h2"
           color="secondary"
+          align="center"
+          className={classes.root}
         >
-          Ver todos los usuarios
-        </Button>
-        <Button
-          href="/brands"
-          size="small"
-          variant="outlined"
-          color="secondary"
-        >
-          Ver marcas
-        </Button>
-        <Button
-          href="/show-users"
-          size="small"
-          variant="outlined"
-          color="secondary"
-        >
-          Ver ventas
-        </Button>
-      </CardActions>
-    </Card>
+          No eres admin o no has iniciado sesión
+        </Typography>
+      )}
+    </>
   );
 };
 export default AdminProfile;

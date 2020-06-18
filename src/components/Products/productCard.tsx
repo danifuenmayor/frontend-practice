@@ -20,8 +20,11 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(7),
   },
 }));
-
+function capitalizeFirstLetter(string: any) {
+  return string[0].toUpperCase() + string.slice(1);
+}
 const ProductCard = (props: any) => {
+  const urlServer = "http://localhost:4200/products";
   const classes = useStyles();
   return (
     <>
@@ -30,7 +33,9 @@ const ProductCard = (props: any) => {
           <CardMedia component="img" alt="img" image={props.image} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.product.name}
+              {props.product &&
+                props.product.name &&
+                capitalizeFirstLetter(props.product.name.toLowerCase())}
             </Typography>
             <Typography gutterBottom variant="h5" component="h3">
               {`Precio: ${props.product.price}`}
@@ -45,7 +50,11 @@ const ProductCard = (props: any) => {
         </CardActionArea>
         <CardActions>
           <Box>
-            <Button size="small" color="primary">
+            <Button
+              href={`${urlServer}${props.product.id}/sales/`}
+              size="small"
+              color="primary"
+            >
               Vender
             </Button>
           </Box>

@@ -19,7 +19,7 @@ const RegisterUser = (props: any) => {
   const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const handleSubmit = (values: any) => {
-    console.log("values :", values);
+   
     dispatch({
       type: SEND_REGISTER,
       payload: values,

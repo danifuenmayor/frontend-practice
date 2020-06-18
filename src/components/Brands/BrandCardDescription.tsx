@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BrandCardDescription = (props: any) => {
   const classes = useStyles();
-
+  const urlServer = "http://localhost:4200/brands/";
   return (
     <Grid item xs>
       <Card className={classes.root}>
@@ -46,7 +46,8 @@ const BrandCardDescription = (props: any) => {
         </CardActionArea>
         <CardActions>
           <Button
-            onClick={props.setProducts.bind(props.id)}
+            // onClick={(e) => props.setProducts(e, props.id)}
+            href={`${urlServer}${props.id}/products/`}
             size="small"
             color="primary"
           >

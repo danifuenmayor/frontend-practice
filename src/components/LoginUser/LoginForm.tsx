@@ -52,11 +52,11 @@ const LoginForm = () => {
                 <br />
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
-                {/* {userState.accessToken ? (
-                  <Redirect to="/brands" />
+                {userState.accessToken ? (
+                  <Redirect to="/user-profile" />
                 ) : (
                   <p>{userState.error}</p>
-                )} */}
+                )}
                 <br />
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}

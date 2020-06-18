@@ -31,7 +31,10 @@ const UserProfile = (props: any) => {
 
   return (
     <>
-      {!!user && user.role && user.role === "user" ? (
+      {!!user &&
+      user.role &&
+      user.role === "user" &&
+      user.accessToken !== "" ? (
         <Card className={classes.root}>
           <CardContent>
             <Typography className={classes.title} color="secondary">
@@ -57,11 +60,24 @@ const UserProfile = (props: any) => {
             >
               Editar perfil
             </Button>
+            <Button
+              href="/brands"
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Ver marcas
+            </Button>
           </CardActions>
         </Card>
       ) : (
-        <Typography variant="h2" color="secondary" align="center">
-          You are not a user
+        <Typography
+          variant="h2"
+          color="secondary"
+          align="center"
+          className={classes.root}
+        >
+          No eres un usuario o no has iniciado sesión
         </Typography>
       )}
     </>
