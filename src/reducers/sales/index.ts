@@ -7,9 +7,6 @@ import {
   GET_SALES,
   GET_SALES_FAIL,
   GET_SALES_SUCCESS,
-  DELETE_ONE_SALE,
-  DELETE_ONE_SALE_SUCCESS,
-  DELETE_ONE_SALE_FAIL,
 } from "./types";
 
 const initialStateSales: SaleProductState = {
@@ -18,8 +15,8 @@ const initialStateSales: SaleProductState = {
   rut: "",
   phone: "",
   address: "",
-  sold: false,
-  userId: "",
+  accessToken: "",
+  productId: "",
   sales: [],
 };
 
@@ -29,19 +26,25 @@ export const SaleReducer = (
 ): SaleProductState => {
   switch (action.type) {
     case SALE_PRODUCT:
-      return state;
+      return {
+        ...state,
+        loading: true,
+      };
 
     case SALE_PRODUCT_FAIL:
       return {
         ...state,
         error: action.payload,
+        loading: false,
       };
 
     case SALE_PRODUCT_SUCCESS:
       return {
         ...state,
         sales: [action.payload],
+        loading: true,
       };
+
     case GET_SALES:
       return state;
 
@@ -54,22 +57,7 @@ export const SaleReducer = (
     case GET_SALES_SUCCESS:
       return {
         ...state,
-        sales: [action.payload],
-      };
-
-    case DELETE_ONE_SALE:
-      return state;
-
-    case DELETE_ONE_SALE_FAIL:
-      return {
-        ...state,
-        // error: action.payload,
-      };
-
-    case DELETE_ONE_SALE_SUCCESS:
-      return {
-        ...state,
-        // sales: action.payload.sales,
+        sales: action.payload,
       };
 
     default:

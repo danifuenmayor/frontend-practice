@@ -1,6 +1,6 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
-import urlServer from "./index";
+
 import {
   SendLoginAction,
   SendLoginSuccessAction,
@@ -24,6 +24,9 @@ import {
   SendLogoutSuccessAction,
   SEND_LOGOUT_SUCCESS,
 } from "../reducers/user/types";
+
+
+const urlServer = "http://localhost:3000/";  
 
 function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
@@ -57,6 +60,8 @@ function* login() {
     }
   });
 }
+
+
 
 function* register() {
   yield takeLatest(SEND_REGISTER, function* (action: SendRegisterAction) {

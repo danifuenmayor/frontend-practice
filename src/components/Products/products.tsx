@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import ProductCard from "./productCard";
 import Imagedefault from "../images/default.jpg";
 import { GET_PRODUCTS } from "../../reducers/products/types";
@@ -17,13 +17,13 @@ const Products = (props: any) => {
     dispatch({
       type: GET_PRODUCTS,
     });
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Grid container>
-        {!!products &&
+      {!!products &&
           products
-            .filter((product: any) => product.brandId[0] === brandId)
+            .filter((product: any) => product.brandId === brandId)
             .map((product: any) => {
               return <ProductCard product={product} image={Imagedefault} />;
             })}

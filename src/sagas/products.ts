@@ -1,6 +1,5 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
-import urlServer from "./index";
 import {
   GetProductsAction,
   GET_PRODUCTS,
@@ -15,6 +14,8 @@ import {
   CREATE_PRODUCT_FAIL,
   CreateProductFailAction,
 } from "../reducers/products/types";
+
+const urlServer = "http://localhost:3000/";
 
 function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
