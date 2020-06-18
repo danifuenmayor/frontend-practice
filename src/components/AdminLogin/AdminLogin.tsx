@@ -18,6 +18,7 @@ const AdminLogin = () => {
       type: SEND_LOGIN,
       payload: values,
     });
+    history.push("/admin-profile");
   };
   return (
     <>

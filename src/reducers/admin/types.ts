@@ -1,6 +1,6 @@
 // Users payload
 export interface PayloadGetUsers {
-  users: object;
+  users: any[];
 }
 // Admin state
 export interface AdminState {
@@ -8,7 +8,7 @@ export interface AdminState {
   lastName: string;
   email: string;
   error?: string;
-  users: object;
+  users: any[];
 }
 
 // Get users action names

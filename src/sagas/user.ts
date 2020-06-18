@@ -20,6 +20,9 @@ import {
   EDIT_PROFILE_SUCCESS,
   EditProfileFailAction,
   EDIT_PROFILE_FAIL,
+  SEND_LOGOUT,
+  SendLogoutSuccessAction,
+  SEND_LOGOUT_SUCCESS,
 } from "../reducers/user/types";
 
 function* login() {
@@ -44,7 +47,6 @@ function* login() {
           ...respUser.data,
         },
       });
-
       const { accessToken } = response.data;
       localStorage.setItem("accessToken", accessToken);
     } catch (err) {

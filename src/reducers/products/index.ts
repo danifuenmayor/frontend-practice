@@ -31,7 +31,7 @@ export const ProductReducer = (
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
-        products: action.payload,
+        products: [action.payload],
       };
     case CREATE_PRODUCT:
       return state;

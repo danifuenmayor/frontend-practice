@@ -18,6 +18,7 @@ const EditProfile = (props: any) => {
       type: EDIT_PROFILE,
       payload: values,
     });
+    history.push("/user-profile");
   };
   return (
     <>

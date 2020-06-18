@@ -40,8 +40,8 @@ const App = () => {
         <Route path="/user-profile" component={UserProfile} />
         <Route path="/edit-profile" component={EditProfile} />
         <Route path="/register" component={RegisterUser} />
+        <Route exact path={"/brands/:brandId/products"} component={Products} />
         <Route exact path={"/brands"} component={BrandsHome} />
-        <Route exact path={"/products"} component={Products} />
         <Route exact path={"/sales"} component={SalesProducts} />
         <Route exact path={"/admin-login"} component={AdminLogin} />
         <Route exact path={"/admin-profile"} component={AdminProfile} />

@@ -31,7 +31,7 @@ export const AdminReducer = (
     case GET_USERS_SUCCESS:
       return {
         ...state,
-        users: action.payload,
+        users: [action.payload],
       };
     default:
       return state;
