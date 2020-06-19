@@ -68,6 +68,14 @@ const UserProfile = (props: any) => {
             >
               Ver marcas
             </Button>
+            <Button
+              href="/sales-chart"
+              size="small"
+              variant="outlined"
+              color="secondary"
+            >
+              Ver ventas
+            </Button>
           </CardActions>
         </Card>
       ) : (

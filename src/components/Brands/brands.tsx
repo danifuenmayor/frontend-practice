@@ -6,7 +6,7 @@ import { Grid } from "@material-ui/core";
 const Brands = (props: any) => {
   return (
     <Container>
-      <Grid container spacing={3}>
+      <Grid container>
         <div>
           {props.brands.map((brand: any) => {
             return (

@@ -1,6 +1,5 @@
 import { put, takeLatest, fork, call } from "redux-saga/effects";
 import axios from "axios";
-import urlServer from "./index";
 import {
   GetUsersSuccessAction,
   GET_USERS,
@@ -9,7 +8,7 @@ import {
   GetUsersFailAction,
   GetUsersAction,
 } from "../reducers/admin/types";
-
+const urlServer = "http://localhost:3000/";
 function* getUsers() {
   yield takeLatest(GET_USERS, function* (action: GetUsersAction) {
     try {

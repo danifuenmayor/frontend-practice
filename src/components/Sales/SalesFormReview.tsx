@@ -49,22 +49,22 @@ const SalesFormReview = (props: any) => {
             <li>{product.name}</li>
           </ul>
         ))} */}
-        {!!props.products &&
-          props.products
-            .filter((product: any) => product.id === props.productId)
-            .map((product: any) => {
-              return (
-                <div key={product.id}>
-                  <ListItem className={classes.listItem} key={product.name}>
-                    <ListItemText
-                      primary={product.name}
-                      secondary={product.commission}
-                    />
-                    <Typography variant="body2">{product.price}</Typography>
-                  </ListItem>
-                </div>
-              );
-            })}
+        {props.product && props.product.item && (
+          <div>
+            <ListItem
+              className={classes.listItem}
+              key={props.product.item.name}
+            >
+              <ListItemText
+                primary={props.product.item.name}
+                secondary={props.product.item.commission}
+              />
+              <Typography variant="body2">
+                {props.product.item.price}
+              </Typography>
+            </ListItem>
+          </div>
+        )}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
