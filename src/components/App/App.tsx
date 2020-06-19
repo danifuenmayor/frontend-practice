@@ -33,7 +33,7 @@ const App = () => {
         <Route exact path={"/admin-profile"} component={AdminProfile} />
         <Route exact path={"/show-users"} component={UserList} />
         <Route exact path={"/products/:productId/sales"} component={Sales} />
-        <Route exact path={"/sales-charts"} component={SalesChart} />
+        <Route exact path={"/sales-chart"} component={SalesChart} />
         <Route render={() => <h1>Not found!</h1>} />
       </Switch>
     </Router>

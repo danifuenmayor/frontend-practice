@@ -20,10 +20,6 @@ import {
   GetProductFailAction,
   GET_PRODUCT_FAIL,
 } from "../reducers/products/types";
-import { useParams } from "react-router-dom";
-import { RootState } from "../reducers";
-import { useSelector } from "react-redux";
-const urlServer = "http://localhost:3000/";
 
 const urlServer = "http://localhost:3000/";
 

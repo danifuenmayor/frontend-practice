@@ -14,9 +14,7 @@ import {
   GET_SALES_FAIL,
   GetSalesFailAction,
 } from "../reducers/sales/types";
-
 const urlServer = "http://localhost:3000/";
-
 function* saleProduct() {
   yield takeLatest(SALE_PRODUCT, function* (action: SaleProductAction) {
     try {
@@ -38,7 +36,6 @@ function* saleProduct() {
           },
         }
       );
-
       yield put<SaleProductSuccessAction>({
         type: SALE_PRODUCT_SUCCESS,
         payload: response.data,
@@ -51,7 +48,6 @@ function* saleProduct() {
     }
   });
 }
-
 function* getAllSales() {
   yield takeLatest(GET_SALES, function* (action: GetSalesAction) {
     try {
@@ -72,7 +68,6 @@ function* getAllSales() {
     }
   });
 }
-
 export default function* saga() {
   yield fork(saleProduct);
   yield fork(getAllSales);

@@ -55,7 +55,7 @@ const ProductCard = (props: any) => {
         <CardActions>
           <Box>
             <Button
-              href={`${urlServer}/${props.product.id}/sales/`}
+              href={`${urlServer}${props.product.id}/sales/`}
               size="small"
               color="primary"
             >
