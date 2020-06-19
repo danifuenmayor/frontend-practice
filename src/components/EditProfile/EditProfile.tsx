@@ -1,16 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Container, Button, Typography, Box } from "@material-ui/core";
 import { EDIT_PROFILE } from "../../reducers/user/types";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import EditProfileSchema from "./EditProfileSchema";
 import TextInput from "../TextInput/TextInput";
-import { RootState } from "../../reducers";
 
 const EditProfile = (props: any) => {
   const history = useHistory();
-  const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   const handleSubmit = (values: any) => {
@@ -52,11 +50,6 @@ const EditProfile = (props: any) => {
                 />
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
-                {/* {user.accessToken ? (
-                  <Redirect to="/user-profile" />
-                ) : (
-                  <p>{user.error}</p>
-                )} */}
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
                 </Button>
