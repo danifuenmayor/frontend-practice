@@ -73,7 +73,7 @@ const AdminProfile = (props: any) => {
               Ver marcas
             </Button>
             <Button
-              href="/show-users"
+              href="/sales-chart"
               size="small"
               variant="outlined"
               color="secondary"

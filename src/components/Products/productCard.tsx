@@ -10,6 +10,8 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { RootState } from "../../reducers";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -24,7 +26,8 @@ function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
 }
 const ProductCard = (props: any) => {
-  const urlServer = "http://localhost:4200/products";
+  const user = useSelector((state: RootState) => state.user);
+  const urlServer = "http://localhost:4200/products/";
   const classes = useStyles();
 
   return (
@@ -42,7 +45,7 @@ const ProductCard = (props: any) => {
               {`Precio: ${props.product.price}`}
             </Typography>
             <Typography gutterBottom variant="h5" component="h3">
-              {`Comisión: ${props.product.comission}`}
+              {`Comisión: ${props.product.commission}`}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="h4">
               {props.product.description}
@@ -52,13 +55,22 @@ const ProductCard = (props: any) => {
         <CardActions>
           <Box>
             <Button
-              href={`${urlServer}/${props.product.id}/sales/`}
+              href={`${urlServer}${props.product.id}/sales/`}
               size="small"
               color="primary"
             >
               Vender
             </Button>
           </Box>
+          {!!user && user.role === "admin" && (
+            <Button
+              href={`${urlServer}${props.product.id}`}
+              size="small"
+              color="primary"
+            >
+              Editar producto
+            </Button>
+          )}
         </CardActions>
       </Card>
     </>
