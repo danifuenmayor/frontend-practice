@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import RegisterSchema from "./RegisterShemaValidation";
-import { RootState } from "../../reducers";
 import { SEND_REGISTER } from "../../reducers/user/types";
 import CustomTextField from "./RegisterCustomTextField";
 import {
@@ -13,7 +12,7 @@ import {
   CssBaseline,
   Grid,
 } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,13 +36,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Register = (props: any) => {
   const classes = useStyles();
-  const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleSubmit = (values: any) => {
     dispatch({
       type: SEND_REGISTER,
       payload: values,
     });
+    history.push("/login");
   };
 
   return (

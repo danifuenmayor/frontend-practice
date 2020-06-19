@@ -16,7 +16,6 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import {
-  GET_PRODUCTS,
   DELETE_PRODUCT,
   GET_PRODUCT,
 } from "../../reducers/products/types";
@@ -37,7 +36,6 @@ function capitalizeFirstLetter(string: any) {
 }
 
 const EditProduct = (props: any) => {
-  const url = "http://localhost:3000";
   const { id } = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -58,7 +56,7 @@ const EditProduct = (props: any) => {
       type: GET_PRODUCT,
       payload: id,
     });
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   if (product?.loading) {
     return <CircularProgress color="secondary" />;

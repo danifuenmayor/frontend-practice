@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 const BrandsHome = (props: any) => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
-  
+
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
@@ -21,18 +21,13 @@ const BrandsHome = (props: any) => {
   }, [dispatch, props.history, userState.accessToken]);
 
   const brandsState = useSelector((state: RootState) => state.brands.brands);
-  
-  // const setProducts = (e: any) => {
-  //   e.preventDefault();
-  
-  // };
 
   return (
     <>
       <div className="brands">
         <Typography variant="h2">Brands</Typography>
         <div>
-          <Brands brands={brandsState}  />
+          <Brands brands={brandsState} />
         </div>
         <br />
         <Link to="/">Home</Link>

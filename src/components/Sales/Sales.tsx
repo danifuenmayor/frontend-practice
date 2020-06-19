@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -15,7 +15,8 @@ import SalesFormReview from "./SalesFormReview";
 import { SALE_PRODUCT, PayloadSales } from "../../reducers/sales/types";
 import { Formik, Form, FormikProps } from "formik";
 import SaleFormSchema from "./SaleFormSchema";
-import { GET_PRODUCTS } from "../../reducers/products/types";
+import { GET_PRODUCT } from "../../reducers/products/types";
+import { Box } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -54,18 +55,22 @@ const useStyles = makeStyles((theme) => ({
 const Sales = (props: any) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const history = useHistory();
   const { productId } = useParams();
   const userState = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    dispatch({
-      type: GET_PRODUCTS,
-    });
-  }, [dispatch]);
+    if (userState.accessToken !== "") {
+      dispatch({
+        type: GET_PRODUCT,
+        payload: productId,
+      });
+    } else {
+      props.history.push("/login");
+    }
+  }, [dispatch, productId, props.history, userState.accessToken]);
 
-  const products = useSelector(
-    (state: RootState) => state.products.products[0]
-  );
+  const product = useSelector((state: RootState) => state.products.selected);
 
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = ["Información de comprador@", "Revisa los datos de tu venta"];
@@ -75,7 +80,7 @@ const Sales = (props: any) => {
       case 0:
         return <SalesFormData />;
       case 1:
-        return <SalesFormReview productId={productId} products={products} />;
+        return <SalesFormReview productId={productId} product={product} />;
 
       default:
         throw new Error("Unknown step");
@@ -150,8 +155,17 @@ const Sales = (props: any) => {
                           Tu número de orden es #2001539. Le enviaremos una
                           actualización de sus ventas cuando el producto o
                           servicio haya sido entregado. Gracias por confiar en
-                          Celyt
+                          Selyt
                         </Typography>
+                        <Box mt={5}>
+                          <Button
+                            variant="outlined"
+                            onClick={() => history.push("/user-profile")}
+                            color="secondary"
+                          >
+                            Volver a mi perfil
+                          </Button>
+                        </Box>
                       </React.Fragment>
                     ) : (
                       <React.Fragment>
@@ -163,6 +177,15 @@ const Sales = (props: any) => {
                           formulario. Pon atención que todos los campos esten
                           bien ingresado.
                         </Typography>
+                        <Box mt={5}>
+                          <Button
+                            variant="outlined"
+                            onClick={() => history.push("/user-profile")}
+                            color="secondary"
+                          >
+                            Volver a mi perfil
+                          </Button>
+                        </Box>
                       </React.Fragment>
                     )
                   ) : (
