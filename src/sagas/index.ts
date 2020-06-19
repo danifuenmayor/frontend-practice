@@ -6,9 +6,15 @@ import productsSaga from "./products";
 import salesSaga from "./sales";
 import adminSaga from "./admin";
 
-export const urlServer = "http://localhost:3000/";
+
 
 export default function* rootSaga() {
-  yield all([exampleSaga(), userSaga(), brandSaga(), productsSaga(), salesSaga(),  adminSaga(),]);
-
-
+  yield all([
+    exampleSaga(),
+    userSaga(),
+    brandSaga(),
+    productsSaga(),
+    salesSaga(),
+    adminSaga(),
+  ]);
+}

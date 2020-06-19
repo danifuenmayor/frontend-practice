@@ -26,6 +26,7 @@ function capitalizeFirstLetter(string: any) {
 const ProductCard = (props: any) => {
   const urlServer = "http://localhost:4200/products";
   const classes = useStyles();
+
   return (
     <>
       <Card className={classes.card}>
@@ -51,7 +52,7 @@ const ProductCard = (props: any) => {
         <CardActions>
           <Box>
             <Button
-              href={`${urlServer}${props.product.id}/sales/`}
+              href={`${urlServer}/${props.product.id}/sales/`}
               size="small"
               color="primary"
             >

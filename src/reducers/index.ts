@@ -11,7 +11,7 @@ export const rootReducer = combineReducers({
   user: UserReducer,
   brands: brandsReducer,
   products: ProductReducer,
-  sales: SaleReducer
+  sales: SaleReducer,
   admin: AdminReducer,
 });
 

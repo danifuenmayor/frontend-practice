@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const SaleProductSchema = Yup.object().shape({
+const SaleFormSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Deben ser al menos 3 caracteres")
     .max(20, "Deben ser menos de 20 caracteres")
@@ -22,4 +22,4 @@ const SaleProductSchema = Yup.object().shape({
     .max(20, "Deben ser menos de 20 caracteres")
     .required("Este campo es obligatorio"),
 });
-export default SaleProductSchema;
+export default SaleFormSchema;

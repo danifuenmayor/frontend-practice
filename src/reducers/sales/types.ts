@@ -5,8 +5,9 @@ export interface PayloadSales {
   rut: string;
   phone: string;
   address: string;
-  userId: string;
-  sales: any[];
+  accessToken: string;
+  productId: string;
+  sales: object;
 }
 // Sale state
 export interface SaleProductState {
@@ -15,21 +16,22 @@ export interface SaleProductState {
   rut: string;
   phone: string;
   address: string;
-  sold: boolean;
-  userId: string;
+  accessToken: string;
+  productId: string;
+  loading?: boolean;
   error?: string;
-  sales: any[];
+  sales: object;
 }
 
 // Sales action names
 
-export const SALE_PRODUCT = "PRODUCTS/SALE_PRODUCT";
-export const SALE_PRODUCT_SUCCESS = "PRODUCTS/SALE_PRODUCT_SUCCESS";
-export const SALE_PRODUCT_FAIL = "PRODUCTS/SALE_PRODUCT_FAIL";
+export const SALE_PRODUCT = "SALES/SALE_PRODUCT";
+export const SALE_PRODUCT_SUCCESS = "SALES/SALE_PRODUCT_SUCCESS";
+export const SALE_PRODUCT_FAIL = "SALES/SALE_PRODUCT_FAIL";
 
-export const GET_SALES = "PRODUCTS/GET_SALES";
-export const GET_SALES_SUCCESS = "PRODUCTS/GET_SALES_SUCCESS";
-export const GET_SALES_FAIL = "PRODUCTS/GET_SALES_FAIL";
+export const GET_SALES = "SALES/GET_SALES";
+export const GET_SALES_SUCCESS = "SALES/GET_SALES_SUCCESS";
+export const GET_SALES_FAIL = "SALES/GET_SALES_FAIL";
 
 export const DELETE_ONE_SALE = "PRODUCTS/DELETE_ONE_SALE";
 export const DELETE_ONE_SALE_SUCCESS = "PRODUCTS/DELETE_ONE_SALE";
