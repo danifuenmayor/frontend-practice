@@ -25,6 +25,8 @@ import { RootState } from "../reducers";
 import { useSelector } from "react-redux";
 const urlServer = "http://localhost:3000/";
 
+const urlServer = "http://localhost:3000/";
+
 function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
     try {

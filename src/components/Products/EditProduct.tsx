@@ -65,7 +65,6 @@ const EditProduct = (props: any) => {
   }
 
   if (product?.error) {
-    console.log(product.error);
     return <h1>{product.error}</h1>;
   }
 

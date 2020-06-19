@@ -2,22 +2,22 @@ import * as Yup from "yup";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "Must be at least 3 characters")
-    .max(40, "Must be 40 characters or less")
-    .required("Required"),
+    .min(2, "Debe contener al menos 2 caracteres")
+    .max(40, "Debe contener menos de 40 caracteres")
+    .required("Campo Obligatorio"),
   lastName: Yup.string()
-    .min(3, "Must be at least 3 characters")
-    .max(40, "Must be 40 characters or less")
-    .required("Required"),
-  email: Yup.string().email().required("Required"),
+    .min(3, "Debe contener al menos dos caracteres")
+    .max(40, "Debe contener menos de 40 caracteres")
+    .required("Campo Obligatorio"),
+  email: Yup.string().email().required("Campo Obligatorio"),
   password: Yup.string()
-    .min(6, "Must be at least 6 characters")
-    .max(10, "Must be shorter than 10 character")
-    .matches(/(?=.*[0-9])/, "Password must contain a number.")
-    .required("Password is required"),
+    .min(6, "Debe contener al menos 6 caracteres")
+    .max(12, "Debe ser menos de 13 caracteres")
+    .matches(/(?=.*[0-9])/, "Contraseña debe contener al menos un número")
+    .required("Contraseña es requerida"),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), undefined], "Password must match")
-    .required("Please, confirm your password"),
+    .oneOf([Yup.ref("password"), undefined], "Contraseña debe coincidir")
+    .required("Porfavor confirme contraseña"),
 });
 
 export default RegisterSchema;
