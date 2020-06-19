@@ -32,7 +32,7 @@ const UserList = (props: any) => {
     dispatch({
       type: GET_USERS,
     });
-  }, []);
+  }, [dispatch]);
   return (
     <Container>
       <Button

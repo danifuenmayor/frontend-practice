@@ -6,12 +6,13 @@ import {
   GET_PRODUCTS_SUCCESS,
   GetProductsFailAction,
   GET_PRODUCTS_FAIL,
-  CREATE_PRODUCT,
-  CreateProductSuccessAction,
-  CreateProductAction,
-  CREATE_PRODUCT_SUCCESS,
-  CREATE_PRODUCT_FAIL,
-  CreateProductFailAction,
+  DeleteProductAction,
+  DeleteProductSuccessAction,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAIL,
+  DeleteProductFailAction,
+  DELETE_PRODUCT,
+  ProductApi,
 } from "./types";
 
 // Get Products Actions
@@ -22,11 +23,11 @@ export function getProducts(newProduct: PayloadProducts): GetProductsAction {
   };
 }
 export function getProductsSuccess(
-  newProduct: PayloadProducts
+  products: ProductApi[]
 ): GetProductsSuccessAction {
   return {
     type: GET_PRODUCTS_SUCCESS,
-    payload: newProduct,
+    payload: products,
   };
 }
 export function getProductsFail(error: string): GetProductsFailAction {
@@ -35,26 +36,24 @@ export function getProductsFail(error: string): GetProductsFailAction {
     payload: error,
   };
 }
-// CreateProduct Actions
-export function createProduct(
-  newProduct: PayloadProducts
-): CreateProductAction {
+// DeleteProduct Actions
+export function deleteProduct(deletedProduct: string): DeleteProductAction {
   return {
-    type: CREATE_PRODUCT,
-    payload: newProduct,
+    type: DELETE_PRODUCT,
+    payload: deletedProduct,
   };
 }
-export function createProductSuccess(
-  newProduct: PayloadProducts
-): CreateProductSuccessAction {
+export function deleteProductSuccess(
+  deletedProduct: PayloadProducts
+): DeleteProductSuccessAction {
   return {
-    type: CREATE_PRODUCT_SUCCESS,
-    payload: newProduct,
+    type: DELETE_PRODUCT_SUCCESS,
+    payload: deletedProduct,
   };
 }
-export function createProductFail(error: string): CreateProductFailAction {
+export function deleteProductFail(error: string): DeleteProductFailAction {
   return {
-    type: CREATE_PRODUCT_FAIL,
+    type: DELETE_PRODUCT_FAIL,
     payload: error,
   };
 }
