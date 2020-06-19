@@ -36,7 +36,6 @@ function capitalizeFirstLetter(string: any) {
 }
 
 const EditProduct = (props: any) => {
-  const url = "http://localhost:3000";
   const { id } = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
