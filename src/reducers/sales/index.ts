@@ -57,7 +57,7 @@ export const SaleReducer = (
     case GET_SALES_SUCCESS:
       return {
         ...state,
-        sales: action.payload,
+        sales: [action.payload],
       };
 
     default:

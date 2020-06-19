@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SEND_LOGOUT } from "../../reducers/user/types";
 import { RootState } from "../../reducers";

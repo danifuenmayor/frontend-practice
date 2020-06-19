@@ -12,12 +12,6 @@ import {
   GetSalesSuccessAction,
   GET_SALES_FAIL,
   GetSalesFailAction,
-  DELETE_ONE_SALE,
-  DeleteOneSaleAction,
-  DELETE_ONE_SALE_SUCCESS,
-  DeleteOneSaleSuccessAction,
-  DELETE_ONE_SALE_FAIL,
-  DeleteOneSaleFailAction,
 } from "./types";
 
 // Sale Product Actions
@@ -62,24 +56,4 @@ export function getSalesFail(error: string): GetSalesFailAction {
   };
 }
 
-// Delete One Sale Actions
-export function deleteSale(deletedSale: PayloadSales): DeleteOneSaleAction {
-  return {
-    type: DELETE_ONE_SALE,
-    payload: deletedSale,
-  };
-}
-export function deleteSaleSuccess(
-  deletedSale: PayloadSales
-): DeleteOneSaleSuccessAction {
-  return {
-    type: DELETE_ONE_SALE_SUCCESS,
-    payload: deletedSale,
-  };
-}
-export function deleteSaleFail(error: string): DeleteOneSaleFailAction {
-  return {
-    type: DELETE_ONE_SALE_FAIL,
-    payload: error,
-  };
-}
+

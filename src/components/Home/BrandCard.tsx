@@ -4,7 +4,6 @@ import {
   CardActionArea,
   CardMedia,
   makeStyles,
-  Button,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({

@@ -7,7 +7,7 @@ export interface PayloadSales {
   address: string;
   accessToken: string;
   productId: string;
-  sales: object;
+  sales: any[];
 }
 // Sale state
 export interface SaleProductState {
@@ -20,7 +20,7 @@ export interface SaleProductState {
   productId: string;
   loading?: boolean;
   error?: string;
-  sales: object;
+  sales: any[];
 }
 
 // Sales action names

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Button, Typography, Box } from "@material-ui/core";
 import { EDIT_PROFILE } from "../../reducers/user/types";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import EditProfileSchema from "./EditProfileSchema";
 import TextInput from "../TextInput/TextInput";
