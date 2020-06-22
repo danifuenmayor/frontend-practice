@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { RootState } from "../../reducers";
 import { GET_ALL_BRANDS } from "../../reducers/brands/types";
 import { useSelector, useDispatch } from "react-redux";
 import Brands from "./brands";
 import Typography from "@material-ui/core/Typography";
+import { Box, Button } from "@material-ui/core";
 
 const BrandsHome = (props: any) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userState = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
@@ -30,7 +32,15 @@ const BrandsHome = (props: any) => {
           <Brands brands={brandsState} />
         </div>
         <br />
-        <Link to="/">Home</Link>
+        <Box mt={5}>
+          <Button
+            variant="outlined"
+            onClick={() => history.push("/user-profile")}
+            color="secondary"
+          >
+            Volver a mi perfil
+          </Button>
+        </Box>
       </div>
     </>
   );
