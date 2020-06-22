@@ -43,7 +43,7 @@ const SalesChart = () => {
   return (
     <div>
       <Container>
-        <Typography  variant="h2">SALES CHART</Typography>
+        <Typography variant="h2">SALES CHART</Typography>
         <div>
           <Box color="secondary">
             {userState.role === "user" ? (
@@ -80,10 +80,3 @@ const SalesChart = () => {
   );
 };
 export default SalesChart;
-// options={{
-//   title: {
-//     display: true,
-//     text: "Largest Cities in Massachusetts",
-//     fontSize: 25,
-//   }
-// }}
