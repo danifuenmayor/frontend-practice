@@ -25,7 +25,7 @@ function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
-const UserProfile = (props: any) => {
+const AdminProfile = (props: any) => {
   const classes = useStyles();
   const user = useSelector((state: RootState) => state.user);
 
@@ -33,7 +33,7 @@ const UserProfile = (props: any) => {
     <>
       {!!user &&
       user.role &&
-      user.role === "user" &&
+      user.role === "admin" &&
       user.accessToken !== "" ? (
         <Card className={classes.root}>
           <CardContent>
@@ -41,8 +41,12 @@ const UserProfile = (props: any) => {
               Nombre completo:
             </Typography>
             <Typography variant="h5" component="h4">
-              {capitalizeFirstLetter(user.name.toLowerCase())}{" "}
-              {capitalizeFirstLetter(user.lastName.toLowerCase())}
+              {user &&
+                user.name &&
+                capitalizeFirstLetter(user.name.toLowerCase())}{" "}
+              {user &&
+                user.name &&
+                capitalizeFirstLetter(user.lastName.toLowerCase())}
             </Typography>
             <Typography className={classes.title} color="secondary">
               Correo electronico:
@@ -53,12 +57,12 @@ const UserProfile = (props: any) => {
           </CardContent>
           <CardActions>
             <Button
-              href="/edit-profile"
+              href="/show-users"
               size="small"
               variant="outlined"
               color="secondary"
             >
-              Editar perfil
+              Ver todos los usuarios
             </Button>
             <Button
               href="/brands"
@@ -85,10 +89,10 @@ const UserProfile = (props: any) => {
           align="center"
           className={classes.root}
         >
-          No eres un usuario o no has iniciado sesión
+          No eres admin o no has iniciado sesión
         </Typography>
       )}
     </>
   );
 };
-export default UserProfile;
+export default AdminProfile;

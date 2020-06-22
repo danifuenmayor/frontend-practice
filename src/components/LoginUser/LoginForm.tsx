@@ -54,7 +54,7 @@ const LoginForm = () => {
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
                 {userState.accessToken ? (
-                  <Redirect to="/brands" />
+                  <Redirect to="/user-profile" />
                 ) : (
                   <p>{userState.error}</p>
                 )}

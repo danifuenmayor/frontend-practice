@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { RootState } from "../../reducers";
 import { GET_ALL_BRANDS } from "../../reducers/brands/types";
 import { useSelector, useDispatch } from "react-redux";
 import Brands from "./brands";
 import Typography from "@material-ui/core/Typography";
+import { Box, Button } from "@material-ui/core";
 
 const BrandsHome = (props: any) => {
-
   const dispatch = useDispatch();
-  const brandsState = useSelector((state: RootState) => state.brands.brands);
+  const history = useHistory();
   const userState = useSelector((state: RootState) => state.user);
-
-  console.log(brandsState);
 
   useEffect(() => {
     if (userState.accessToken !== "") {
@@ -24,20 +22,25 @@ const BrandsHome = (props: any) => {
     }
   }, [dispatch, props.history, userState.accessToken]);
 
-  const setProducts = (e: any) => {
-    e.preventDefault();
-    console.log(e.target);
-  };
+  const brandsState = useSelector((state: RootState) => state.brands.brands);
 
   return (
     <>
       <div className="brands">
         <Typography variant="h2">Brands</Typography>
         <div>
-          <Brands brands={brandsState} setProducts={setProducts} />
+          <Brands brands={brandsState} />
         </div>
         <br />
-        <Link to="/">Home</Link>
+        <Box mt={5}>
+          <Button
+            variant="outlined"
+            onClick={() => history.push("/user-profile")}
+            color="secondary"
+          >
+            Volver a mi perfil
+          </Button>
+        </Box>
       </div>
     </>
   );

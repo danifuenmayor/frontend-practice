@@ -1,5 +1,5 @@
 import {
-  PayloadBrand,
+  PayloadBrands,
   GET_ALL_BRANDS,
   GET_ALL_BRANDS_SUCCESS,
   GET_ALL_BRANDS_FAIL,
@@ -21,14 +21,14 @@ import {
 } from "./types";
 
 // Get All Actions
-export function getAllBrands(getBrands: PayloadBrand): GetAllBrandsAction {
+export function getAllBrands(getBrands: PayloadBrands): GetAllBrandsAction {
   return {
     type: GET_ALL_BRANDS,
     payload: getBrands,
   };
 }
 export function getAllBrandsSuccess(
-  getBrands: PayloadBrand
+  getBrands: PayloadBrands
 ): GetAllBrandsSuccessAction {
   return {
     type: GET_ALL_BRANDS_SUCCESS,
@@ -45,7 +45,7 @@ export function getAllBrandsFail(error: string): GetAllBrandsFailAction {
 //Create One Brand Actions
 
 export function createOneBrand(
-  newBrand:PayloadBrand
+  newBrand:PayloadBrands
 ): CreateOneBrandAction {
   return {
     type: CREATE_ONE_BRAND,
@@ -53,7 +53,7 @@ export function createOneBrand(
   };
 }
 export function createOneBrandSuccess(
-  newBrand: PayloadBrand
+  newBrand: PayloadBrands
 ): CreateOneBrandSuccessAction {
   return {
     type: CREATE_ONE_BRAND_SUCCESS,
@@ -70,7 +70,7 @@ export function createOneBrandFail(error: string): CreateOneBrandFailAction {
 //Delete One Brand Action
 
 export function deleteOneBrand(
-  deletedBrand: PayloadBrand
+  deletedBrand: PayloadBrands
 ): DeleteOneBrandAction {
   return {
     type: DELETE_ONE_BRAND,
@@ -78,7 +78,7 @@ export function deleteOneBrand(
   };
 }
 export function deleteOneBrandSuccess(
-  deletedBrand: PayloadBrand
+  deletedBrand: PayloadBrands
 ): DeleteOneBrandSuccessAction {
   return {
     type: DELETE_ONE_BRAND_SUCCESS,

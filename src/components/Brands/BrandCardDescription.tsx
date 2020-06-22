@@ -7,54 +7,50 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 200,
+    width: 250,
+    height: 300,
     margin: theme.spacing(2),
     objectFit: "contain",
     borderRadius: "10%",
-  },
-  media: {
-    height: 140,
   },
 }));
 
 const BrandCardDescription = (props: any) => {
   const classes = useStyles();
-
+  const urlServer = "http://localhost:4200/brands/";
   return (
-    <Grid item xs>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt={props.title}
-            height="140"
-            image={props.image}
-            title={props.tile}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lorem Ipsum
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button
-            onClick={props.setProducts.bind(props.id)}
-            size="small"
-            color="primary"
-          >
-            Productos
-          </Button>
-        </CardActions>
-      </Card>
-    </Grid>
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt={props.title}
+          height="140"
+          image={props.image}
+          title={props.title}
+        />
+        <CardContent >
+          <Typography gutterBottom variant="h6" component="h2">
+            {props.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            Lorem Ipsum
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button
+          // onClick={(e) => props.setProducts(e, props.id)}
+          href={`${urlServer}${props.id}/products/`}
+          size="small"
+          color="primary"
+        >
+          Productos
+        </Button>
+      </CardActions>
+    </Card>
   );
 };
 

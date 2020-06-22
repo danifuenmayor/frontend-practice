@@ -1,24 +1,25 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Container, CssBaseline } from "@material-ui/core";
 import BrandCardDescription from "./BrandCardDescription";
 import { Grid } from "@material-ui/core";
 
 const Brands = (props: any) => {
   return (
     <Container>
-      <Grid container spacing={3}>
-        <div>
-          {props.brands.map((brand: any) => {
-            return (
+      <CssBaseline />
+      <Grid container  spacing={1}>
+        {props.brands.map((brand: any) => {
+          return (
+            <Grid item xs={12} sm={4}>
               <BrandCardDescription
                 key={brand.id}
-                title={brand.title}
+                title={brand.name}
                 image={brand.image}
-                setProducts={props.setProducts}
+                id={brand.id}
               />
-            );
-          })}
-        </div>
+            </Grid>
+          );
+        })}
       </Grid>
     </Container>
   );

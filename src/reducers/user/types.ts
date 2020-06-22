@@ -25,7 +25,11 @@ export interface PayloadEdit {
   lastName: string;
   email: string;
 }
-
+// Logout Payload
+export interface PayloadLogout {
+  accessToken: string;
+  error?: string;
+}
 // User state
 export interface UserState {
   name: string;
@@ -43,6 +47,11 @@ export interface UserState {
 export const SEND_LOGIN = "USER/SEND_LOGIN";
 export const SEND_LOGIN_SUCCESS = "USER/SEND_LOGIN_SUCCESS";
 export const SEND_LOGIN_FAIL = "USER/SEND_LOGIN_FAIL";
+
+// Logout action names
+export const SEND_LOGOUT = "USER/SEND_LOGOUT";
+export const SEND_LOGOUT_SUCCESS = "USER/SEND_LOGOUT_SUCCESS";
+export const SEND_LOGOUT_FAIL = "USER/SEND_LOGOUT";
 
 // Register action names
 export const SEND_REGISTER = "USER/SEND_REGISTER";
@@ -81,6 +90,19 @@ export interface SendLoginSuccessAction {
   type: typeof SEND_LOGIN_SUCCESS;
   payload: PayloadLogin;
 }
+// Logout action types
+export interface SendLogoutAction {
+  type: typeof SEND_LOGOUT;
+  payload: PayloadLogout;
+}
+export interface SendLogoutFailAction {
+  type: typeof SEND_LOGOUT_FAIL;
+  payload: string;
+}
+export interface SendLogoutSuccessAction {
+  type: typeof SEND_LOGOUT_SUCCESS;
+  payload: PayloadLogout;
+}
 
 // Register action types
 export interface SendRegisterAction {
@@ -104,4 +126,7 @@ export type UserActions =
   | SendRegisterSuccessAction
   | EditProfileAction
   | EditProfileFailAction
-  | EditProfileSuccessAction;
+  | EditProfileSuccessAction
+  | SendLogoutAction
+  | SendLogoutFailAction
+  | SendLogoutSuccessAction;

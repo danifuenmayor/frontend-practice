@@ -1,22 +1,24 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Container, Button, Typography, Box } from "@material-ui/core";
-import { EDIT_PROFILE } from "../../reducers/user/types";
-import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
-import EditProfileSchema from "./EditProfileSchema";
 import TextInput from "../TextInput/TextInput";
+import { useSelector, useDispatch } from "react-redux";
+import { Container, Button, Typography, Box } from "@material-ui/core";
+import { SEND_LOGIN } from "../../reducers/user/types";
+import { RootState } from "../../reducers";
+import { useHistory, Redirect } from "react-router-dom";
+import LoginSchema from "../LoginUser/LoginSchema";
 
-const EditProfile = (props: any) => {
+const AdminLogin = () => {
   const history = useHistory();
+  const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   const handleSubmit = (values: any) => {
     dispatch({
-      type: EDIT_PROFILE,
+      type: SEND_LOGIN,
       payload: values,
     });
-    history.push("/user-profile");
+    history.push("/admin-profile");
   };
   return (
     <>
@@ -30,25 +32,31 @@ const EditProfile = (props: any) => {
         </Button>
         <Container maxWidth="xs">
           <Formik
-            initialValues={{ name: "", lastName: "", email: "" }}
-            validationSchema={EditProfileSchema}
-            onSubmit={(values) => {
+            initialValues={{ email: "", password: "" }}
+            validationSchema={LoginSchema}
+            onSubmit={(values, { setSubmitting }) => {
               handleSubmit(values);
             }}
           >
             {(props) => (
               <Form>
                 <Typography color="secondary" variant="h4">
-                  Edita tu perfil
+                  Inicia sesión
                 </Typography>
-                <TextInput label="Nombre" name="name" type="text" />
-                <TextInput label="Apellido" name="lastName" type="text" />
                 <TextInput
                   label="Correo electronico"
                   name="email"
                   type="email"
+                  placeholder="danifuenmayor@gmail.com"
                 />
+                <br />
                 <TextInput label="Contraseña" name="password" type="password" />
+                <br />
+                {userState.accessToken ? (
+                  <Redirect to="/brands" />
+                ) : (
+                  <p>{userState.error}</p>
+                )}
                 <br />
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
@@ -61,4 +69,4 @@ const EditProfile = (props: any) => {
     </>
   );
 };
-export default EditProfile;
+export default AdminLogin;
