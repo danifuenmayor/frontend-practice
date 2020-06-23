@@ -18,6 +18,13 @@ import {
   DeleteOneBrandAction,
   DeleteOneBrandFailAction,
   DeleteOneBrandSuccessAction,
+  EDIT_BRAND,
+  EDIT_BRAND_SUCCESS,
+  EDIT_BRAND_FAIL,
+  EditBrandAction,
+  EditBrandSuccessAction,
+  EditBrandFailAction,
+  PayLoadEditBrand,
 } from "./types";
 
 // Get All Actions
@@ -44,9 +51,7 @@ export function getAllBrandsFail(error: string): GetAllBrandsFailAction {
 
 //Create One Brand Actions
 
-export function createOneBrand(
-  newBrand:PayloadBrands
-): CreateOneBrandAction {
+export function createOneBrand(newBrand: PayloadBrands): CreateOneBrandAction {
   return {
     type: CREATE_ONE_BRAND,
     payload: newBrand,
@@ -88,6 +93,31 @@ export function deleteOneBrandSuccess(
 export function deleteOneBrandFail(error: string): DeleteOneBrandFailAction {
   return {
     type: DELETE_ONE_BRAND_FAIL,
+    payload: error,
+  };
+}
+
+// Edit one brand Action
+
+export function editBrand(editedBrand: PayLoadEditBrand): EditBrandAction {
+  return {
+    type: EDIT_BRAND,
+    payload: editedBrand,
+  };
+}
+
+export function editBrandSuccess(
+  editedBrand: PayLoadEditBrand
+): EditBrandSuccessAction {
+  return {
+    type: EDIT_BRAND_SUCCESS,
+    payload: editedBrand,
+  };
+}
+
+export function editBrandFail(error: string): EditBrandFailAction {
+  return {
+    type: EDIT_BRAND_FAIL,
     payload: error,
   };
 }

@@ -10,6 +10,9 @@ import {
   DELETE_ONE_BRAND,
   DELETE_ONE_BRAND_FAIL,
   DELETE_ONE_BRAND_SUCCESS,
+  EDIT_BRAND,
+  EDIT_BRAND_SUCCESS,
+  EDIT_BRAND_FAIL,
 } from "./types";
 
 const initialStateBrand: BrandState = {
@@ -64,6 +67,29 @@ export const brandsReducer = (
       return {
         ...state,
         brands: action.payload,
+      };
+    case EDIT_BRAND:
+      return {
+        ...state,
+        editedBrand: {
+          loading: true,
+        },
+      };
+    case EDIT_BRAND_SUCCESS:
+      return {
+        ...state,
+        editedBrand: {
+          name: action.payload.name,
+          success: true,
+        },
+      };
+    case EDIT_BRAND_FAIL:
+      return {
+        ...state,
+        editedBrand: {
+          success: false,
+          error: action.payload,
+        },
       };
     default:
       return state;
