@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const UserListSchema = Yup.object().shape({
+const AdminEditUserSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, "Deben ser al menos 3 caracteres")
     .max(20, "Deben ser menos de 20 caracteres")
@@ -15,6 +15,6 @@ const UserListSchema = Yup.object().shape({
     .required("Este campo es obligatorio"),
   password: Yup.string()
     .min(5, "Deben ser al menos 5 caracteres")
-    .max(20, "Deben ser menos de 20 caracteres")
+    .max(20, "Deben ser menos de 20 caracteres"),
 });
-export default UserListSchema;
+export default AdminEditUserSchema;

@@ -15,7 +15,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 
 import TextInput from "../TextInput/TextInput";
-import EditUserSchema from "./EditUserSchema";
+import AdminEditUserSchema from "./AdminEditUserSchema";
 import { RootState } from "../../reducers";
 import { EDIT_USER, GET_ONE_USER } from "../../reducers/admin/types";
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditUser = (props: any) => {
+const AdminEditUser = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -73,7 +73,7 @@ const EditUser = (props: any) => {
           <Container maxWidth="xs">
             <Formik
               initialValues={initialValues}
-              validationSchema={EditUserSchema}
+              validationSchema={AdminEditUserSchema}
               onSubmit={(values) => {
                 handleSubmit(values);
               }}
@@ -143,4 +143,4 @@ const EditUser = (props: any) => {
     </>
   );
 };
-export default EditUser;
+export default AdminEditUser;
