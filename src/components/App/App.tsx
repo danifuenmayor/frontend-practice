@@ -11,7 +11,7 @@ import AdminLogin from "../AdminLogin/AdminLogin";
 import AdminProfile from "../AdminProfile/AdminProfile";
 import UserList from "../UserList/UserList";
 import SalesChart from "../SalesChart/SalesChart";
-import EditProduct from "../Products/EditProduct";
+import EditProduct from "../EditProduct/EditProduct";
 import Register from "../Register/Register";
 import Sales from "../Sales/Sales";
 

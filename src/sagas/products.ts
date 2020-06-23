@@ -19,6 +19,12 @@ import {
   GET_PRODUCT_SUCCESS,
   GetProductFailAction,
   GET_PRODUCT_FAIL,
+  EDIT_PRODUCT,
+  EditProductAction,
+  EditProductSuccessAction,
+  EDIT_PRODUCT_SUCCESS,
+  EDIT_PRODUCT_FAIL,
+  EditProductFailAction,
 } from "../reducers/products/types";
 
 const urlServer = "http://localhost:3000/";
@@ -82,8 +88,44 @@ function* deleteProduct() {
   });
 }
 
+function* editProduct() {
+  yield takeLatest(EDIT_PRODUCT, function* (action: EditProductAction) {
+    try {
+      const { payload } = action;
+
+      console.log(payload);
+
+      const response = yield call(
+        axios.put,
+        `${urlServer}products/${payload.id}`,
+        {
+          name: payload.name,
+          description: payload.description,
+          price: payload.price,
+          commission: payload.commission,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
+      yield put<EditProductSuccessAction>({
+        type: EDIT_PRODUCT_SUCCESS,
+        payload: response.data,
+      });
+    } catch (err) {
+      yield put<EditProductFailAction>({
+        type: EDIT_PRODUCT_FAIL,
+        payload: err.message,
+      });
+    }
+  });
+}
 export default function* saga() {
   yield fork(getProducts);
   yield fork(getProduct);
   yield fork(deleteProduct);
+  yield fork(editProduct);
 }
