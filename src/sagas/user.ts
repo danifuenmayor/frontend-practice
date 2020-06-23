@@ -21,13 +21,8 @@ import {
   EDIT_PROFILE_FAIL,
 } from "../reducers/user/types";
 
-<<<<<<< HEAD
-
-// SAgas yield es propio de sagas
-=======
 const urlServer = "http://localhost:3000/";
 
->>>>>>> 0740a9fa413c16e5a9f0ead33fb6aac0786cd47a
 function* login() {
   yield takeLatest(SEND_LOGIN, function* (action: SendLoginAction) {
     try {
