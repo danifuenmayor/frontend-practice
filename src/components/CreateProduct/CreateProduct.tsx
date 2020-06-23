@@ -1,17 +1,27 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { Container, Button, Typography, Box } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Container,
+  Button,
+  Typography,
+  Box,
+  CircularProgress,
+} from "@material-ui/core";
 import { EDIT_PROFILE } from "../../reducers/user/types";
 import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CreateProductSchema from "./CreateProductSchema";
 import TextInput from "../TextInput/TextInput";
 import { CREATE_PRODUCT } from "../../reducers/products/types";
+import { RootState } from "../../reducers";
 
 const CreateProduct = (props: any) => {
   const { brandId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
+  const newProduct = useSelector(
+    (state: RootState) => state.products.newProduct
+  );
 
   const handleSubmit = (values: any) => {
     dispatch({
@@ -21,9 +31,15 @@ const CreateProduct = (props: any) => {
         brandId: brandId,
       },
     });
-    setTimeout(() => {
-      history.push(`/brands${brandId}`);
-    }, 7000);
+    if (newProduct?.loading === true) {
+      return <CircularProgress color="secondary" />;
+    }
+    if (newProduct?.success === true) {
+      history.push(`/brands/${brandId}/products`);
+    }
+    if (newProduct?.error) {
+      return <h1>{newProduct.error}</h1>;
+    }
   };
   return (
     <>
