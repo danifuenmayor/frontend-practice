@@ -37,7 +37,7 @@ function* login() {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
       });
-
+      
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
         payload: {
@@ -68,9 +68,18 @@ function* register() {
         password: payload.password,
       });
 
+      const respUser = yield call(axios.get, `${urlServer}users/me`, {
+        headers: {
+          Authorization: `Bearer ${response.data.accessToken}`,
+        },
+      });
+
       yield put<SendRegisterSuccessAction>({
         type: SEND_REGISTER_SUCCESS,
-        payload: response.data,
+        payload: {
+          ...response.data,
+          ...respUser.data,
+        },
       });
     } catch (err) {
       yield put<SendRegisterFailAction>({

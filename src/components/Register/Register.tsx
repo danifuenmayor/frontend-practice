@@ -43,7 +43,7 @@ const Register = (props: any) => {
       type: SEND_REGISTER,
       payload: values,
     });
-    history.push("/login");
+    history.push("/user-profile");
   };
 
   return (
@@ -108,12 +108,7 @@ const Register = (props: any) => {
                   />
                 </Grid>
 
-                {/* {userState.isActive ? (
-                props.history.push("login")
-              ) : (
-                <p>{userState.error}</p>
-              )} */}
-
+              
                 <br />
                 <Button
                   type="submit"
