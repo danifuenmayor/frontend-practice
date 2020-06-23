@@ -15,6 +15,7 @@ import {
   EDIT_PRODUCT_SUCCESS,
   CREATE_PRODUCT,
   CREATE_PRODUCT_FAIL,
+  CREATE_PRODUCT_SUCCESS,
 } from "./types";
 
 const initialStateProducts: ProductState = {
@@ -118,24 +119,34 @@ export const ProductReducer = (
           commission: action.payload.commission,
         },
       };
-
     case CREATE_PRODUCT:
-      return state;
+      return {
+        ...state,
+        newProduct: {
+          loading: true,
+        },
+      };
 
-    // case CREATE_PRODUCT_FAIL:
-    //   return {
-    //     ...state,
-    //     error: action.payload,
-    //     }
-    //   };
+    case CREATE_PRODUCT_FAIL:
+      return {
+        ...state,
+        newProduct: {
+          error: action.payload,
+        },
+      };
 
-    // case CREATE_PRODUCT_SUCCESS:
-    //   return {
-    //     ...state,
-    //     editedProduct: {
-    //       success: true,
-    //     },
-    //   };
+    case CREATE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        newProduct: {
+          success: true,
+          name: action.payload.name,
+          price: action.payload.price,
+          description: action.payload.description,
+          commission: action.payload.commission,
+        },
+      };
+
     default:
       return state;
   }

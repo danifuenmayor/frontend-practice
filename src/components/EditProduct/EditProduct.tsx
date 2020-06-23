@@ -39,12 +39,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 15,
   },
 }));
+
 function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
 const EditProduct = (props: any) => {
-  const location = useLocation();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const { id } = useParams();
@@ -53,6 +53,9 @@ const EditProduct = (props: any) => {
   const product = useSelector((state: RootState) => state.products.selected);
   const deletedProduct = useSelector(
     (state: RootState) => state.products.deletedProduct
+  );
+  const editedProduct = useSelector(
+    (state: RootState) => state.products.editedProduct
   );
 
   const handleClose = () => {
@@ -68,6 +71,13 @@ const EditProduct = (props: any) => {
       type: DELETE_PRODUCT,
       payload: id,
     });
+    if (deletedProduct?.loading) {
+      return <CircularProgress color="secondary" />;
+    }
+
+    if (deletedProduct?.error) {
+      return <h1>{deletedProduct.error}</h1>;
+    }
   };
 
   const handleSubmit = (values: any) => {
@@ -79,7 +89,12 @@ const EditProduct = (props: any) => {
       },
     });
     setOpen(false);
-    window.location.reload();
+    if (editedProduct?.success) {
+      history.push(`/products/${id}`);
+    }
+    if (editedProduct?.error) {
+      return <h1>{editedProduct.error}</h1>;
+    }
   };
 
   useEffect(() => {
@@ -88,14 +103,6 @@ const EditProduct = (props: any) => {
       payload: id,
     });
   }, [dispatch, id]);
-
-  if (product?.loading) {
-    return <CircularProgress color="secondary" />;
-  }
-
-  if (product?.error) {
-    return <h1>{product.error}</h1>;
-  }
 
   return (
     <>

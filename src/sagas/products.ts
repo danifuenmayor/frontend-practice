@@ -25,6 +25,12 @@ import {
   EDIT_PRODUCT_SUCCESS,
   EDIT_PRODUCT_FAIL,
   EditProductFailAction,
+  CREATE_PRODUCT,
+  CreateProductAction,
+  CreateProductSuccessAction,
+  CreateProductFailAction,
+  CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_FAIL,
 } from "../reducers/products/types";
 
 const urlServer = "http://localhost:3000/";
@@ -93,8 +99,6 @@ function* editProduct() {
     try {
       const { payload } = action;
 
-      console.log(payload);
-
       const response = yield call(
         axios.put,
         `${urlServer}products/${payload.id}`,
@@ -123,9 +127,45 @@ function* editProduct() {
     }
   });
 }
+function* createProduct() {
+  yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
+    try {
+      const { payload } = action;
+
+      const response = yield call(
+        axios.post,
+        `${urlServer}products/`,
+        {
+          name: payload.name,
+          description: payload.description,
+          price: payload.price,
+          commission: payload.commission,
+          image: payload.image,
+          brandId: payload.brandId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
+      yield put<CreateProductSuccessAction>({
+        type: CREATE_PRODUCT_SUCCESS,
+        payload: response.data,
+      });
+    } catch (err) {
+      yield put<CreateProductFailAction>({
+        type: CREATE_PRODUCT_FAIL,
+        payload: err.message,
+      });
+    }
+  });
+}
 export default function* saga() {
   yield fork(getProducts);
   yield fork(getProduct);
   yield fork(deleteProduct);
   yield fork(editProduct);
+  yield fork(createProduct);
 }
