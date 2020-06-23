@@ -27,7 +27,6 @@ function capitalizeFirstLetter(string: any) {
 }
 const ProductCard = (props: any) => {
   const user = useSelector((state: RootState) => state.user);
-  const urlServer = "http://localhost:4200/products/";
   const classes = useStyles();
 
   return (
@@ -55,7 +54,7 @@ const ProductCard = (props: any) => {
         <CardActions>
           <Box>
             <Button
-              href={`${urlServer}${props.product.id}/sales/`}
+              href={`/products/${props.product.id}/sales/`}
               size="small"
               color="primary"
             >
@@ -64,7 +63,7 @@ const ProductCard = (props: any) => {
           </Box>
           {!!user && user.role === "admin" && (
             <Button
-              href={`${urlServer}${props.product.id}`}
+              href={`/products/${props.product.id}`}
               size="small"
               color="primary"
             >
