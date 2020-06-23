@@ -19,7 +19,6 @@ const initialStateUser: UserState = {
   name: "",
   lastName: "",
   email: "",
-  rut: "",
   role: "",
   accessToken: "",
   id: "",
@@ -63,9 +62,13 @@ export const UserReducer = (
 
     case SEND_REGISTER_SUCCESS:
       return {
-        ...state,
+        name: action.payload.name,
+        lastName: action.payload.lastName,
         email: action.payload.email,
-        isActive: action.payload.isActive,
+        role: action.payload.role,
+        id: action.payload.id,
+        error: undefined,
+        accessToken: action.payload.accessToken,
       };
 
     case EDIT_PROFILE:

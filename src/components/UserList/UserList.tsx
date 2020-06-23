@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 const UserList = (props: any) => {
   const history = useHistory();
-  const users = useSelector((state: RootState) => state.admin.users[0]);
+  const users = useSelector((state: RootState) => state.admin.users);
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,6 +33,7 @@ const UserList = (props: any) => {
       type: GET_USERS,
     });
   }, [dispatch]);
+
   return (
     <Container>
       <Button
@@ -46,7 +47,7 @@ const UserList = (props: any) => {
       <Typography color="secondary" className={classes.title} align="center">
         Users
       </Typography>
-      {!!users &&
+      {Array.isArray(users) &&
         users
           .filter((user: any) => user.role === "user")
           .map((user: any) => {
