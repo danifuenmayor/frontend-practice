@@ -49,7 +49,7 @@ const UserCard = (props: any) => {
       </CardContent>
       <CardActions>
         <Button
-          href={`http://localhost:4200/show-users/${props.user.id}/edit-user`}
+          href={`/show-users/${props.user.id}/edit-user`}
           size="small"
           color="primary"
         >
