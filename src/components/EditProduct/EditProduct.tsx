@@ -90,7 +90,7 @@ const EditProduct = (props: any) => {
     });
     setOpen(false);
     if (editedProduct?.success) {
-      window.location.reload();
+      history.push(`/products/${id}`);
     }
     if (editedProduct?.error) {
       return <h1>{editedProduct.error}</h1>;
