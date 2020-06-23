@@ -1,6 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardActions, CardContent, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -19,6 +25,7 @@ function capitalizeFirstLetter(string: any) {
 
 const UserCard = (props: any) => {
   const classes = useStyles();
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -40,7 +47,15 @@ const UserCard = (props: any) => {
           {props.user.email}
         </Typography>
       </CardContent>
-      <CardActions></CardActions>
+      <CardActions>
+        <Button
+          href={`http://localhost:4200/show-users/${props.user.id}/edit-user`}
+          size="small"
+          color="primary"
+        >
+          Editar usuari@
+        </Button>
+      </CardActions>
     </Card>
   );
 };

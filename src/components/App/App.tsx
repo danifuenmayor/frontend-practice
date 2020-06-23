@@ -14,6 +14,7 @@ import SalesChart from "../SalesChart/SalesChart";
 import EditProduct from "../EditProduct/EditProduct";
 import Register from "../Register/Register";
 import Sales from "../Sales/Sales";
+import AdminEditUser from "../AdminEditUser/AdminEditUser";
 
 const App = () => {
   return (
@@ -34,6 +35,11 @@ const App = () => {
         <Route exact path={"/show-users"} component={UserList} />
         <Route exact path={"/products/:productId/sales"} component={Sales} />
         <Route exact path={"/sales-chart"} component={SalesChart} />
+        <Route
+          exact
+          path={"/show-users/:userId/edit-user"}
+          component={AdminEditUser}
+        />
         <Route render={() => <h1>Not found!</h1>} />
       </Switch>
     </Router>

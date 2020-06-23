@@ -11,12 +11,14 @@ export interface PayloadLogin {
 }
 // Register payload
 export interface PayloadRegister {
-  name: string;
-  lastName: string;
   email: string;
   password: string;
-  confirmPassword: string;
-  isActive: string;
+  name: string;
+  lastName: string;
+  role: string;
+  accessToken: string;
+  error?: string;
+  id: string;
 }
 
 // Edit Payload
@@ -35,12 +37,10 @@ export interface UserState {
   name: string;
   lastName: string;
   email: string;
-  rut: string;
   role: string;
   accessToken: string;
   id: string;
   error?: string;
-  isActive?: string;
 }
 
 // Login action names
