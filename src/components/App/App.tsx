@@ -14,7 +14,7 @@ import SalesChart from "../SalesChart/SalesChart";
 import EditProduct from "../EditProduct/EditProduct";
 import Register from "../Register/Register";
 import Sales from "../Sales/Sales";
-import AdminEditUser from "../AdminEditUser.tsx/AdminEditUser";
+import AdminEditUser from "../AdminEditUser/AdminEditUser";
 
 const App = () => {
   return (
