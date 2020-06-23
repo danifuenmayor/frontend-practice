@@ -44,7 +44,6 @@ function capitalizeFirstLetter(string: any) {
 }
 
 const EditProduct = (props: any) => {
-  const location = useLocation();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const { id } = useParams();
@@ -79,7 +78,9 @@ const EditProduct = (props: any) => {
       },
     });
     setOpen(false);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 7000);
   };
 
   useEffect(() => {

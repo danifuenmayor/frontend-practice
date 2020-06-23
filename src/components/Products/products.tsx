@@ -11,17 +11,37 @@ const Products = (props: any) => {
   const history = useHistory();
   const { brandId } = useParams();
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
   const products = useSelector((state: RootState) => state.products.products);
+
   useEffect(() => {
     dispatch({
       type: GET_PRODUCTS,
     });
   }, [dispatch]);
+
   return (
     <>
       <Box m={5}>
-        <Button onClick={() => history.push("/brands")}>Volver</Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => history.push("/brands")}
+        >
+          Volver
+        </Button>
       </Box>
+      {user && user.role === "admin" && (
+        <Box ml={120}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => history.push(`/${brandId}/create-product`)}
+          >
+            Crear nuevo producto
+          </Button>
+        </Box>
+      )}
       <Grid container>
         {Array.isArray(products) &&
           products

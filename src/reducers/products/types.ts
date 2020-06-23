@@ -8,7 +8,9 @@ export interface PayloadEditProduct {
   description: string;
   price: number;
   commission: number;
+  image: string;
   id?: string;
+  brandId?: string;
 }
 export interface ProductApi {
   name: string;
@@ -31,6 +33,15 @@ export interface ProductState {
     success?: boolean;
   };
   editedProduct?: {
+    name?: string;
+    price?: number;
+    description?: string;
+    commission?: number;
+    loading?: boolean;
+    error?: string;
+    success?: boolean;
+  };
+  newProduct?: {
     name?: string;
     price?: number;
     description?: string;
@@ -119,11 +130,11 @@ export interface EditProductFailAction {
 //Create one product
 export interface CreateProductAction {
   type: typeof CREATE_PRODUCT;
-  payload: string;
+  payload: PayloadEditProduct;
 }
 export interface CreateProductSuccessAction {
   type: typeof CREATE_PRODUCT_SUCCESS;
-  payload: PayloadProducts;
+  payload: PayloadEditProduct;
 }
 export interface CreateProductFailAction {
   type: typeof CREATE_PRODUCT_FAIL;
