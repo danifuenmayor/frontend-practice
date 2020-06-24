@@ -10088,11 +10088,6 @@ react-chartjs-2@^2.9.0:
     lodash "^4.17.4"
     prop-types "^15.5.8"
 
-react-dependent-script@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-dependent-script/-/react-dependent-script-1.1.2.tgz#1e49a502fd2306888491aa4929fa69c14f43e828"
-  integrity sha512-Yf3gdUhQR5B2iyr6IHs6mXEdo/meiU6ZJvFXK3zLM/Tu3jJH1uc8T/Mzg19OQYITT9U9hC0HdHxtIU+LfnLXTg==
-
 react-dev-utils@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-10.2.1.tgz#f6de325ae25fa4d546d09df4bb1befdc6dd19c19"

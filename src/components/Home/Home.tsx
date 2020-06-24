@@ -37,8 +37,8 @@ const Home = (props: any) => {
       </Box>
       <Grid container>
         <Grid xs={6}>
-          <Box m={4} color="secondary.dark">
-            <Typography variant="h4">
+          <Box m={4}>
+            <Typography color="primary" variant="h4">
               Conviertete en Selyt y gana dinero fácil y rápido. Registrate en
               la applicación hoy!
             </Typography>

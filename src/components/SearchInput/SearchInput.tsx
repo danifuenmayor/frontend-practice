@@ -33,7 +33,7 @@ const SearchInput = (props: any) => {
             />
 
             <div>
-              {loading ? <div>...buscando</div> : null}
+              {loading && <div>buscando...</div>}
 
               {suggestions.map((suggestion) => {
                 const style = {
