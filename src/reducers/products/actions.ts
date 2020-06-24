@@ -95,14 +95,16 @@ export function editProductFail(error: string): EditProductFailAction {
   };
 }
 
-export function createProduct(newProduct: string): CreateProductAction {
+export function createProduct(
+  newProduct: PayloadEditProduct
+): CreateProductAction {
   return {
     type: CREATE_PRODUCT,
     payload: newProduct,
   };
 }
 export function createProductSuccess(
-  newProduct: PayloadProducts
+  newProduct: PayloadEditProduct
 ): CreateProductSuccessAction {
   return {
     type: CREATE_PRODUCT_SUCCESS,

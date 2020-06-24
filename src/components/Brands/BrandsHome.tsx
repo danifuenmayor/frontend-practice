@@ -27,12 +27,17 @@ const BrandsHome = (props: any) => {
   return (
     <>
       <div className="brands">
-        <Typography variant="h2">Brands</Typography>
+        <Box m={5}>
+          <Typography variant="h2" align="center" color="secondary">
+            Brands
+          </Typography>
+        </Box>
+
         <div>
           <Brands brands={brandsState} />
         </div>
         <br />
-        <Box mt={5}>
+        <Box m={5}>
           <Button
             variant="outlined"
             onClick={() => history.push("/user-profile")}

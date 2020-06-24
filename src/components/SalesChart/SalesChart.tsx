@@ -8,7 +8,6 @@ import { Line } from "react-chartjs-2";
 const SalesChart = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
-  console.log(userState);
   const history = useHistory();
   useEffect(() => {
     if (userState.accessToken !== "") {
