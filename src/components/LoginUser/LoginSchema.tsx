@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-
+// Simply validates what data will be here and ahow to validate it, and also what message to show there
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
     .min(10, "Deben ser al menos 10 caracteres")

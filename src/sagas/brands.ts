@@ -19,6 +19,7 @@ import {
   EditBrandAction,
   EditBrandSuccessAction,
   EditBrandFailAction,
+<<<<<<< HEAD
   CREATE_ONE_BRAND,
   CREATE_ONE_BRAND_FAIL,
   CREATE_ONE_BRAND_SUCCESS,
@@ -31,6 +32,14 @@ import {
   GetBrandAction,
   GetBrandFailAction,
   GetBrandSuccessAction,
+=======
+  GET_ONE_BRAND,
+  GET_ONE_BRAND_SUCCESS,
+  GET_ONE_BRAND_FAIL,
+  GetBrandAction,
+  GetBrandSuccessAction,
+  GetBrandFailAction,
+>>>>>>> dev
 } from "../reducers/brands/types";
 
 const urlServer = "http://localhost:3000/";
@@ -79,7 +88,7 @@ function* editBrand() {
   yield takeLatest(EDIT_BRAND, function* (action: EditBrandAction) {
     try {
       const { payload } = action;
-      console.log(payload);
+
       const response = yield call(
         axios.put,
         `${urlServer}brands/${payload.id}`,
@@ -93,6 +102,7 @@ function* editBrand() {
           },
         }
       );
+
       yield put<EditBrandSuccessAction>({
         type: EDIT_BRAND_SUCCESS,
         payload: response.data,
@@ -105,6 +115,7 @@ function* editBrand() {
     }
   });
 }
+<<<<<<< HEAD
 function* createBrand() {
   yield takeLatest(CREATE_ONE_BRAND, function* (action: CreateOneBrandAction) {
     try {
@@ -157,6 +168,8 @@ function* getBrand() {
     }
   });
 }
+=======
+>>>>>>> dev
 
 export default function* saga() {
   yield fork(getAllBrands);

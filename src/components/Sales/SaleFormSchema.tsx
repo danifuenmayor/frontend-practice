@@ -17,9 +17,6 @@ const SaleFormSchema = Yup.object().shape({
     .min(9, "Faltan números")
     .max(12, "Muy largo")
     .required("Este campo es obligatorio"),
-  address: Yup.string()
-    .min(5, "Deben ser al menos 5 caracteres")
-    .max(20, "Deben ser menos de 20 caracteres")
-    .required("Este campo es obligatorio"),
+  address: Yup.string().required("Este campo es obligatorio"),
 });
 export default SaleFormSchema;

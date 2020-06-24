@@ -48,6 +48,14 @@ const BrandCardDescription = (props: any) => {
         >
           Productos
         </Button>
+        <Button
+          // onClick={(e) => props.setProducts(e, props.id)}
+          href={`brands/${props.id}`}
+          size="small"
+          color="primary"
+        >
+          Editar Marca
+        </Button>
       </CardActions>
     </Card>
   );

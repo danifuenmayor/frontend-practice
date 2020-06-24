@@ -1,5 +1,4 @@
 // Brand payload
-
 export interface PayloadBrands {
   name: string;
   image: string;
@@ -45,7 +44,6 @@ export interface BrandState {
     success?: boolean;
   };
 }
-
 // Brands action names
 export const GET_ONE_BRAND = "ADMIN/GET_ONE_BRAND";
 export const GET_ONE_BRAND_SUCCESS = "ADMIN/GET_ONE_BRAND_SUCCESS";
