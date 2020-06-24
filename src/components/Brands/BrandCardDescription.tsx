@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BrandCardDescription = (props: any) => {
   const classes = useStyles();
+  const urlServer = "http://localhost:4200/brands/";
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -42,7 +43,7 @@ const BrandCardDescription = (props: any) => {
       <CardActions>
         <Button
           // onClick={(e) => props.setProducts(e, props.id)}
-          href={`brands/${props.id}/products/`}
+          href={`${urlServer}${props.id}/products/`}
           size="small"
           color="primary"
         >
@@ -50,7 +51,7 @@ const BrandCardDescription = (props: any) => {
         </Button>
         <Button
           // onClick={(e) => props.setProducts(e, props.id)}
-          href={`${urlServer}${props.id}`}
+          href={`brands/${props.id}`}
           size="small"
           color="primary"
         >
