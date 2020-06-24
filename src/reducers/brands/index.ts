@@ -1,6 +1,9 @@
 import {
   BrandState,
   BrandsActions,
+  GET_ONE_BRAND,
+  GET_ONE_BRAND_FAIL,
+  GET_ONE_BRAND_SUCCESS,
   GET_ALL_BRANDS,
   GET_ALL_BRANDS_FAIL,
   GET_ALL_BRANDS_SUCCESS,
@@ -13,9 +16,6 @@ import {
   EDIT_BRAND,
   EDIT_BRAND_SUCCESS,
   EDIT_BRAND_FAIL,
-  GET_ONE_BRAND,
-  GET_ONE_BRAND_SUCCESS,
-  GET_ONE_BRAND_FAIL,
 } from "./types";
 const initialStateBrand: BrandState = {
   name: "",
@@ -34,6 +34,7 @@ export const brandsReducer = (
         ...state,
         error: action.payload,
       };
+
     case GET_ALL_BRANDS_SUCCESS:
       return {
         ...state,
@@ -60,10 +61,12 @@ export const brandsReducer = (
         ...state,
         error: action.payload,
       };
+
     case DELETE_ONE_BRAND_SUCCESS:
       return {
         ...state,
-        deletedBrand: {
+
+        deletedProduct: {
           success: true,
         },
       };
@@ -89,6 +92,7 @@ export const brandsReducer = (
           success: false,
           error: action.payload,
         },
+
       };
     case GET_ONE_BRAND:
       return {

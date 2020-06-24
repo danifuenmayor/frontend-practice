@@ -22,7 +22,6 @@ import {
 } from "../reducers/brands/types";
 
 const urlServer = "http://localhost:3000/";
-
 function* getAllBrands() {
   yield takeLatest(GET_ALL_BRANDS, function* (action: GetAllBrandsAction) {
     try {
@@ -47,8 +46,6 @@ function* editBrand() {
   yield takeLatest(EDIT_BRAND, function* (action: EditBrandAction) {
     try {
       const { payload } = action;
-
-      console.log(payload);
 
       const response = yield call(
         axios.put,
@@ -77,31 +74,7 @@ function* editBrand() {
   });
 }
 
-function* getBrand() {
-  yield takeLatest(GET_ONE_BRAND, function* (action: GetBrandAction) {
-    try {
-      const { payload } = action;
-      const response = yield call(axios.get, `${urlServer}brands/${payload}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
-
-      yield put<GetBrandSuccessAction>({
-        type: GET_ONE_BRAND_SUCCESS,
-        payload: response.data,
-      });
-    } catch (err) {
-      yield put<GetBrandFailAction>({
-        type: GET_ONE_BRAND_FAIL,
-        payload: err.message,
-      });
-    }
-  });
-}
-
 export default function* saga() {
   yield fork(getAllBrands);
   yield fork(editBrand);
-  yield fork(getBrand);
 }

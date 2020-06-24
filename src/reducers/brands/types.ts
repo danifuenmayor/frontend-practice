@@ -103,6 +103,7 @@ export interface EditBrandFailAction {
   type: typeof EDIT_BRAND_FAIL;
   payload: string;
 }
+
 // Get one brand
 export interface GetBrandAction {
   type: typeof GET_ONE_BRAND;
@@ -116,6 +117,7 @@ export interface GetBrandSuccessAction {
   type: typeof GET_ONE_BRAND_SUCCESS;
   payload: BrandApi;
 }
+
 export type BrandsActions =
   | GetAllBrandsAction
   | GetAllBrandsFailAction
