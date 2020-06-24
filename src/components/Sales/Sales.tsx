@@ -96,7 +96,6 @@ const Sales = (props: any) => {
   };
 
   const handleSubmit = (values: any) => {
-    console.log(values);
     dispatch({
       type: SALE_PRODUCT,
       payload: {
