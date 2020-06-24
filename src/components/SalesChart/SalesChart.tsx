@@ -9,6 +9,8 @@ const SalesChart = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
+  const salesState = useSelector((state: RootState) => state.sales.sales);
+
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
@@ -18,7 +20,7 @@ const SalesChart = () => {
       history.push("/login");
     }
   }, [dispatch, history, userState.accessToken]);
-  const salesState = useSelector((state: RootState) => state.sales.sales);
+  
   let data: any = {};
   if (userState.role === "user") {
     for (let x of salesState) {
@@ -26,7 +28,8 @@ const SalesChart = () => {
         data[x.createdAt.slice(0, 10)] = 0;
       }
       if (x.createdAt.slice(0, 10) in data) {
-        data[x.createdAt.slice(0, 10)] += x.productId.commission;
+        x.productId &&
+          (data[x.createdAt.slice(0, 10)] += x.productId.commission);
       }
     }
   } else {
@@ -35,7 +38,7 @@ const SalesChart = () => {
         data[x.createdAt.slice(0, 10)] = 0;
       }
       if (x.createdAt.slice(0, 10) in data) {
-        data[x.createdAt.slice(0, 10)] += x.productId.price;
+        x.productId && (data[x.createdAt.slice(0, 10)] += x.productId.price);
       }
     }
   }

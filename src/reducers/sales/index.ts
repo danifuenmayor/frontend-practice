@@ -41,7 +41,10 @@ export const SaleReducer = (
         loading: true,
       };
     case GET_SALES:
-      return state;
+      return {
+        ...state,
+        loading: true,
+      }
     case GET_SALES_FAIL:
       return {
         ...state,
@@ -51,6 +54,7 @@ export const SaleReducer = (
       return {
         ...state,
         sales: action.payload,
+        loading: false
       };
     default:
       return state;
