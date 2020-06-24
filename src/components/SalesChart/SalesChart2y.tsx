@@ -5,11 +5,12 @@ import { useHistory } from "react-router-dom";
 import { Container, Typography, Box } from "@material-ui/core";
 import { GET_SALES } from "../../reducers/sales/types";
 import { Line } from "react-chartjs-2";
-const SalesChart = () => {
+const AdminChart = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
   const salesState = useSelector((state: RootState) => state.sales.sales);
+  console.log(salesState);
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
@@ -22,52 +23,47 @@ const SalesChart = () => {
   let data: any = {};
   if (userState.role === "user") {
     for (let x of salesState) {
-      if (!data.hasOwnProperty(x.createdAt.slice(0, 10))) {
-        data[x.createdAt.slice(0, 10)] = 0;
+      if (!data.hasOwnProperty(x.createdAt.slice(0, 7))) {
+        data[x.createdAt.slice(0, 7)] = 0;
       }
-      if (x.createdAt.slice(0, 10) in data) {
+      if (x.createdAt.slice(0, 7) in data) {
         x.productId &&
-          (data[x.createdAt.slice(0, 10)] += x.productId.commission);
+          (data[x.createdAt.slice(0, 7)] += x.productId.commission);
       }
     }
   } else {
     for (let x of salesState) {
-      if (!data.hasOwnProperty(x.createdAt.slice(0, 10))) {
-        data[x.createdAt.slice(0, 10)] = 0;
+      if (!data.hasOwnProperty(x.createdAt.slice(0, 7))) {
+        data[x.createdAt.slice(0, 7)] = 0;
       }
-      if (x.createdAt.slice(0, 10) in data) {
-        x.productId && (data[x.createdAt.slice(0, 10)] += x.productId.price);
+      if (x.createdAt.slice(0, 7) in data) {
+        x.productId && (data[x.createdAt.slice(0, 7)] += x.productId.price);
       }
     }
   }
+
   return (
     <div>
       <Container>
-        <Typography variant="h2">SALES CHART</Typography>
+        <Typography variant="h2">ADMIN CHART</Typography>
         <div>
           <Box color="secondary">
-            {userState.role === "user" ? (
+            {userState.role === "admin" && (
               <Line
                 data={{
                   labels: [...Object.keys(data)],
                   datasets: [
                     {
-                      label: "Commision",
+                      label: "Commission",
+                      yAxisID: "Commission",
                       data: [...Object.values(data)],
                       backgroundColor: ["rgba(75,192,192,0.6)"],
                     },
-                  ],
-                }}
-              />
-            ) : (
-              <Line
-                data={{
-                  labels: [...Object.keys(data)],
-                  datasets: [
                     {
-                      label: "Total Sales Per Day",
+                      label: "Total Sales Per Month",
+                      yAxisID: "Total Sales Per Month",
                       data: [...Object.values(data)],
-                      backgroundColor: ["rgba(75,192,192,0.6)"],
+                      backgroundColor: ["rgba(85, 172, 193, 0.6)"],
                     },
                   ],
                 }}
@@ -79,4 +75,4 @@ const SalesChart = () => {
     </div>
   );
 };
-export default SalesChart;
+export default AdminChart;

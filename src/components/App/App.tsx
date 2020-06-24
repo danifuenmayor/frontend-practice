@@ -16,6 +16,7 @@ import Register from "../Register/Register";
 import Sales from "../Sales/Sales";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import AdminEditUser from "../AdminEditUser/AdminEditUser";
+import AdminChart from "../SalesChart/SalesChart2y";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         <Route exact path={"/show-users"} component={UserList} />
         <Route exact path={"/products/:productId/sales"} component={Sales} />
         <Route exact path={"/sales-chart"} component={SalesChart} />
+        <Route exact path={"/admin-chart"} component={AdminChart} />
         <Route
           exact
           path={"/show-users/:userId/edit-user"}
