@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { TextField } from "@material-ui/core";
-import { getIn, useField, ErrorMessage } from "formik";
+import { useField } from "formik";
 
 const SearchInput = (props: { type: string; name: string; label: string }) => {
   const { type, name, label } = props;
