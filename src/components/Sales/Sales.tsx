@@ -127,7 +127,7 @@ const Sales = (props: any) => {
           }}
         >
           {(props: FormikProps<Partial<PayloadSales>>) => (
-            <Form {...console.log(props.values)}>
+            <Form>
               <Paper className={classes.paper}>
                 <Typography
                   color="secondary"
