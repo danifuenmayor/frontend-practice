@@ -7,7 +7,6 @@ import {
   Box,
   CircularProgress,
 } from "@material-ui/core";
-import { EDIT_PROFILE } from "../../reducers/user/types";
 import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CreateProductSchema from "./CreateProductSchema";

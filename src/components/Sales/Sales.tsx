@@ -75,7 +75,7 @@ const Sales = (props: any) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = ["Información de comprador@", "Revisa los datos de tu venta"];
 
-  function getStepContent() {
+  function getStepContent(props: any) {
     switch (activeStep) {
       case 0:
         return <SalesFormData />;
@@ -96,6 +96,7 @@ const Sales = (props: any) => {
   };
 
   const handleSubmit = (values: any) => {
+    console.log(values);
     dispatch({
       type: SALE_PRODUCT,
       payload: {
@@ -127,7 +128,7 @@ const Sales = (props: any) => {
           }}
         >
           {(props: FormikProps<Partial<PayloadSales>>) => (
-            <Form>
+            <Form {...console.log(props.values)}>
               <Paper className={classes.paper}>
                 <Typography
                   color="secondary"
@@ -190,7 +191,7 @@ const Sales = (props: any) => {
                     )
                   ) : (
                     <React.Fragment>
-                      {getStepContent()}
+                      {getStepContent(props)}
                       <div className={classes.buttons}>
                         {activeStep !== 0 && (
                           <Button
