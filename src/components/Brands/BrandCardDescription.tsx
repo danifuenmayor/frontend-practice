@@ -31,7 +31,7 @@ const BrandCardDescription = (props: any) => {
           image={props.image}
           title={props.title}
         />
-        <CardContent >
+        <CardContent>
           <Typography gutterBottom variant="h6" component="h2">
             {props.title}
           </Typography>
@@ -48,6 +48,14 @@ const BrandCardDescription = (props: any) => {
           color="primary"
         >
           Productos
+        </Button>
+        <Button
+          // onClick={(e) => props.setProducts(e, props.id)}
+          href={`${urlServer}${props.id}`}
+          size="small"
+          color="primary"
+        >
+          Editar Marca
         </Button>
       </CardActions>
     </Card>

@@ -25,21 +25,21 @@ import {
   EditBrandSuccessAction,
   EditBrandFailAction,
   PayLoadEditBrand,
+  BrandApi,
 } from "./types";
-
 // Get All Actions
-export function getAllBrands(getBrands: PayloadBrands): GetAllBrandsAction {
+export function getAllBrands(newBrands: PayloadBrands): GetAllBrandsAction {
   return {
     type: GET_ALL_BRANDS,
-    payload: getBrands,
+    payload: newBrands,
   };
 }
 export function getAllBrandsSuccess(
-  getBrands: PayloadBrands
+  brands: BrandApi[]
 ): GetAllBrandsSuccessAction {
   return {
     type: GET_ALL_BRANDS_SUCCESS,
-    payload: getBrands,
+    payload: brands,
   };
 }
 export function getAllBrandsFail(error: string): GetAllBrandsFailAction {
@@ -48,10 +48,8 @@ export function getAllBrandsFail(error: string): GetAllBrandsFailAction {
     payload: error,
   };
 }
-
 //Create One Brand Actions
-
-export function createOneBrand(newBrand: PayloadBrands): CreateOneBrandAction {
+export function createOneBrand(newBrand: string): CreateOneBrandAction {
   return {
     type: CREATE_ONE_BRAND,
     payload: newBrand,
@@ -71,12 +69,8 @@ export function createOneBrandFail(error: string): CreateOneBrandFailAction {
     payload: error,
   };
 }
-
 //Delete One Brand Action
-
-export function deleteOneBrand(
-  deletedBrand: PayloadBrands
-): DeleteOneBrandAction {
+export function deleteOneBrand(deletedBrand: string): DeleteOneBrandAction {
   return {
     type: DELETE_ONE_BRAND,
     payload: deletedBrand,
@@ -96,16 +90,13 @@ export function deleteOneBrandFail(error: string): DeleteOneBrandFailAction {
     payload: error,
   };
 }
-
 // Edit one brand Action
-
 export function editBrand(editedBrand: PayLoadEditBrand): EditBrandAction {
   return {
     type: EDIT_BRAND,
     payload: editedBrand,
   };
 }
-
 export function editBrandSuccess(
   editedBrand: PayLoadEditBrand
 ): EditBrandSuccessAction {
@@ -114,7 +105,6 @@ export function editBrandSuccess(
     payload: editedBrand,
   };
 }
-
 export function editBrandFail(error: string): EditBrandFailAction {
   return {
     type: EDIT_BRAND_FAIL,
