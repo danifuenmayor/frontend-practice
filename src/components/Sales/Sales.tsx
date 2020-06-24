@@ -75,7 +75,7 @@ const Sales = (props: any) => {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = ["Información de comprador@", "Revisa los datos de tu venta"];
 
-  function getStepContent() {
+  const getStepContent = (props: any) => {
     switch (activeStep) {
       case 0:
         return <SalesFormData />;
@@ -85,7 +85,7 @@ const Sales = (props: any) => {
       default:
         throw new Error("Unknown step");
     }
-  }
+  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -190,7 +190,7 @@ const Sales = (props: any) => {
                     )
                   ) : (
                     <React.Fragment>
-                      {getStepContent()}
+                      {getStepContent(props)}
                       <div className={classes.buttons}>
                         {activeStep !== 0 && (
                           <Button

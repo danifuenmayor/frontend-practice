@@ -1,6 +1,9 @@
 import {
   BrandState,
   BrandsActions,
+  GET_ONE_BRAND,
+  GET_ONE_BRAND_FAIL,
+  GET_ONE_BRAND_SUCCESS,
   GET_ALL_BRANDS,
   GET_ALL_BRANDS_FAIL,
   GET_ALL_BRANDS_SUCCESS,
@@ -26,7 +29,6 @@ export const brandsReducer = (
   switch (action.type) {
     case GET_ALL_BRANDS:
       return state;
-
     case GET_ALL_BRANDS_FAIL:
       return {
         ...state,
@@ -38,16 +40,13 @@ export const brandsReducer = (
         ...state,
         brands: action.payload,
       };
-
     case CREATE_ONE_BRAND:
       return state;
-
     case CREATE_ONE_BRAND_FAIL:
       return {
         ...state,
         error: action.payload,
       };
-
     case CREATE_ONE_BRAND_SUCCESS:
       return {
         ...state,
@@ -55,10 +54,8 @@ export const brandsReducer = (
           success: true,
         },
       };
-
     case DELETE_ONE_BRAND:
       return state;
-
     case DELETE_ONE_BRAND_FAIL:
       return {
         ...state,
@@ -68,11 +65,11 @@ export const brandsReducer = (
     case DELETE_ONE_BRAND_SUCCESS:
       return {
         ...state,
+
         deletedProduct: {
           success: true,
         },
       };
-
     case EDIT_BRAND:
       return {
         ...state,
@@ -80,7 +77,6 @@ export const brandsReducer = (
           loading: true,
         },
       };
-
     case EDIT_BRAND_SUCCESS:
       return {
         ...state,
@@ -89,12 +85,34 @@ export const brandsReducer = (
           success: true,
         },
       };
-
     case EDIT_BRAND_FAIL:
       return {
         ...state,
         editedBrand: {
           success: false,
+          error: action.payload,
+        },
+
+      };
+    case GET_ONE_BRAND:
+      return {
+        ...state,
+        selected: {
+          loading: true,
+        },
+        deletedBrand: undefined,
+      };
+    case GET_ONE_BRAND_SUCCESS:
+      return {
+        ...state,
+        selected: {
+          item: action.payload,
+        },
+      };
+    case GET_ONE_BRAND_FAIL:
+      return {
+        ...state,
+        selected: {
           error: action.payload,
         },
       };

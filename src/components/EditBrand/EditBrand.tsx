@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, Redirect, useHistory } from "react-router-dom";
+import { useParams, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import Imagedefault from "../images/default.jpg";
@@ -19,13 +19,9 @@ import {
   DialogContent,
   DialogActions,
 } from "@material-ui/core";
-import {
-  DELETE_PRODUCT,
-  GET_PRODUCT,
-  EDIT_PRODUCT,
-} from "../../reducers/products/types";
+import { GET_ONE_BRAND, EDIT_BRAND } from "../../reducers/brands/types";
 import { Formik, Form } from "formik";
-import EditProductSchema from "./EditProductSchema";
+import EditBrandSchema from "./EditBrandSchema";
 import TextInput from "../TextInput/TextInput";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,24 +35,19 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 15,
   },
 }));
-
 function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
-const EditProduct = (props: any) => {
+const EditBrand = (props: any) => {
+  const location = useLocation();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const { id } = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const product = useSelector((state: RootState) => state.products.selected);
-  const deletedProduct = useSelector(
-    (state: RootState) => state.products.deletedProduct
-  );
-  const editedProduct = useSelector(
-    (state: RootState) => state.products.editedProduct
-  );
+  const brand = useSelector((state: RootState) => state.brands.selected);
+  console.log(brand);
 
   const handleClose = () => {
     setOpen(false);
@@ -66,47 +57,36 @@ const EditProduct = (props: any) => {
     setOpen(true);
   };
 
-  const handleOnClick = () => {
-    dispatch({
-      type: DELETE_PRODUCT,
-      payload: id,
-    });
-    if (deletedProduct?.loading) {
-      return <CircularProgress color="secondary" />;
-    }
-
-    if (deletedProduct?.error) {
-      return <h1>{deletedProduct.error}</h1>;
-    }
-  };
-
   const handleSubmit = (values: any) => {
     dispatch({
-      type: EDIT_PRODUCT,
+      type: EDIT_BRAND,
       payload: {
         ...values,
         id: id,
       },
     });
     setOpen(false);
-    if (editedProduct?.success) {
-      history.push(`/products/${id}`);
-    }
-    if (editedProduct?.error) {
-      return <h1>{editedProduct.error}</h1>;
-    }
+    window.location.reload();
   };
 
   useEffect(() => {
     dispatch({
-      type: GET_PRODUCT,
+      type: GET_ONE_BRAND,
       payload: id,
     });
   }, [dispatch, id]);
 
+  if (brand?.loading) {
+    return <CircularProgress color="secondary" />;
+  }
+
+  if (brand?.error) {
+    return <h1>{brand.error}</h1>;
+  }
+
   return (
     <>
-      {product?.item && (
+      {brand?.item && (
         <>
           <Button onClick={() => history.push(`/brands`)}>Volver</Button>
           <Card className={classes.card}>
@@ -114,40 +94,14 @@ const EditProduct = (props: any) => {
               <CardMedia component="img" alt="img" image={Imagedefault} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                  {product.item &&
-                    product.item.name &&
-                    capitalizeFirstLetter(product.item.name.toLowerCase())}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="h3">
-                  {`Precio: ${product.item.price}`}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="h3">
-                  {`Comisión: ${product.item.commission}`}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  component="h4"
-                >
-                  {product.item.description}
+                  {brand.item &&
+                    brand.item.name &&
+                    capitalizeFirstLetter(brand.item.name.toLowerCase())}
                 </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Box>
-                {deletedProduct?.loading && (
-                  <CircularProgress color="secondary" />
-                )}
-                {deletedProduct?.error && deletedProduct.error}
-                {deletedProduct?.success && <Redirect to="/" />}
-                <Button
-                  onClick={() => handleOnClick()}
-                  size="small"
-                  color="primary"
-                  disabled={Boolean(deletedProduct?.loading)}
-                >
-                  Borrar
-                </Button>
                 <Button onClick={handleClickOpen} size="small" color="primary">
                   Editar
                 </Button>
@@ -159,16 +113,14 @@ const EditProduct = (props: any) => {
             onClose={handleClose}
             aria-labelledby="form-dialog-title"
           >
-            <DialogTitle id="form-dialog-title">Editar Producto</DialogTitle>
+            <DialogTitle id="form-dialog-title">Editar Marca</DialogTitle>
             <DialogContent>
               <Formik
                 initialValues={{
                   name: "",
-                  description: "",
-                  price: "",
-                  commission: "",
+                  image: "",
                 }}
-                validationSchema={EditProductSchema}
+                validationSchema={EditBrandSchema}
                 onSubmit={(values) => {
                   handleSubmit(values);
                 }}
@@ -184,26 +136,10 @@ const EditProduct = (props: any) => {
                       fullWidth
                     />
                     <TextInput
-                      name="description"
+                      name="image"
                       margin="dense"
-                      id="description"
-                      label="Descripción"
-                      type="text"
-                      fullWidth
-                    />
-                    <TextInput
-                      name="price"
-                      margin="dense"
-                      id="price"
-                      label="Precio"
-                      type="text"
-                      fullWidth
-                    />
-                    <TextInput
-                      name="commission"
-                      margin="dense"
-                      id="commission"
-                      label="Comisión"
+                      id="image"
+                      label="Imagen"
                       type="text"
                       fullWidth
                     />
@@ -226,4 +162,4 @@ const EditProduct = (props: any) => {
   );
 };
 
-export default EditProduct;
+export default EditBrand;

@@ -1,5 +1,4 @@
 // Brand payload
-
 export interface PayloadBrands {
   error?: string;
   brands: any[];
@@ -30,14 +29,16 @@ export interface BrandState {
     success?: boolean;
     error?: string;
   };
-  deletedProduct?: {
+  deletedBrand?: {
     loading?: boolean;
     error?: string;
     success?: boolean;
   };
 }
-
 // Brands action names
+export const GET_ONE_BRAND = "ADMIN/GET_ONE_BRAND";
+export const GET_ONE_BRAND_SUCCESS = "ADMIN/GET_ONE_BRAND_SUCCESS";
+export const GET_ONE_BRAND_FAIL = "ADMIN/GET_ONE_BRAND_FAIL";
 export const GET_ALL_BRANDS = "USER/GET_ALL_BRANDS";
 export const GET_ALL_BRANDS_SUCCESS = "USER/GET_ALL_BRANDS_SUCCESS";
 export const GET_ALL_BRANDS_FAIL = "USER/GET_ALL_BRANDS_FAIL";
@@ -102,6 +103,21 @@ export interface EditBrandFailAction {
   type: typeof EDIT_BRAND_FAIL;
   payload: string;
 }
+
+// Get one brand
+export interface GetBrandAction {
+  type: typeof GET_ONE_BRAND;
+  payload: string;
+}
+export interface GetBrandFailAction {
+  type: typeof GET_ONE_BRAND_FAIL;
+  payload: string;
+}
+export interface GetBrandSuccessAction {
+  type: typeof GET_ONE_BRAND_SUCCESS;
+  payload: BrandApi;
+}
+
 export type BrandsActions =
   | GetAllBrandsAction
   | GetAllBrandsFailAction
@@ -114,4 +130,7 @@ export type BrandsActions =
   | DeleteOneBrandSuccessAction
   | EditBrandAction
   | EditBrandSuccessAction
-  | EditBrandFailAction;
+  | EditBrandFailAction
+  | GetBrandAction
+  | GetBrandFailAction
+  | GetBrandSuccessAction;
