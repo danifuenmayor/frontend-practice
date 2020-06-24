@@ -5,6 +5,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
+import { useField } from "formik";
 
 //examples
 const addresses = [
@@ -36,19 +37,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SalesFormReview = (props: any) => {
+  const { name } = props;
+  const [meta] = useField(name);
+  const { value } = meta;
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <React.Fragment {...console.log(value)}>
       <Typography variant="h6" gutterBottom>
         Orden de Venta
       </Typography>
       <List disablePadding>
-        {/* {props.products.map((product: any) => (
-          <ul key={product.id}>
-            <li>{product.name}</li>
-          </ul>
-        ))} */}
         {props.product && props.product.item && (
           <div>
             <ListItem
@@ -68,7 +67,7 @@ const SalesFormReview = (props: any) => {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            {props.product.item.price}
           </Typography>
         </ListItem>
       </List>
@@ -77,8 +76,10 @@ const SalesFormReview = (props: any) => {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Envío
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(", ")}</Typography>
+          <Typography gutterBottom>
+            {value.name} {value.lastName}
+          </Typography>
+          <Typography gutterBottom>{value.address}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>

@@ -25,6 +25,7 @@ const initialStateUser: UserState = {
   error: undefined,
 };
 
+// Reducers
 export const UserReducer = (
   state = initialStateUser,
   action: UserActions

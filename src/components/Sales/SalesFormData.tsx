@@ -3,14 +3,12 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextInput from "../TextInput/TextInput";
 import { RootState } from "../../reducers";
-import { Form, Field } from "formik";
+import { Form  } from "formik";
 import { useSelector } from "react-redux";
-import SearchLocationInput from "../SearchLocationInput/SearchLocationInput";
-
+import SearchInput from "../SearchInput/SearchInput";
 
 const SalesFormData = (props: any) => {
   const userState = useSelector((state: RootState) => state.user);
-
   return (
     <React.Fragment>
       <Form>
@@ -31,9 +29,7 @@ const SalesFormData = (props: any) => {
             <TextInput label="Número telefónico" name="phone" type="text" />
           </Grid>
           <Grid item xs={12} sm={6}>
-            {/* <TextInput label="Dirección" name="address" type="text" /> */}
-            <Field name="address" value={props.value} as={SearchLocationInput} />
-             
+            <SearchInput label="Dirección" name="address" type="address" />
           </Grid>
 
           {userState.error ? (
