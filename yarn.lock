@@ -5806,6 +5806,11 @@ globule@^1.0.0:
     lodash "~4.17.12"
     minimatch "~3.0.2"
 
+google-maps-react@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/google-maps-react/-/google-maps-react-2.0.6.tgz#0473356207ab6b47227b393b89e4b83f6eab06da"
+  integrity sha512-M8Eo9WndfQEfxcmm6yRq03qdJgw1x6rQmJ9DN+a+xPQ3K7yNDGkVDbinrf4/8vcox7nELbeopbm4bpefKewWfQ==
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.2:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.3.tgz#4a12ff1b60376ef09862c2093edd908328be8423"
@@ -10082,6 +10087,11 @@ react-chartjs-2@^2.9.0:
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.8"
+
+react-dependent-script@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-dependent-script/-/react-dependent-script-1.1.2.tgz#1e49a502fd2306888491aa4929fa69c14f43e828"
+  integrity sha512-Yf3gdUhQR5B2iyr6IHs6mXEdo/meiU6ZJvFXK3zLM/Tu3jJH1uc8T/Mzg19OQYITT9U9hC0HdHxtIU+LfnLXTg==
 
 react-dev-utils@^10.2.1:
   version "10.2.1"

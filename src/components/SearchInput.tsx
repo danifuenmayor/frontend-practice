@@ -1,9 +1,10 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
 import { TextField } from "@material-ui/core";
 import { useField } from "formik";
+import { GoogleApiWrapper } from "google-maps-react";
 
-const SearchInput = (props: { type: string; name: string; label: string }) => {
+const SearchInput = (props: any) => {
   const { type, name, label } = props;
   const [field, meta, helpers] = useField(name);
   const { value } = meta;
@@ -53,4 +54,6 @@ const SearchInput = (props: { type: string; name: string; label: string }) => {
     </div>
   );
 };
-export default SearchInput;
+export default GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_GMAPS_API_KEY || "",
+})(SearchInput);
