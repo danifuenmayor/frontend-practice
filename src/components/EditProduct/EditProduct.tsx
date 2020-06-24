@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, Redirect, useHistory, useLocation } from "react-router-dom";
+import { useParams, Redirect, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import Imagedefault from "../images/default.jpg";
