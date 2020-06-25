@@ -43,7 +43,7 @@ const SalesFormReview = (props: any) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment {...console.log(value)}>
+    <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Orden de Venta
       </Typography>

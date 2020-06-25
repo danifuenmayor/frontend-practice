@@ -65,8 +65,7 @@ export const brandsReducer = (
     case DELETE_ONE_BRAND_SUCCESS:
       return {
         ...state,
-
-        deletedProduct: {
+        deletedBrand: {
           success: true,
         },
       };
@@ -92,7 +91,6 @@ export const brandsReducer = (
           success: false,
           error: action.payload,
         },
-
       };
     case GET_ONE_BRAND:
       return {
