@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import SalesChartLine from "./SalesChartLine";
 import SalesChartPie from "./SaleChartPie";
 import AdminChart from "./SalesChart2y";
+import SalesRanking from "./SalesRanking";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -75,9 +76,9 @@ export default function SalesCharts(props: any) {
         <Tab label="Total de ingresos por día" {...a11yProps(0)} />
         <Tab label="Total de ventas por marca" {...a11yProps(1)} />
         <Tab label="Usuari@s con más ventas" {...a11yProps(2)} />
-        <Tab label="Cantidad y Comisiones mensuales" {...a11yProps(3)} />
+        <Tab label="Cantidad y Comisiones diarias" {...a11yProps(3)} />
         <Tab label="Cantidad y Comisiones semanales" {...a11yProps(4)} />
-        <Tab label="Cantidad y Comisiones diarias" {...a11yProps(5)} />
+        <Tab label="Cantidad y Comisiones mensuales" {...a11yProps(5)} />
         <Tab label="ETC.." {...a11yProps(6)} />
       </Tabs>
       <TabPanel value={value} index={0}>
@@ -88,13 +89,14 @@ export default function SalesCharts(props: any) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Usuari@s con más ventas
-        <AdminChart />
+        <SalesRanking />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Cantidad y Comisiones semanales
+        Cantidad y Comisiones diarias
+        <AdminChart />
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Cantidad y Comisiones diarias
+        Cantidad y Comisiones semanales
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Six
