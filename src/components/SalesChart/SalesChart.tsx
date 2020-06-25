@@ -5,6 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import { Container } from "@material-ui/core";
 import SalesChartLine from "./SalesChartLine";
 import SalesChartPie from "./SaleChartPie";
+import AdminChart from "./SalesChart2y";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -87,6 +88,7 @@ export default function SalesCharts(props: any) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         Usuari@s con más ventas
+        <AdminChart />
       </TabPanel>
       <TabPanel value={value} index={3}>
         Cantidad y Comisiones semanales
