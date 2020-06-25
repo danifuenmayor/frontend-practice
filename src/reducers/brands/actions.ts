@@ -49,7 +49,7 @@ export function getAllBrandsFail(error: string): GetAllBrandsFailAction {
   };
 }
 //Create One Brand Actions
-export function createOneBrand(newBrand: string): CreateOneBrandAction {
+export function createOneBrand(newBrand: PayloadBrands): CreateOneBrandAction {
   return {
     type: CREATE_ONE_BRAND,
     payload: newBrand,

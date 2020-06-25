@@ -41,7 +41,13 @@ export const brandsReducer = (
         brands: action.payload,
       };
     case CREATE_ONE_BRAND:
-      return state;
+      return {
+        ...state,
+        editedBrand: {
+          loading: true,
+        },
+      };
+
     case CREATE_ONE_BRAND_FAIL:
       return {
         ...state,
@@ -52,6 +58,8 @@ export const brandsReducer = (
         ...state,
         editedBrand: {
           success: true,
+          name: action.payload.name,
+          image: action.payload.image,
         },
       };
     case DELETE_ONE_BRAND:
@@ -116,5 +124,27 @@ export const brandsReducer = (
       };
     default:
       return state;
+    case GET_ONE_BRAND:
+      return {
+        ...state,
+        selected: {
+          loading: true,
+        },
+        deletedBrand: undefined,
+      };
+    case GET_ONE_BRAND_SUCCESS:
+      return {
+        ...state,
+        selected: {
+          item: action.payload,
+        },
+      };
+    case GET_ONE_BRAND_FAIL:
+      return {
+        ...state,
+        selected: {
+          error: action.payload,
+        },
+      };
   }
 };
