@@ -5,7 +5,7 @@ import { useField } from "formik";
 import { GoogleApiWrapper } from "google-maps-react";
 
 const SearchInput = (props: any) => {
-  const { type, name, label } = props;
+  const { name, label } = props;
   const [field, meta, helpers] = useField(name);
   const { value } = meta;
   const { setValue } = helpers;
@@ -28,7 +28,6 @@ const SearchInput = (props: any) => {
               name={name}
               label={label}
               variant="outlined"
-              type={type}
               {...getInputProps({ placeholder: "Escribe la dirección" })}
             />
 

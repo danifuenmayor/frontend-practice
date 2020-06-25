@@ -10,13 +10,12 @@ import BrandsHome from "../Brands/BrandsHome";
 import AdminLogin from "../AdminLogin/AdminLogin";
 import AdminProfile from "../AdminProfile/AdminProfile";
 import UserList from "../UserList/UserList";
-import SalesChart from "../SalesChart/SalesChart";
 import EditProduct from "../EditProduct/EditProduct";
 import Register from "../Register/Register";
 import Sales from "../Sales/Sales";
 import EditBrand from "../EditBrand/EditBrand";
 import AdminEditUser from "../AdminEditUser/AdminEditUser";
-import SalesChartPie from "../SalesChart/SaleChartPie";
+import SalesCharts from "../SalesChart/SalesChart";
 
 const App = () => {
   return (
@@ -36,8 +35,7 @@ const App = () => {
         <Route exact path={"/admin-profile"} component={AdminProfile} />
         <Route exact path={"/show-users"} component={UserList} />
         <Route exact path={"/products/:productId/sales"} component={Sales} />
-        <Route exact path={"/sales-chart"} component={SalesChart} />
-        <Route exact path={"/sales-pie"} component={SalesChartPie} />
+        <Route exact path={"/sales-charts"} component={SalesCharts} />
         <Route exact path={"/brands/:id"} component={EditBrand} />
         <Route
           exact

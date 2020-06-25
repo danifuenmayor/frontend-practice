@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { useHistory } from "react-router-dom";
-import { Container, Typography, Grid } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import { GET_SALES } from "../../reducers/sales/types";
 import { Pie } from "react-chartjs-2";
 
@@ -36,7 +36,6 @@ const SalesChartPie = () => {
       }
     }
   }
-  console.log(data);
 
   const dataChart = {
     labels: [...Object.keys(data)],
@@ -44,37 +43,26 @@ const SalesChartPie = () => {
       {
         label: "Ventas",
         data: [...Object.values(data)],
-        backgroundColor: [
-          '#d5a4cf',
-          '#614ad3',
-          '#b689b0',
-        ],
+        backgroundColor: ["#d5a4cf", "#614ad3", "#b689b0"],
       },
     ],
-  
   };
 
   return (
-    <div>
-      <Container>
-        <Typography variant="h4">SALES CHART</Typography>
-        
-          <Grid container justify="center">
-            <Grid item xs={12} sm={8}> 
-            {userState.role === "admin" && (
-              <Pie data={dataChart} options={{
-                title: {
-                  display: true,
-                  text: 'Ventas por Marcas',
-                  fontSize: 20
-                }
-              }} />
-            )}
-            </Grid>
-          </Grid>
-        
-      </Container>
-    </div>
+    <Box mx="auto" p={1}>
+      {userState.role === "admin" && (
+        <Pie
+          data={dataChart}
+          options={{
+            title: {
+              display: true,
+              text: "Ventas por Marcas",
+              fontSize: 20,
+            },
+          }}
+        />
+      )}
+    </Box>
   );
 };
 export default SalesChartPie;

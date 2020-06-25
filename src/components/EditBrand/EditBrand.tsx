@@ -47,7 +47,6 @@ const EditBrand = (props: any) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const brand = useSelector((state: RootState) => state.brands.selected);
-  console.log(brand);
 
   const handleClose = () => {
     setOpen(false);

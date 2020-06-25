@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextInput from "../TextInput/TextInput";
 import { RootState } from "../../reducers";
-import { Form  } from "formik";
+import { Form } from "formik";
 import { useSelector } from "react-redux";
 import SearchInput from "../SearchInput/SearchInput";
 
