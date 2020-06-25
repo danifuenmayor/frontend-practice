@@ -207,6 +207,7 @@ const EditProduct = (props: any) => {
                       type="text"
                       fullWidth
                     />
+                    <TextInput name="image" type="file" />
                     <Button type="submit" color="primary" variant="outlined">
                       {props.isSubmitting ? "Enviando.." : "Enviar"}
                     </Button>
