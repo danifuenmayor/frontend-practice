@@ -1,5 +1,7 @@
 // Brand payload
 export interface PayloadBrands {
+  name: string;
+  image: string;
   error?: string;
   brands: any[];
 }
@@ -30,6 +32,13 @@ export interface BrandState {
     error?: string;
   };
   deletedBrand?: {
+    loading?: boolean;
+    error?: string;
+    success?: boolean;
+  };
+  newBrand?: {
+    name?: string;
+    image?: string;
     loading?: boolean;
     error?: string;
     success?: boolean;
@@ -67,7 +76,7 @@ export interface GetAllBrandsSuccessAction {
 // Create One Brand action types
 export interface CreateOneBrandAction {
   type: typeof CREATE_ONE_BRAND;
-  payload: string;
+  payload: PayloadBrands;
 }
 export interface CreateOneBrandFailAction {
   type: typeof CREATE_ONE_BRAND_FAIL;
@@ -103,6 +112,7 @@ export interface EditBrandFailAction {
   type: typeof EDIT_BRAND_FAIL;
   payload: string;
 }
+
 // Get one brand
 export interface GetBrandAction {
   type: typeof GET_ONE_BRAND;

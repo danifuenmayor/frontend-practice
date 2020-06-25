@@ -1,81 +1,107 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../reducers";
-import { useHistory } from "react-router-dom";
-import { Container, Typography, Box } from "@material-ui/core";
-import { GET_SALES } from "../../reducers/sales/types";
-import { Line } from "react-chartjs-2";
-const SalesChart = () => {
-  const dispatch = useDispatch();
-  const userState = useSelector((state: RootState) => state.user);
-  const history = useHistory();
-  useEffect(() => {
-    if (userState.accessToken !== "") {
-      dispatch({
-        type: GET_SALES,
-      });
-    } else {
-      history.push("/login");
-    }
-  }, [dispatch, history, userState.accessToken]);
-  const salesState = useSelector((state: RootState) => state.sales.sales);
-  let data: any = {};
-  if (userState.role === "user") {
-    for (let x of salesState) {
-      if (!data.hasOwnProperty(x.createdAt.slice(0, 10))) {
-        data[x.createdAt.slice(0, 10)] = 0;
-      }
-      if (x.createdAt.slice(0, 10) in data) {
-        data[x.createdAt.slice(0, 10)] += x.productId.commission;
-      }
-    }
-  } else {
-    for (let x of salesState) {
-      if (!data.hasOwnProperty(x.createdAt.slice(0, 10))) {
-        data[x.createdAt.slice(0, 10)] = 0;
-      }
-      if (x.createdAt.slice(0, 10) in data) {
-        data[x.createdAt.slice(0, 10)] += x.productId.price;
-      }
-    }
-  }
+import React from "react";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { Container } from "@material-ui/core";
+import SalesChartLine from "./SalesChartLine";
+import SalesChartPie from "./SaleChartPie";
+import AdminChart from "./SalesChart2y";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    display: "flex",
+    height: 500,
+  },
+  tabs: {
+    borderRight: `1px solid ${theme.palette.divider}`,
+  },
+  tabpanel: {
+    width: 1000,
+    height: 500,
+    justifyContent: "center",
+  },
+}));
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: any;
+  value: any;
+}
+
+const TabPanel = (props: TabPanelProps) => {
+  const { children, value, index, ...other } = props;
+  const classes = useStyles();
+
   return (
-    <div>
-      <Container>
-        <Typography variant="h2">SALES CHART</Typography>
-        <div>
-          <Box color="secondary">
-            {userState.role === "user" ? (
-              <Line
-                data={{
-                  labels: [...Object.keys(data)],
-                  datasets: [
-                    {
-                      label: "Commision",
-                      data: [...Object.values(data)],
-                      backgroundColor: ["rgba(75,192,192,0.6)"],
-                    },
-                  ],
-                }}
-              />
-            ) : (
-              <Line
-                data={{
-                  labels: [...Object.keys(data)],
-                  datasets: [
-                    {
-                      label: "Total Sales Per Day",
-                      data: [...Object.values(data)],
-                      backgroundColor: ["rgba(75,192,192,0.6)"],
-                    },
-                  ],
-                }}
-              />
-            )}
-          </Box>
-        </div>
-      </Container>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`vertical-tabpanel-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
+      className={classes.tabpanel}
+      {...other}
+    >
+      {value === index && <Container>{children}</Container>}
     </div>
   );
 };
-export default SalesChart;
+
+function a11yProps(index: any) {
+  return {
+    id: `vertical-tab-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
+  };
+}
+
+export default function SalesCharts(props: any) {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div className={classes.root}>
+      <Tabs
+        orientation="vertical"
+        variant="scrollable"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        className={classes.tabs}
+      >
+        <Tab label="Total de ingresos por día" {...a11yProps(0)} />
+        <Tab label="Total de ventas por marca" {...a11yProps(1)} />
+        <Tab label="Usuari@s con más ventas" {...a11yProps(2)} />
+        <Tab label="Cantidad y Comisiones mensuales" {...a11yProps(3)} />
+        <Tab label="Cantidad y Comisiones semanales" {...a11yProps(4)} />
+        <Tab label="Cantidad y Comisiones diarias" {...a11yProps(5)} />
+        <Tab label="ETC.." {...a11yProps(6)} />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <SalesChartLine />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <SalesChartPie />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Usuari@s con más ventas
+        <AdminChart />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        Cantidad y Comisiones semanales
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        Cantidad y Comisiones diarias
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        Item Six
+      </TabPanel>
+      <TabPanel value={value} index={6}>
+        Item Seven
+      </TabPanel>
+    </div>
+  );
+}

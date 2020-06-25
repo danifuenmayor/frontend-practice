@@ -1,6 +1,9 @@
 import {
   BrandState,
   BrandsActions,
+  GET_ONE_BRAND,
+  GET_ONE_BRAND_FAIL,
+  GET_ONE_BRAND_SUCCESS,
   GET_ALL_BRANDS,
   GET_ALL_BRANDS_FAIL,
   GET_ALL_BRANDS_SUCCESS,
@@ -13,9 +16,6 @@ import {
   EDIT_BRAND,
   EDIT_BRAND_SUCCESS,
   EDIT_BRAND_FAIL,
-  GET_ONE_BRAND,
-  GET_ONE_BRAND_SUCCESS,
-  GET_ONE_BRAND_FAIL,
 } from "./types";
 const initialStateBrand: BrandState = {
   name: "",
@@ -34,13 +34,20 @@ export const brandsReducer = (
         ...state,
         error: action.payload,
       };
+
     case GET_ALL_BRANDS_SUCCESS:
       return {
         ...state,
         brands: action.payload,
       };
     case CREATE_ONE_BRAND:
-      return state;
+      return {
+        ...state,
+        editedBrand: {
+          loading: true,
+        },
+      };
+
     case CREATE_ONE_BRAND_FAIL:
       return {
         ...state,
@@ -51,6 +58,8 @@ export const brandsReducer = (
         ...state,
         editedBrand: {
           success: true,
+          name: action.payload.name,
+          image: action.payload.image,
         },
       };
     case DELETE_ONE_BRAND:
@@ -60,6 +69,7 @@ export const brandsReducer = (
         ...state,
         error: action.payload,
       };
+
     case DELETE_ONE_BRAND_SUCCESS:
       return {
         ...state,
@@ -114,5 +124,27 @@ export const brandsReducer = (
       };
     default:
       return state;
+    case GET_ONE_BRAND:
+      return {
+        ...state,
+        selected: {
+          loading: true,
+        },
+        deletedBrand: undefined,
+      };
+    case GET_ONE_BRAND_SUCCESS:
+      return {
+        ...state,
+        selected: {
+          item: action.payload,
+        },
+      };
+    case GET_ONE_BRAND_FAIL:
+      return {
+        ...state,
+        selected: {
+          error: action.payload,
+        },
+      };
   }
 };
