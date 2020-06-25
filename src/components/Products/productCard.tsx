@@ -22,18 +22,20 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(7),
   },
   image: {
-    width: 200,
+    width: 300,
     height: 200,
     objectFit: "contain",
   },
   content: {
-    width: 200,
+    width: 300,
     height: 120,
   },
 }));
+
 function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
 }
+
 const ProductCard = (props: any) => {
   const user = useSelector((state: RootState) => state.user);
   const classes = useStyles();

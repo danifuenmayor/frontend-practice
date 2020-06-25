@@ -29,15 +29,35 @@ import EditProductSchema from "./EditProductSchema";
 import TextInput from "../TextInput/TextInput";
 import ImageInput from "../ImageInput/ImageInput";
 
+// const useStyles = makeStyles((theme) => ({
+//   card: {
+//     width: 400,
+//     height: 550,
+//     borderRadius: "10%",
+//     objectFit: "contain",
+//     margin: "auto",
+//     marginTop: 15,
+//     marginBottom: 15,
+//   },
+// }));
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: 400,
-    height: 550,
+    width: 300,
+    height: 400,
     borderRadius: "10%",
     objectFit: "contain",
     margin: "auto",
     marginTop: 15,
     marginBottom: 15,
+  },
+  image: {
+    width: 300,
+    height: 200,
+    objectFit: "contain",
+  },
+  content: {
+    width: 300,
+    height: 120,
   },
 }));
 
@@ -112,8 +132,13 @@ const EditProduct = (props: any) => {
           <Button onClick={() => history.push(`/brands`)}>Volver</Button>
           <Card className={classes.card}>
             <CardActionArea>
-              <CardMedia component="img" alt="img" image={product.item.image} />
-              <CardContent>
+              <CardMedia
+                className={classes.image}
+                component="img"
+                alt="img"
+                image={product.item.image}
+              />
+              <CardContent className={classes.content}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {product.item &&
                     product.item.name &&
