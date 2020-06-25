@@ -10,7 +10,6 @@ const AdminChart = () => {
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
   const salesState = useSelector((state: RootState) => state.sales.sales);
-  console.log(salesState);
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
@@ -20,27 +19,30 @@ const AdminChart = () => {
       history.push("/login");
     }
   }, [dispatch, history, userState.accessToken]);
-  let data: any = {};
-  if (userState.role === "user") {
-    for (let x of salesState) {
-      if (!data.hasOwnProperty(x.createdAt.slice(0, 7))) {
-        data[x.createdAt.slice(0, 7)] = 0;
-      }
-      if (x.createdAt.slice(0, 7) in data) {
-        x.productId &&
-          (data[x.createdAt.slice(0, 7)] += x.productId.commission);
-      }
+  let commissiondata: any = {};
+  let pricedata: any = {};
+
+  for (let x of salesState) {
+    if (!commissiondata.hasOwnProperty(x.createdAt.slice(0, 7))) {
+      commissiondata[x.createdAt.slice(0, 7)] = 0;
     }
-  } else {
-    for (let x of salesState) {
-      if (!data.hasOwnProperty(x.createdAt.slice(0, 7))) {
-        data[x.createdAt.slice(0, 7)] = 0;
-      }
-      if (x.createdAt.slice(0, 7) in data) {
-        x.productId && (data[x.createdAt.slice(0, 7)] += x.productId.price);
-      }
+    if (x.createdAt.slice(0, 7) in commissiondata) {
+      x.productId &&
+        (commissiondata[x.createdAt.slice(0, 7)] += x.productId.commission);
     }
   }
+
+  for (let x of salesState) {
+    if (!pricedata.hasOwnProperty(x.createdAt.slice(0, 7))) {
+      pricedata[x.createdAt.slice(0, 7)] = 0;
+    }
+    if (x.createdAt.slice(0, 7) in pricedata) {
+      x.productId && (pricedata[x.createdAt.slice(0, 7)] += x.productId.price);
+    }
+  }
+
+  console.log(commissiondata);
+  console.log(pricedata);
 
   return (
     <div>
@@ -51,21 +53,43 @@ const AdminChart = () => {
             {userState.role === "admin" && (
               <Line
                 data={{
-                  labels: [...Object.keys(data)],
+                  labels: [...Object.keys(commissiondata)],
                   datasets: [
                     {
+                      type: "line",
                       label: "Commission",
-                      yAxisID: "Commission",
-                      data: [...Object.values(data)],
+                      id: "Commission",
+                      data: [...Object.values(commissiondata)],
                       backgroundColor: ["rgba(75,192,192,0.6)"],
                     },
                     {
+                      type: "line",
                       label: "Total Sales Per Month",
-                      yAxisID: "Total Sales Per Month",
-                      data: [...Object.values(data)],
-                      backgroundColor: ["rgba(85, 172, 193, 0.6)"],
+                      id: "Total Sales Per Month",
+                      data: [...Object.values(pricedata)],
+                      backgroundColor: ["rgba(228,23,73,1)"],
                     },
                   ],
+                  options: {
+                    scales: {
+                      yAxes: [
+                        {
+                          id: "Commission",
+                          type: "linear",
+                          position: "left",
+                        },
+                        {
+                          id: "Total Sales Per Month",
+                          type: "linear",
+                          position: "right",
+                          ticks: {
+                            max: 100,
+                            min: 0,
+                          },
+                        },
+                      ],
+                    },
+                  },
                 }}
               />
             )}

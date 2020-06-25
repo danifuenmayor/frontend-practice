@@ -19,7 +19,6 @@ import {
   EditBrandAction,
   EditBrandSuccessAction,
   EditBrandFailAction,
-<<<<<<< HEAD
   CREATE_ONE_BRAND,
   CREATE_ONE_BRAND_FAIL,
   CREATE_ONE_BRAND_SUCCESS,
@@ -27,19 +26,11 @@ import {
   CreateOneBrandFailAction,
   CreateOneBrandSuccessAction,
   GET_ONE_BRAND,
-  GET_ONE_BRAND_FAIL,
-  GET_ONE_BRAND_SUCCESS,
-  GetBrandAction,
-  GetBrandFailAction,
-  GetBrandSuccessAction,
-=======
-  GET_ONE_BRAND,
   GET_ONE_BRAND_SUCCESS,
   GET_ONE_BRAND_FAIL,
   GetBrandAction,
   GetBrandSuccessAction,
   GetBrandFailAction,
->>>>>>> dev
 } from "../reducers/brands/types";
 
 const urlServer = "http://localhost:3000/";
@@ -115,7 +106,6 @@ function* editBrand() {
     }
   });
 }
-<<<<<<< HEAD
 function* createBrand() {
   yield takeLatest(CREATE_ONE_BRAND, function* (action: CreateOneBrandAction) {
     try {
@@ -168,8 +158,6 @@ function* getBrand() {
     }
   });
 }
-=======
->>>>>>> dev
 
 export default function* saga() {
   yield fork(getAllBrands);

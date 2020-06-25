@@ -28,7 +28,6 @@ const SearchInput = (props: any) => {
               name={name}
               label={label}
               variant="outlined"
-              type={type}
               {...getInputProps({ placeholder: "Escribe la dirección" })}
             />
 
