@@ -27,6 +27,7 @@ import {
 import { Formik, Form } from "formik";
 import EditProductSchema from "./EditProductSchema";
 import TextInput from "../TextInput/TextInput";
+import ImageInput from "../ImageInput/ImageInput";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -111,7 +112,7 @@ const EditProduct = (props: any) => {
           <Button onClick={() => history.push(`/brands`)}>Volver</Button>
           <Card className={classes.card}>
             <CardActionArea>
-              <CardMedia component="img" alt="img" image={Imagedefault} />
+              <CardMedia component="img" alt="img" image={product.item.image} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {product.item &&
@@ -167,6 +168,7 @@ const EditProduct = (props: any) => {
                   description: "",
                   price: "",
                   commission: "",
+                  image: null,
                 }}
                 validationSchema={EditProductSchema}
                 onSubmit={(values) => {
@@ -207,7 +209,8 @@ const EditProduct = (props: any) => {
                       type="text"
                       fullWidth
                     />
-                    <TextInput name="image" type="file" />
+
+                    <ImageInput label="image" name="image" />
                     <Button type="submit" color="primary" variant="outlined">
                       {props.isSubmitting ? "Enviando.." : "Enviar"}
                     </Button>

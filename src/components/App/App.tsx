@@ -17,6 +17,7 @@ import EditBrand from "../EditBrand/EditBrand";
 import AdminEditUser from "../AdminEditUser/AdminEditUser";
 import AdminChart from "../SalesChart/SalesChart2y";
 import SalesCharts from "../SalesChart/SalesChart";
+import CreateProduct from "../CreateProduct/CreateProduct";
 
 const App = () => {
   return (
@@ -30,6 +31,11 @@ const App = () => {
         <Route path="/edit-profile" component={EditProfile} />
         <Route exact path={"/brands/:brandId/products"} component={Products} />
         <Route exact path={"/products/:id"} component={EditProduct} />
+        <Route
+          exact
+          path={"/:brandId/create-product"}
+          component={CreateProduct}
+        />
         <Route exact path={"/brands"} component={BrandsHome} />
         <Route exact path={"/brands/:brandId/products"} component={Products} />
         <Route exact path={"/admin-login"} component={AdminLogin} />

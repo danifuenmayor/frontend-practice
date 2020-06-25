@@ -105,9 +105,8 @@ function* editProduct() {
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
-        {
-          form,
-        },
+        form,
+
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -150,19 +149,19 @@ function* createProduct() {
       const { payload } = action;
       const form = new FormData();
       form.append("image", payload.image);
+      console.log(payload.image.files);
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
-        {
-          form,
-        },
+
+        form,
+
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-
       const response = yield call(
         axios.post,
         `${urlServer}products/`,
