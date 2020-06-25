@@ -17,6 +17,7 @@ import Sales from "../Sales/Sales";
 import EditBrand from "../EditBrand/EditBrand";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import AdminEditUser from "../AdminEditUser/AdminEditUser";
+import SalesRanking from "../SalesRanking/SalesRanking";
 
 const App = () => {
   return (
@@ -43,6 +44,7 @@ const App = () => {
           path={"/show-users/:userId/edit-user"}
           component={AdminEditUser}
         />
+        <Route exact path={"/sales-ranking"} component={SalesRanking} />
         <Route render={() => <h1>Not found!</h1>} />
       </Switch>
     </Router>
