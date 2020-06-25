@@ -51,9 +51,9 @@ const ImageInput = (props: { name: string; label: string }) => {
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the files here ...</p>
+        <p>Arrastra una imagen aquí</p>
       ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>Haz click para seleccionar una imagen</p>
       )}
       {thumbs}
     </div>

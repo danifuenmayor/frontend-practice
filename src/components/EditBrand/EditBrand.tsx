@@ -23,6 +23,7 @@ import { GET_ONE_BRAND, EDIT_BRAND } from "../../reducers/brands/types";
 import { Formik, Form } from "formik";
 import EditBrandSchema from "./EditBrandSchema";
 import TextInput from "../TextInput/TextInput";
+import ImageInput from "../ImageInput/ImageInput";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -43,7 +44,7 @@ const EditBrand = (props: any) => {
   const location = useLocation();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
-  const { id } = useParams();
+  const { brandId } = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
   const brand = useSelector((state: RootState) => state.brands.selected);
@@ -61,7 +62,7 @@ const EditBrand = (props: any) => {
       type: EDIT_BRAND,
       payload: {
         ...values,
-        id: id,
+        id: brandId,
       },
     });
     setOpen(false);
@@ -71,9 +72,9 @@ const EditBrand = (props: any) => {
   useEffect(() => {
     dispatch({
       type: GET_ONE_BRAND,
-      payload: id,
+      payload: brandId,
     });
-  }, [dispatch, id]);
+  }, [dispatch, brandId]);
 
   if (brand?.loading) {
     return <CircularProgress color="secondary" />;
@@ -90,7 +91,7 @@ const EditBrand = (props: any) => {
           <Button onClick={() => history.push(`/brands`)}>Volver</Button>
           <Card className={classes.card}>
             <CardActionArea>
-              <CardMedia component="img" alt="img" image={Imagedefault} />
+              <CardMedia component="img" alt="img" image={brand.item.image} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
                   {brand.item &&
@@ -134,14 +135,7 @@ const EditBrand = (props: any) => {
                       type="text"
                       fullWidth
                     />
-                    <TextInput
-                      name="image"
-                      margin="dense"
-                      id="image"
-                      label="Imagen"
-                      type="text"
-                      fullWidth
-                    />
+                    <ImageInput label="image" name="image" />
                     <Button type="submit" color="primary" variant="outlined">
                       {props.isSubmitting ? "Enviando.." : "Enviar"}
                     </Button>
