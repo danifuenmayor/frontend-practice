@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { useHistory } from "react-router-dom";
-import { Container, Typography, Box } from "@material-ui/core";
+import { Container, Typography, Box, Button } from "@material-ui/core";
 import { GET_SALES } from "../../reducers/sales/types";
 import { Line } from "react-chartjs-2";
+
 const AdminChart = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
   const salesState = useSelector((state: RootState) => state.sales.sales);
+  const [time, setTime] = useState(7);
+
   useEffect(() => {
     if (userState.accessToken !== "") {
       dispatch({
@@ -23,21 +26,22 @@ const AdminChart = () => {
   let pricedata: any = {};
 
   for (let x of salesState) {
-    if (!commissiondata.hasOwnProperty(x.createdAt.slice(0, 7))) {
-      commissiondata[x.createdAt.slice(0, 7)] = 0;
+    if (!commissiondata.hasOwnProperty(x.createdAt.slice(0, time))) {
+      commissiondata[x.createdAt.slice(0, time)] = 0;
     }
-    if (x.createdAt.slice(0, 7) in commissiondata) {
+    if (x.createdAt.slice(0, time) in commissiondata) {
       x.productId &&
-        (commissiondata[x.createdAt.slice(0, 7)] += x.productId.commission);
+        (commissiondata[x.createdAt.slice(0, time)] += x.productId.commission);
     }
   }
 
   for (let x of salesState) {
-    if (!pricedata.hasOwnProperty(x.createdAt.slice(0, 7))) {
-      pricedata[x.createdAt.slice(0, 7)] = 0;
+    if (!pricedata.hasOwnProperty(x.createdAt.slice(0, time))) {
+      pricedata[x.createdAt.slice(0, time)] = 0;
     }
-    if (x.createdAt.slice(0, 7) in pricedata) {
-      x.productId && (pricedata[x.createdAt.slice(0, 7)] += x.productId.price);
+    if (x.createdAt.slice(0, time) in pricedata) {
+      x.productId &&
+        (pricedata[x.createdAt.slice(0, time)] += x.productId.price);
     }
   }
 
@@ -64,7 +68,7 @@ const AdminChart = () => {
                     },
                     {
                       type: "line",
-                      label: "Total Sales Per Month",
+                      label: `Ventas Totales Por ${time === 7 ? "Día" : "Mes"}`,
                       id: "Total Sales Per Month",
                       data: [...Object.values(pricedata)],
                       backgroundColor: ["rgba(228,23,73,1)"],
@@ -93,6 +97,12 @@ const AdminChart = () => {
                 }}
               />
             )}
+            <Button
+              color="secondary"
+              onClick={() => setTime(time === 7 ? 10 : 7)}
+            >
+              {time === 7 ? "Mostrar por día" : " Mostrar por mes"}
+            </Button>
           </Box>
         </div>
       </Container>

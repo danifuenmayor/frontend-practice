@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Alert from "@material-ui/lab/Alert";
-import CloseIcon from "@material-ui/icons/Close";
+
 import {
   Container,
   Button,
@@ -11,8 +10,7 @@ import {
   Switch,
   makeStyles,
   Grid,
-  IconButton,
-  Collapse,
+  Snackbar,
 } from "@material-ui/core";
 
 import { useHistory, useParams } from "react-router-dom";
@@ -60,6 +58,10 @@ const AdminEditUser = (props: any) => {
         userId: userId,
       },
     });
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const initialValues: any = {
@@ -147,27 +149,13 @@ const AdminEditUser = (props: any) => {
                       </Button>
                     </Grid>
                     <Grid item xs={12}>
-                      {loadingEdit && (
-                        <Collapse in={open}>
-                          <Alert
-                            severity="success"
-                            action={
-                              <IconButton
-                                aria-label="close"
-                                color="inherit"
-                                size="small"
-                                onClick={() => {
-                                  setOpen(false);
-                                }}
-                              >
-                                <CloseIcon fontSize="inherit" />
-                              </IconButton>
-                            }
-                            color="info"
-                          >
-                            Usuari@ editado con éxito
-                          </Alert>
-                        </Collapse>
+                      {props.isSubmitting && (
+                        <Snackbar
+                          open={open}
+                          autoHideDuration={3000}
+                          message="Usuari@ fue editado con éxito"
+                          onClose={handleClose}
+                        ></Snackbar>
                       )}
                     </Grid>
                   </Grid>

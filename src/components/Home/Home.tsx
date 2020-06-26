@@ -63,10 +63,7 @@ const Home = (props: any) => {
         </Typography>
       </Box>
       <Grid container>
-        <BrandCard image={vtrImage} />
-        <BrandCard image={metrogasImage} />
-        <BrandCard image={maxusImage} />
-        <BrandCard image={mundangoImage} />
+        <BrandCard />
       </Grid>
     </div>
   );

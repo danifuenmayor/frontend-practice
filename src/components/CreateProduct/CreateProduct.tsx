@@ -14,7 +14,6 @@ import TextInput from "../TextInput/TextInput";
 import { CREATE_PRODUCT } from "../../reducers/products/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
-
 const CreateProduct = (props: any) => {
   const { brandId } = useParams();
   const history = useHistory();
@@ -22,7 +21,6 @@ const CreateProduct = (props: any) => {
   const newProduct = useSelector(
     (state: RootState) => state.products.newProduct
   );
-
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_PRODUCT,
@@ -31,20 +29,16 @@ const CreateProduct = (props: any) => {
         brandId: brandId,
       },
     });
-
     if (newProduct?.loading === true) {
       return <CircularProgress color="secondary" />;
     }
-
     if (newProduct?.success === true) {
       history.push(`/brands/${brandId}/products`);
     }
-
     if (newProduct?.error) {
       return <h1>{newProduct.error}</h1>;
     }
   };
-
   return (
     <>
       <Box m={4}>

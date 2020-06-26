@@ -32,14 +32,11 @@ import {
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_FAIL,
 } from "../reducers/products/types";
-
 const urlServer = "http://localhost:3000/";
-
 function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
     try {
       const response = yield call(axios.get, `${urlServer}products`);
-
       yield put<GetProductsSuccessAction>({
         type: GET_PRODUCTS_SUCCESS,
         payload: response.data,
@@ -52,13 +49,11 @@ function* getProducts() {
     }
   });
 }
-
 function* getProduct() {
   yield takeLatest(GET_PRODUCT, function* (action: GetProductAction) {
     try {
       const { payload } = action;
       const response = yield call(axios.get, `${urlServer}products/${payload}`);
-
       yield put<GetProductSuccessAction>({
         type: GET_PRODUCT_SUCCESS,
         payload: response.data,
@@ -71,7 +66,6 @@ function* getProduct() {
     }
   });
 }
-
 function* deleteProduct() {
   yield takeLatest(DELETE_PRODUCT, function* (action: DeleteProductAction) {
     try {
@@ -80,7 +74,6 @@ function* deleteProduct() {
         axios.delete,
         `${urlServer}products/${payload}`
       );
-
       yield put<DeleteProductSuccessAction>({
         type: DELETE_PRODUCT_SUCCESS,
         payload: response.data,
@@ -93,20 +86,16 @@ function* deleteProduct() {
     }
   });
 }
-
 function* editProduct() {
   yield takeLatest(EDIT_PRODUCT, function* (action: EditProductAction) {
     try {
       const { payload } = action;
-
       const form = new FormData();
       form.append("image", payload.image);
-
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
         form,
-
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -114,7 +103,6 @@ function* editProduct() {
           },
         }
       );
-
       const response = yield call(
         axios.put,
         `${urlServer}products/${payload.id}`,
@@ -131,7 +119,6 @@ function* editProduct() {
           },
         }
       );
-
       yield put<EditProductSuccessAction>({
         type: EDIT_PRODUCT_SUCCESS,
         payload: response.data,
@@ -148,16 +135,12 @@ function* createProduct() {
   yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
     try {
       const { payload } = action;
-
       const form = new FormData();
       form.append("image", payload.image);
-
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
-
         form,
-
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -165,7 +148,6 @@ function* createProduct() {
           },
         }
       );
-
       const response = yield call(
         axios.post,
         `${urlServer}products/`,
@@ -183,7 +165,6 @@ function* createProduct() {
           },
         }
       );
-
       yield put<CreateProductSuccessAction>({
         type: CREATE_PRODUCT_SUCCESS,
         payload: response.data,

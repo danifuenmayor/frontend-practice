@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { useParams, Redirect, useHistory, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+
+import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
-import Imagedefault from "../images/default.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,8 +11,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { CircularProgress } from "@material-ui/core";
-import { GET_SALES } from "../../reducers/sales/types";
-import TextInput from "../TextInput/TextInput";
 
 const useStyles = makeStyles({
   table: {
@@ -26,12 +23,11 @@ function capitalizeFirstLetter(string: any) {
 }
 
 const SalesRanking = (props: any) => {
-  const location = useLocation();
-  const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
-  const dispatch = useDispatch();
+
   const sales = useSelector((state: RootState) => state.sales.sales);
+  console.log(sales);
 
   const handleClose = () => {
     setOpen(false);
