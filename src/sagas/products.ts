@@ -110,6 +110,7 @@ function* editProduct() {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
         }
       );
@@ -147,9 +148,10 @@ function* createProduct() {
   yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
     try {
       const { payload } = action;
+
       const form = new FormData();
       form.append("image", payload.image);
-      console.log(payload.image.files);
+
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
@@ -163,6 +165,7 @@ function* createProduct() {
           },
         }
       );
+
       const response = yield call(
         axios.post,
         `${urlServer}products/`,

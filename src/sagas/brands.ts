@@ -80,12 +80,29 @@ function* editBrand() {
     try {
       const { payload } = action;
 
+      const form = new FormData();
+      form.append("image", payload.image);
+
+      const uploadResponse = yield call(
+        axios.post,
+        `${urlServer}upload`,
+
+        form,
+
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
       const response = yield call(
         axios.put,
         `${urlServer}brands/${payload.id}`,
         {
           name: payload.name,
-          image: payload.image,
+          image: uploadResponse.data.Location,
         },
         {
           headers: {
@@ -111,12 +128,29 @@ function* createBrand() {
     try {
       const { payload } = action;
 
+      const form = new FormData();
+      form.append("image", payload.image);
+
+      const uploadResponse = yield call(
+        axios.post,
+        `${urlServer}upload`,
+
+        form,
+
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
       const response = yield call(
         axios.post,
         `${urlServer}brands/`,
         {
           name: payload.name,
-          image: payload.image,
+          image: uploadResponse.data.Location,
         },
         {
           headers: {

@@ -1,22 +1,22 @@
 // Brand payload
 export interface PayloadBrands {
   name: string;
-  image: string;
+  image: any;
   error?: string;
   brands: any[];
 }
 export interface PayLoadEditBrand {
   name: string;
   id?: string;
-  image?: string;
+  image?: any;
 }
 export interface BrandApi {
   name: string;
-  image: string;
+  image: any;
 }
 export interface BrandState {
   name: string;
-  image: string;
+  image: any;
   error?: string;
   brands: BrandApi[];
   selected?: {
@@ -26,7 +26,7 @@ export interface BrandState {
   };
   editedBrand?: {
     name?: string;
-    image?: string;
+    image?: any;
     loading?: boolean;
     success?: boolean;
     error?: string;
@@ -38,7 +38,7 @@ export interface BrandState {
   };
   newBrand?: {
     name?: string;
-    image?: string;
+    image?: any;
     loading?: boolean;
     error?: string;
     success?: boolean;

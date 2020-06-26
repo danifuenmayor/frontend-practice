@@ -66,7 +66,7 @@ const EditBrand = (props: any) => {
       },
     });
     setOpen(false);
-    window.location.reload();
+    history.push(`/brands`);
   };
 
   useEffect(() => {
@@ -118,7 +118,7 @@ const EditBrand = (props: any) => {
               <Formik
                 initialValues={{
                   name: "",
-                  image: "",
+                  image: null,
                 }}
                 validationSchema={EditBrandSchema}
                 onSubmit={(values) => {

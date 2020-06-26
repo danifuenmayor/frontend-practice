@@ -29,17 +29,6 @@ import EditProductSchema from "./EditProductSchema";
 import TextInput from "../TextInput/TextInput";
 import ImageInput from "../ImageInput/ImageInput";
 
-// const useStyles = makeStyles((theme) => ({
-//   card: {
-//     width: 400,
-//     height: 550,
-//     borderRadius: "10%",
-//     objectFit: "contain",
-//     margin: "auto",
-//     marginTop: 15,
-//     marginBottom: 15,
-//   },
-// }));
 const useStyles = makeStyles((theme) => ({
   card: {
     width: 300,

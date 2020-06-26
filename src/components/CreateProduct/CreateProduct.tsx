@@ -17,7 +17,6 @@ import ImageInput from "../ImageInput/ImageInput";
 
 const CreateProduct = (props: any) => {
   const { brandId } = useParams();
-  console.log(brandId);
   const history = useHistory();
   const dispatch = useDispatch();
   const newProduct = useSelector(
@@ -32,16 +31,20 @@ const CreateProduct = (props: any) => {
         brandId: brandId,
       },
     });
+
     if (newProduct?.loading === true) {
       return <CircularProgress color="secondary" />;
     }
+
     if (newProduct?.success === true) {
       history.push(`/brands/${brandId}/products`);
     }
+
     if (newProduct?.error) {
       return <h1>{newProduct.error}</h1>;
     }
   };
+
   return (
     <>
       <Box m={4}>
