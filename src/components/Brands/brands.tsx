@@ -6,6 +6,7 @@ import BrandCardDescription from "./BrandCardDescription";
 import { useParams, useHistory } from "react-router-dom";
 import { GET_ONE_BRAND } from "../../reducers/brands/types";
 
+// Brands component
 const Brands = (props: any) => {
   const history = useHistory();
   const { brandId } = useParams();
