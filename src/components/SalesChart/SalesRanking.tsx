@@ -28,15 +28,6 @@ const SalesRanking = (props: any) => {
 
   const sales = useSelector((state: RootState) => state.sales.sales);
 
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   if (sales?.loading) {
     return <CircularProgress color="secondary" />;
   }

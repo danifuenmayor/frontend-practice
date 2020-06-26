@@ -4,7 +4,6 @@ import {
   CardActionArea,
   CardMedia,
   makeStyles,
-  Container,
   CssBaseline,
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
@@ -25,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 const BrandCard = (props: any) => {
   const style = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
-  const userState = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     dispatch({
@@ -37,7 +34,6 @@ const BrandCard = (props: any) => {
   const brandsState: any = useSelector(
     (state: RootState) => state.brands.brands
   );
-
 
   return (
     <>
