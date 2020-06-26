@@ -39,7 +39,6 @@ function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
     try {
       const response = yield call(axios.get, `${urlServer}products`);
-
       yield put<GetProductsSuccessAction>({
         type: GET_PRODUCTS_SUCCESS,
         payload: response.data,
@@ -58,7 +57,6 @@ function* getProduct() {
     try {
       const { payload } = action;
       const response = yield call(axios.get, `${urlServer}products/${payload}`);
-
       yield put<GetProductSuccessAction>({
         type: GET_PRODUCT_SUCCESS,
         payload: response.data,
@@ -102,15 +100,12 @@ function* editProduct() {
   yield takeLatest(EDIT_PRODUCT, function* (action: EditProductAction) {
     try {
       const { payload } = action;
-
       const form = new FormData();
       form.append("image", payload.image);
-
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
         form,
-
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -118,7 +113,6 @@ function* editProduct() {
           },
         }
       );
-
       const response = yield call(
         axios.put,
         `${urlServer}products/${payload.id}`,
@@ -135,7 +129,6 @@ function* editProduct() {
           },
         }
       );
-
       yield put<EditProductSuccessAction>({
         type: EDIT_PRODUCT_SUCCESS,
         payload: response.data,
@@ -148,20 +141,17 @@ function* editProduct() {
     }
   });
 }
+
 function* createProduct() {
   yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
     try {
       const { payload } = action;
-
       const form = new FormData();
       form.append("image", payload.image);
-
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
-
         form,
-
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -169,7 +159,6 @@ function* createProduct() {
           },
         }
       );
-
       const response = yield call(
         axios.post,
         `${urlServer}products/`,
@@ -187,7 +176,6 @@ function* createProduct() {
           },
         }
       );
-
       yield put<CreateProductSuccessAction>({
         type: CREATE_PRODUCT_SUCCESS,
         payload: response.data,
@@ -200,6 +188,7 @@ function* createProduct() {
     }
   });
 }
+
 export default function* saga() {
   yield fork(getProducts);
   yield fork(getProduct);

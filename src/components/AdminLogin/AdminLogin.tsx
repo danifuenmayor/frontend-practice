@@ -52,8 +52,8 @@ const AdminLogin = () => {
                 <br />
                 <TextInput label="Contraseña" name="password" type="password" />
                 <br />
-                {userState.accessToken ? (
-                  <Redirect to="/brands" />
+                {userState.accessToken && userState.role === "admin" ? (
+                  <Redirect to="/admin-profile" />
                 ) : (
                   <p>{userState.error}</p>
                 )}

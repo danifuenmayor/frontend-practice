@@ -11,8 +11,6 @@ import {
   EDIT_PROFILE_FAIL,
   EDIT_PROFILE_SUCCESS,
   SEND_LOGOUT,
-  SEND_LOGOUT_FAIL,
-  SEND_LOGOUT_SUCCESS,
 } from "./types";
 
 const initialStateUser: UserState = {
@@ -73,7 +71,10 @@ export const UserReducer = (
       };
 
     case EDIT_PROFILE:
-      return state;
+      return{
+        ...state,
+        loading: true,
+      };
 
     case EDIT_PROFILE_FAIL:
       return {
@@ -87,21 +88,19 @@ export const UserReducer = (
         name: action.payload.name,
         lastName: action.payload.lastName,
         email: action.payload.email,
+        loading: false,
       };
     case SEND_LOGOUT:
       return {
         ...state,
+        name: "",
+        lastName: "",
+        email: "",
+        role: "",
         accessToken: "",
+        id: "",
       };
 
-    case SEND_LOGOUT_FAIL:
-      return {
-        ...state,
-        error: undefined,
-      };
-
-    case SEND_LOGOUT_SUCCESS:
-      return state;
     default:
       return state;
   }

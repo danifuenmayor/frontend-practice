@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   Container,
   Button,
@@ -9,6 +10,7 @@ import {
   Switch,
   makeStyles,
   Grid,
+  Snackbar,
 } from "@material-ui/core";
 
 import { useHistory, useParams } from "react-router-dom";
@@ -30,14 +32,23 @@ const AdminEditUser = (props: any) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { userId } = useParams();
+  const [open, setOpen] = React.useState(true);
 
   const user = useSelector((state: RootState) => state.admin.selected);
+  const accessToken = useSelector((state: RootState) => state.user.accessToken);
+  const loadingEdit = useSelector(
+    (state: RootState) => state.admin.loadingEdit
+  );
   useEffect(() => {
-    dispatch({
-      type: GET_ONE_USER,
-      payload: userId,
-    });
-  }, [dispatch, userId]);
+    if (accessToken !== "") {
+      dispatch({
+        type: GET_ONE_USER,
+        payload: userId,
+      });
+    } else {
+      history.push("/");
+    }
+  }, [accessToken, dispatch, history, userId]);
 
   const handleSubmit = (values: any) => {
     dispatch({
@@ -47,6 +58,10 @@ const AdminEditUser = (props: any) => {
         userId: userId,
       },
     });
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const initialValues: any = {
@@ -130,8 +145,18 @@ const AdminEditUser = (props: any) => {
                         color="secondary"
                         className={classes.submit}
                       >
-                        {props.isSubmitting ? "Enviando.." : "Enviar"}
+                        {props.isSubmitting ? "Enviado" : "Enviar"}
                       </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {props.isSubmitting && (
+                        <Snackbar
+                          open={open}
+                          autoHideDuration={3000}
+                          message="Usuari@ fue editado con éxito"
+                          onClose={handleClose}
+                        ></Snackbar>
+                      )}
                     </Grid>
                   </Grid>
                 </Form>

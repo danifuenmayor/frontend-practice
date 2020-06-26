@@ -23,10 +23,6 @@ import {
   PayloadLogout,
   SEND_LOGOUT,
   SendLogoutAction,
-  SendLogoutSuccessAction,
-  SEND_LOGOUT_SUCCESS,
-  SendLogoutFailAction,
-  SEND_LOGOUT_FAIL,
 } from "./types";
 
 // Login Actions
@@ -97,19 +93,5 @@ export function sendLogout(logout: PayloadLogout): SendLogoutAction {
   return {
     type: SEND_LOGOUT,
     payload: logout,
-  };
-}
-export function sendLogoutSucess(
-  logout: PayloadLogout
-): SendLogoutSuccessAction {
-  return {
-    type: SEND_LOGOUT_SUCCESS,
-    payload: logout,
-  };
-}
-export function sendLogoutFail(error: string): SendLogoutFailAction {
-  return {
-    type: SEND_LOGOUT_FAIL,
-    payload: error,
   };
 }

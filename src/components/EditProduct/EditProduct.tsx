@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useParams, Redirect, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
-import Imagedefault from "../images/default.jpg";
+
 import {
   makeStyles,
   Card,
@@ -81,10 +81,12 @@ const EditProduct = (props: any) => {
       type: DELETE_PRODUCT,
       payload: id,
     });
+    if (deletedProduct?.success) {
+      return history.push("/brands");
+    }
     if (deletedProduct?.loading) {
       return <CircularProgress color="secondary" />;
     }
-
     if (deletedProduct?.error) {
       return <h1>{deletedProduct.error}</h1>;
     }
@@ -154,7 +156,7 @@ const EditProduct = (props: any) => {
                   <CircularProgress color="secondary" />
                 )}
                 {deletedProduct?.error && deletedProduct.error}
-                {deletedProduct?.success && <Redirect to="/brands" />}
+
                 <Button
                   onClick={() => handleOnClick()}
                   size="small"
