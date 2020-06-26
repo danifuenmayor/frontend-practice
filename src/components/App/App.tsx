@@ -18,6 +18,7 @@ import AdminEditUser from "../AdminEditUser/AdminEditUser";
 import AdminChart from "../SalesChart/SalesChart2y";
 import SalesCharts from "../SalesChart/SalesChart";
 import CreateProduct from "../CreateProduct/CreateProduct";
+import CreateBrand from "../CreateBrand/CreateBrand";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
           path={"/show-users/:userId/edit-user"}
           component={AdminEditUser}
         />
+        <Route exact path={"/create-brand"} component={CreateBrand} />
         <Route render={() => <h1>Not found!</h1>} />
       </Switch>
     </Router>

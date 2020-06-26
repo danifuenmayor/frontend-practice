@@ -78,9 +78,13 @@ function* deleteProduct() {
       const { payload } = action;
       const response = yield call(
         axios.delete,
-        `${urlServer}products/${payload}`
+        `${urlServer}products/${payload}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
-
       yield put<DeleteProductSuccessAction>({
         type: DELETE_PRODUCT_SUCCESS,
         payload: response.data,
