@@ -13,6 +13,7 @@ import CreateProductSchema from "./CreateProductSchema";
 import TextInput from "../TextInput/TextInput";
 import { CREATE_PRODUCT } from "../../reducers/products/types";
 import { RootState } from "../../reducers";
+import ImageInput from "../ImageInput/ImageInput";
 
 const CreateProduct = (props: any) => {
   const { brandId } = useParams();
@@ -30,16 +31,20 @@ const CreateProduct = (props: any) => {
         brandId: brandId,
       },
     });
+
     if (newProduct?.loading === true) {
       return <CircularProgress color="secondary" />;
     }
+
     if (newProduct?.success === true) {
       history.push(`/brands/${brandId}/products`);
     }
+
     if (newProduct?.error) {
       return <h1>{newProduct.error}</h1>;
     }
   };
+
   return (
     <>
       <Box m={4}>
@@ -52,7 +57,13 @@ const CreateProduct = (props: any) => {
         </Button>
         <Container maxWidth="xs">
           <Formik
-            initialValues={{ name: "", lastName: "", email: "" }}
+            initialValues={{
+              name: "",
+              description: "",
+              price: "",
+              commission: "",
+              image: null,
+            }}
             validationSchema={CreateProductSchema}
             onSubmit={(values) => {
               handleSubmit(values);
@@ -67,7 +78,7 @@ const CreateProduct = (props: any) => {
                 <TextInput label="Descripción" name="description" type="text" />
                 <TextInput label="Precio" name="price" type="number" />
                 <TextInput label="Commisión" name="commission" type="number" />
-                <TextInput name="image" type="file" />
+                <ImageInput label="image" name="image" />
                 <br />
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}

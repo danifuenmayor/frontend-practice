@@ -8,7 +8,7 @@ export interface PayloadEditProduct {
   description: string;
   price: number;
   commission: number;
-  image: string;
+  image: any;
   id?: string;
   brandId?: string;
 }
@@ -17,6 +17,7 @@ export interface ProductApi {
   price: number;
   commission: number;
   description: string;
+  image: any;
 }
 // Products state
 export interface ProductState {
@@ -40,6 +41,7 @@ export interface ProductState {
     loading?: boolean;
     error?: string;
     success?: boolean;
+    image?: any;
   };
   newProduct?: {
     name?: string;
@@ -49,6 +51,7 @@ export interface ProductState {
     loading?: boolean;
     error?: string;
     success?: boolean;
+    image?: any;
   };
 }
 // Product action names
