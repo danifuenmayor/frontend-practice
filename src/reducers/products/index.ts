@@ -117,6 +117,7 @@ export const ProductReducer = (
           price: action.payload.price,
           description: action.payload.description,
           commission: action.payload.commission,
+          image: action.payload.image,
         },
       };
     case CREATE_PRODUCT:
@@ -144,6 +145,7 @@ export const ProductReducer = (
           price: action.payload.price,
           description: action.payload.description,
           commission: action.payload.commission,
+          image: action.payload.image,
         },
       };
 

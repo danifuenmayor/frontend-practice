@@ -99,6 +99,22 @@ function* editProduct() {
     try {
       const { payload } = action;
 
+      const form = new FormData();
+      form.append("image", payload.image);
+
+      const uploadResponse = yield call(
+        axios.post,
+        `${urlServer}upload`,
+        form,
+
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
       const response = yield call(
         axios.put,
         `${urlServer}products/${payload.id}`,
@@ -107,6 +123,7 @@ function* editProduct() {
           description: payload.description,
           price: payload.price,
           commission: payload.commission,
+          image: uploadResponse.data.Location,
         },
         {
           headers: {
@@ -132,6 +149,23 @@ function* createProduct() {
     try {
       const { payload } = action;
 
+      const form = new FormData();
+      form.append("image", payload.image);
+
+      const uploadResponse = yield call(
+        axios.post,
+        `${urlServer}upload`,
+
+        form,
+
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+
       const response = yield call(
         axios.post,
         `${urlServer}products/`,
@@ -140,8 +174,8 @@ function* createProduct() {
           description: payload.description,
           price: payload.price,
           commission: payload.commission,
-          image: payload.image,
           brandId: payload.brandId,
+          image: uploadResponse.data.Location,
         },
         {
           headers: {

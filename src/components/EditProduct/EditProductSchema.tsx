@@ -11,5 +11,6 @@ const EditProductSchema = Yup.object().shape({
     .required("Este campo es obligatorio"),
   price: Yup.number().required("Este campo es obligatorio"),
   commission: Yup.number().required("Este campo es obligatorio"),
+  image: Yup.mixed().required("La imagen es obligatoria"),
 });
 export default EditProductSchema;

@@ -1,20 +1,22 @@
 // Brand payload
 export interface PayloadBrands {
+  name: string;
+  image: any;
   error?: string;
   brands: any[];
 }
 export interface PayLoadEditBrand {
   name: string;
   id?: string;
-  image?: string;
+  image?: any;
 }
 export interface BrandApi {
   name: string;
-  image: string;
+  image: any;
 }
 export interface BrandState {
   name: string;
-  image: string;
+  image: any;
   error?: string;
   brands: BrandApi[];
   selected?: {
@@ -24,12 +26,19 @@ export interface BrandState {
   };
   editedBrand?: {
     name?: string;
-    image?: string;
+    image?: any;
     loading?: boolean;
     success?: boolean;
     error?: string;
   };
   deletedBrand?: {
+    loading?: boolean;
+    error?: string;
+    success?: boolean;
+  };
+  newBrand?: {
+    name?: string;
+    image?: any;
     loading?: boolean;
     error?: string;
     success?: boolean;
@@ -67,7 +76,7 @@ export interface GetAllBrandsSuccessAction {
 // Create One Brand action types
 export interface CreateOneBrandAction {
   type: typeof CREATE_ONE_BRAND;
-  payload: string;
+  payload: PayloadBrands;
 }
 export interface CreateOneBrandFailAction {
   type: typeof CREATE_ONE_BRAND_FAIL;
@@ -117,7 +126,6 @@ export interface GetBrandSuccessAction {
   type: typeof GET_ONE_BRAND_SUCCESS;
   payload: BrandApi;
 }
-
 export type BrandsActions =
   | GetAllBrandsAction
   | GetAllBrandsFailAction
