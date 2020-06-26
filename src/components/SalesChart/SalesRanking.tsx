@@ -18,10 +18,6 @@ const useStyles = makeStyles({
   },
 });
 
-function capitalizeFirstLetter(string: any) {
-  return string[0].toUpperCase() + string.slice(1);
-}
-
 const SalesRanking = (props: any) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();

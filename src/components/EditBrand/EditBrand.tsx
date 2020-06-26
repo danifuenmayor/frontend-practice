@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { useParams, Redirect, useHistory, useLocation } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
-import Imagedefault from "../images/default.jpg";
+
 import {
   makeStyles,
   Card,
@@ -24,7 +24,6 @@ import { Formik, Form } from "formik";
 import EditBrandSchema from "./EditBrandSchema";
 import TextInput from "../TextInput/TextInput";
 import ImageInput from "../ImageInput/ImageInput";
-
 const useStyles = makeStyles((theme) => ({
   card: {
     width: 400,
@@ -39,24 +38,19 @@ const useStyles = makeStyles((theme) => ({
 function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
 }
-
 const EditBrand = (props: any) => {
-  const location = useLocation();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const { brandId } = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
   const brand = useSelector((state: RootState) => state.brands.selected);
-
   const handleClose = () => {
     setOpen(false);
   };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleSubmit = (values: any) => {
     dispatch({
       type: EDIT_BRAND,
@@ -68,22 +62,18 @@ const EditBrand = (props: any) => {
     setOpen(false);
     history.push(`/brands`);
   };
-
   useEffect(() => {
     dispatch({
       type: GET_ONE_BRAND,
       payload: brandId,
     });
   }, [dispatch, brandId]);
-
   if (brand?.loading) {
     return <CircularProgress color="secondary" />;
   }
-
   if (brand?.error) {
     return <h1>{brand.error}</h1>;
   }
-
   return (
     <>
       {brand?.item && (
@@ -154,5 +144,4 @@ const EditBrand = (props: any) => {
     </>
   );
 };
-
 export default EditBrand;

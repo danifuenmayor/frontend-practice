@@ -154,7 +154,7 @@ const EditProduct = (props: any) => {
                   <CircularProgress color="secondary" />
                 )}
                 {deletedProduct?.error && deletedProduct.error}
-                {deletedProduct?.success && <Redirect to={`/brands`} />}
+                {deletedProduct?.success && <Redirect to="/brands" />}
                 <Button
                   onClick={() => handleOnClick()}
                   size="small"

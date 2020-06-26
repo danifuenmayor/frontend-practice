@@ -6,7 +6,7 @@ import {
   makeStyles,
   CssBaseline,
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { GET_ALL_BRANDS } from "../../reducers/brands/types";
