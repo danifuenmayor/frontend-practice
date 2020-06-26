@@ -65,7 +65,10 @@ export const AdminReducer = (
       };
 
     case EDIT_USER:
-      return state;
+      return {
+        ...state,
+        loadingEdit: true,
+      };
 
     case EDIT_USER_FAIL:
       return {
@@ -76,6 +79,7 @@ export const AdminReducer = (
     case EDIT_USER_SUCCESS:
       return {
         ...state,
+        loadingEdit: false,
       };
     default:
       return state;

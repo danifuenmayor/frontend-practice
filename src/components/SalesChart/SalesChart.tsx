@@ -89,7 +89,7 @@ export default function SalesCharts(props: any) {
         Usuari@s con más ventas
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Cantidad y Comisiones semanales
+        Cantidad y Comisiones semanales 
       </TabPanel>
       <TabPanel value={value} index={4}>
         Cantidad y Comisiones diarias

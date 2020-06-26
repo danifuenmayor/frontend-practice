@@ -46,29 +46,45 @@ const SalesChartLine = () => {
   return (
     <Box mx="auto" p={1}>
       {userState.role === "user" ? (
-        <Line
-          data={{
-            labels: [...Object.keys(data)],
-            datasets: [
-              {
-                label: "Commision",
-                data: [...Object.values(data)],
-                backgroundColor: ["rgba(75,192,192,0.6)"],
+        <Box mx="auto" p={6}>
+          <Line
+            data={{
+              labels: [...Object.keys(data)],
+              datasets: [
+                {
+                  label: "Total de comisiones",
+                  data: [...Object.values(data)],
+                  backgroundColor: ["rgba(75,192,192,0.6)"],
+                },
+              ],
+            }}
+            options={{
+              title: {
+                display: true,
+                text: "Ventas Por Día",
+                fontSize: 20,
               },
-            ],
-          }}
-        />
+            }}
+          />
+        </Box>
       ) : (
         <Line
           data={{
             labels: [...Object.keys(data)],
             datasets: [
               {
-                label: "Total Sales Per Day",
+                label: "Total de ventas por día",
                 data: [...Object.values(data)],
                 backgroundColor: ["rgba(75,192,192,0.6)"],
               },
             ],
+          }}
+          options={{
+            title: {
+              display: true,
+              text: "Ventas Por Día",
+              fontSize: 20,
+            },
           }}
         />
       )}

@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Alert from "@material-ui/lab/Alert";
+import CloseIcon from "@material-ui/icons/Close";
 import {
   Container,
   Button,
@@ -9,6 +11,8 @@ import {
   Switch,
   makeStyles,
   Grid,
+  IconButton,
+  Collapse,
 } from "@material-ui/core";
 
 import { useHistory, useParams } from "react-router-dom";
@@ -30,14 +34,23 @@ const AdminEditUser = (props: any) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { userId } = useParams();
+  const [open, setOpen] = React.useState(true);
 
   const user = useSelector((state: RootState) => state.admin.selected);
+  const accessToken = useSelector((state: RootState) => state.user.accessToken);
+  const loadingEdit = useSelector(
+    (state: RootState) => state.admin.loadingEdit
+  );
   useEffect(() => {
-    dispatch({
-      type: GET_ONE_USER,
-      payload: userId,
-    });
-  }, [dispatch, userId]);
+    if (accessToken !== "") {
+      dispatch({
+        type: GET_ONE_USER,
+        payload: userId,
+      });
+    } else {
+      history.push("/");
+    }
+  }, [accessToken, dispatch, history, userId]);
 
   const handleSubmit = (values: any) => {
     dispatch({
@@ -130,8 +143,32 @@ const AdminEditUser = (props: any) => {
                         color="secondary"
                         className={classes.submit}
                       >
-                        {props.isSubmitting ? "Enviando.." : "Enviar"}
+                        {props.isSubmitting ? "Enviado" : "Enviar"}
                       </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                      {loadingEdit && (
+                        <Collapse in={open}>
+                          <Alert
+                            severity="success"
+                            action={
+                              <IconButton
+                                aria-label="close"
+                                color="inherit"
+                                size="small"
+                                onClick={() => {
+                                  setOpen(false);
+                                }}
+                              >
+                                <CloseIcon fontSize="inherit" />
+                              </IconButton>
+                            }
+                            color="info"
+                          >
+                            Usuari@ editado con éxito
+                          </Alert>
+                        </Collapse>
+                      )}
                     </Grid>
                   </Grid>
                 </Form>

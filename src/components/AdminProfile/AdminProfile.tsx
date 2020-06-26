@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,7 +8,9 @@ import {
   CardContent,
   Button,
   Typography,
+  CircularProgress,
 } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +29,14 @@ function capitalizeFirstLetter(string: any) {
 
 const AdminProfile = (props: any) => {
   const classes = useStyles();
+  const history = useHistory();
   const user = useSelector((state: RootState) => state.user);
+
+  useEffect(() => {
+    if (user.role === "user") {
+      history.push("/");
+    }
+  }, [history, user.role]);
 
   return (
     <>
@@ -83,14 +92,15 @@ const AdminProfile = (props: any) => {
           </CardActions>
         </Card>
       ) : (
-        <Typography
-          variant="h2"
-          color="secondary"
-          align="center"
-          className={classes.root}
-        >
-          No eres admin o no has iniciado sesión
-        </Typography>
+        // <Typography
+        //   variant="h2"
+        //   color="secondary"
+        //   align="center"
+        //   className={classes.root}
+        // >
+        //   No eres admin o no has iniciado sesión
+        // </Typography>
+        <CircularProgress color="secondary" />
       )}
     </>
   );
