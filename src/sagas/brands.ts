@@ -127,16 +127,12 @@ function* createBrand() {
   yield takeLatest(CREATE_ONE_BRAND, function* (action: CreateOneBrandAction) {
     try {
       const { payload } = action;
-
       const form = new FormData();
       form.append("image", payload.image);
-
       const uploadResponse = yield call(
         axios.post,
         `${urlServer}upload`,
-
         form,
-
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -144,7 +140,6 @@ function* createBrand() {
           },
         }
       );
-
       const response = yield call(
         axios.post,
         `${urlServer}brands/`,
