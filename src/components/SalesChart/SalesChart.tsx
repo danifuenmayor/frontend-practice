@@ -76,6 +76,7 @@ export default function SalesCharts(props: any) {
         <Tab label="Total de ingresos por día" {...a11yProps(0)} />
         <Tab label="Total de ventas por marca" {...a11yProps(1)} />
         <Tab label="Usuari@s con más ventas" {...a11yProps(2)} />
+        <Tab label="Comisiones e Ingresos" {...a11yProps(3)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <SalesChartLine />
@@ -85,6 +86,9 @@ export default function SalesCharts(props: any) {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <SalesRanking />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <AdminChart />
       </TabPanel>
     </div>
   );

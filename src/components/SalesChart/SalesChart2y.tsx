@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { useHistory } from "react-router-dom";
-import { Container, Typography, Box, Button } from "@material-ui/core";
+import { Container, Box, Button } from "@material-ui/core";
 import { GET_SALES } from "../../reducers/sales/types";
 import { Line } from "react-chartjs-2";
 
@@ -45,12 +45,9 @@ const AdminChart = () => {
     }
   }
 
-
-
   return (
     <div>
       <Container>
-        <Typography variant="h2">ADMIN CHART</Typography>
         <div>
           <Box color="secondary">
             {userState.role === "admin" && (

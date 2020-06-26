@@ -57,14 +57,14 @@ const SalesRanking = (props: any) => {
     sales.forEach((element: any) => {
       if (data.hasOwnProperty(element.userId.id)) {
         data[element.userId.id].totalSales += 1;
-        data[element.userId.id].amount += element.productId.price;
+        data[element.userId.id].amount += element.productId?.price;
       } else {
         data[element.userId.id] = {
           name: element.userId.name,
           lastName: element.userId.lastName,
           mail: element.userId.email,
           totalSales: 1,
-          amount: element.productId.price,
+          amount: element.productId?.price,
         };
       }
     });
