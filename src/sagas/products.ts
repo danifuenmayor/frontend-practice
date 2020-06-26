@@ -32,7 +32,9 @@ import {
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_FAIL,
 } from "../reducers/products/types";
+
 const urlServer = "http://localhost:3000/";
+
 function* getProducts() {
   yield takeLatest(GET_PRODUCTS, function* (action: GetProductsAction) {
     try {
@@ -49,6 +51,7 @@ function* getProducts() {
     }
   });
 }
+
 function* getProduct() {
   yield takeLatest(GET_PRODUCT, function* (action: GetProductAction) {
     try {
@@ -66,13 +69,19 @@ function* getProduct() {
     }
   });
 }
+
 function* deleteProduct() {
   yield takeLatest(DELETE_PRODUCT, function* (action: DeleteProductAction) {
     try {
       const { payload } = action;
       const response = yield call(
         axios.delete,
-        `${urlServer}products/${payload}`
+        `${urlServer}products/${payload}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       yield put<DeleteProductSuccessAction>({
         type: DELETE_PRODUCT_SUCCESS,
@@ -86,6 +95,7 @@ function* deleteProduct() {
     }
   });
 }
+
 function* editProduct() {
   yield takeLatest(EDIT_PRODUCT, function* (action: EditProductAction) {
     try {
@@ -131,6 +141,7 @@ function* editProduct() {
     }
   });
 }
+
 function* createProduct() {
   yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
     try {
@@ -177,6 +188,7 @@ function* createProduct() {
     }
   });
 }
+
 export default function* saga() {
   yield fork(getProducts);
   yield fork(getProduct);

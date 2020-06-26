@@ -38,7 +38,7 @@ const BrandCard = (props: any) => {
     (state: RootState) => state.brands.brands
   );
 
-  console.log(brandsState);
+
   return (
     <>
       <CssBaseline />

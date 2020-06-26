@@ -45,8 +45,7 @@ const AdminChart = () => {
     }
   }
 
-  console.log(commissiondata);
-  console.log(pricedata);
+
 
   return (
     <div>

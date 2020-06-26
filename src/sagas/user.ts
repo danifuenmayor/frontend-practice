@@ -31,13 +31,13 @@ function* login() {
         email: payload.email,
         password: payload.password,
       });
-      console.log("Response", response);
+
       const respUser = yield call(axios.get, `${urlServer}users/me`, {
         headers: {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
       });
-      console.log("Response 2", respUser);
+
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
         payload: {

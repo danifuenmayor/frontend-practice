@@ -27,7 +27,7 @@ const SalesRanking = (props: any) => {
   const classes = useStyles();
 
   const sales = useSelector((state: RootState) => state.sales.sales);
-  console.log(sales);
+
 
   const handleClose = () => {
     setOpen(false);
