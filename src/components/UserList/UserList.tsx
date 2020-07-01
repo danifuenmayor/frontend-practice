@@ -26,13 +26,18 @@ const useStyles = makeStyles({
 const UserList = (props: any) => {
   const history = useHistory();
   const users = useSelector((state: RootState) => state.admin.users);
+  const accessToken = useSelector((state: RootState) => state.user.accessToken);
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({
-      type: GET_USERS,
-    });
-  }, [dispatch]);
+    if (accessToken !== "") {
+      dispatch({
+        type: GET_USERS,
+      });
+    } else {
+      history.push("/");
+    }
+  }, [accessToken, dispatch, history]);
 
   return (
     <Container>

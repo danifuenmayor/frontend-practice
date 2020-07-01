@@ -17,12 +17,10 @@ import {
   CREATE_PRODUCT_FAIL,
   CREATE_PRODUCT_SUCCESS,
 } from "./types";
-
 const initialStateProducts: ProductState = {
   error: undefined,
   products: [],
 };
-
 export const ProductReducer = (
   state = initialStateProducts,
   action: ProductsActions
@@ -30,19 +28,16 @@ export const ProductReducer = (
   switch (action.type) {
     case GET_PRODUCTS:
       return state;
-
     case GET_PRODUCTS_FAIL:
       return {
         ...state,
         error: action.payload,
       };
-
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
         products: action.payload,
       };
-
     case GET_PRODUCT:
       return {
         ...state,
@@ -51,7 +46,6 @@ export const ProductReducer = (
         },
         deletedProduct: undefined,
       };
-
     case GET_PRODUCT_FAIL:
       return {
         ...state,
@@ -59,7 +53,6 @@ export const ProductReducer = (
           error: action.payload,
         },
       };
-
     case GET_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -67,7 +60,6 @@ export const ProductReducer = (
           item: action.payload,
         },
       };
-
     case DELETE_PRODUCT:
       return {
         ...state,
@@ -75,7 +67,6 @@ export const ProductReducer = (
           loading: true,
         },
       };
-
     case DELETE_PRODUCT_FAIL:
       return {
         ...state,
@@ -83,7 +74,6 @@ export const ProductReducer = (
           error: action.payload,
         },
       };
-
     case DELETE_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -91,7 +81,6 @@ export const ProductReducer = (
           success: true,
         },
       };
-
     case EDIT_PRODUCT:
       return {
         ...state,
@@ -99,7 +88,6 @@ export const ProductReducer = (
           loading: true,
         },
       };
-
     case EDIT_PRODUCT_FAIL:
       return {
         ...state,
@@ -107,7 +95,6 @@ export const ProductReducer = (
           error: action.payload,
         },
       };
-
     case EDIT_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -127,7 +114,6 @@ export const ProductReducer = (
           loading: true,
         },
       };
-
     case CREATE_PRODUCT_FAIL:
       return {
         ...state,
@@ -135,7 +121,6 @@ export const ProductReducer = (
           error: action.payload,
         },
       };
-
     case CREATE_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -148,7 +133,6 @@ export const ProductReducer = (
           image: action.payload.image,
         },
       };
-
     default:
       return state;
   }

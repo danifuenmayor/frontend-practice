@@ -7,6 +7,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { RootState } from "../../reducers";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BrandCardDescription = (props: any) => {
+  const userState = useSelector((state: RootState) => state.user);
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -45,14 +48,11 @@ const BrandCardDescription = (props: any) => {
         >
           Productos
         </Button>
-        <Button
-          // onClick={(e) => props.setProducts(e, props.id)}
-          href={`brands/${props.id}`}
-          size="small"
-          color="primary"
-        >
-          Editar Marca
-        </Button>
+        {userState.role === "admin" && (
+          <Button href={`brands/${props.id}`} size="small" color="primary">
+            Editar Marca
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

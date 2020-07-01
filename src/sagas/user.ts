@@ -37,7 +37,7 @@ function* login() {
           Authorization: `Bearer ${response.data.accessToken}`,
         },
       });
-      
+
       yield put<SendLoginSuccessAction>({
         type: SEND_LOGIN_SUCCESS,
         payload: {

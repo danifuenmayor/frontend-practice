@@ -28,6 +28,7 @@ export interface AdminState {
   email: string;
   error?: string;
   users: PayloadGetOneUser[];
+  loadingEdit?: boolean;
   selected?: {
     user?: PayloadGetOneUser;
     loading?: boolean;

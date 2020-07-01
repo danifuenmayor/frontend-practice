@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { useParams, Redirect, useHistory, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+
+import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
-import Imagedefault from "../images/default.jpg";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -12,8 +11,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { CircularProgress } from "@material-ui/core";
-import { GET_SALES } from "../../reducers/sales/types";
-import TextInput from "../TextInput/TextInput";
 
 const useStyles = makeStyles({
   table: {
@@ -21,25 +18,11 @@ const useStyles = makeStyles({
   },
 });
 
-function capitalizeFirstLetter(string: any) {
-  return string[0].toUpperCase() + string.slice(1);
-}
-
 const SalesRanking = (props: any) => {
-  const location = useLocation();
-  const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
-  const dispatch = useDispatch();
+
   const sales = useSelector((state: RootState) => state.sales.sales);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   if (sales?.loading) {
     return <CircularProgress color="secondary" />;
@@ -74,14 +57,14 @@ const SalesRanking = (props: any) => {
     sales.forEach((element: any) => {
       if (data.hasOwnProperty(element.userId.id)) {
         data[element.userId.id].totalSales += 1;
-        data[element.userId.id].amount += element.productId.price;
+        data[element.userId.id].amount += element.productId?.price;
       } else {
         data[element.userId.id] = {
           name: element.userId.name,
           lastName: element.userId.lastName,
           mail: element.userId.email,
           totalSales: 1,
-          amount: element.productId.price,
+          amount: element.productId?.price,
         };
       }
     });

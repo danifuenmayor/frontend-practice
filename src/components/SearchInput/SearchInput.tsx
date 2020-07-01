@@ -14,12 +14,18 @@ const SearchInput = (props: any) => {
     setValue(value);
   };
 
+  const searchOptions = {
+    location: new google.maps.LatLng(-35.675147, -71.542969),
+    radius: 2000,
+    types: ["address"],
+  };
   return (
     <div>
       <PlacesAutocomplete
         value={value}
         onChange={setValue}
         onSelect={handleSelect}
+        searchOptions={searchOptions}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>

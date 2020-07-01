@@ -22,16 +22,17 @@ const SalesChartPie = () => {
 
   const salesState = useSelector((state: RootState) => state.sales.sales);
   const loading = useSelector((state: RootState) => state.sales.loading);
+  console.log(salesState);
 
   let data: any = {};
   if (userState.role === "admin") {
     if (!loading) {
       for (let x of salesState) {
-        if (!data.hasOwnProperty(x.productId.brandId.name)) {
-          data[x.productId.brandId.name] = 0;
+        if (!data.hasOwnProperty(x.productId?.brandId.name)) {
+          data[x.productId?.brandId.name] = 0;
         }
-        if (x.productId.brandId.name in data) {
-          data[x.productId.brandId.name] += 1;
+        if (x.productId?.brandId.name in data) {
+          data[x.productId?.brandId.name] += 1;
         }
       }
     }
