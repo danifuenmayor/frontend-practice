@@ -50,8 +50,9 @@ const CreateProduct = (props: any) => {
         >
           Volver
         </Button>
-        <Container maxWidth="xs">
+        <Container maxWidth="xs" data-test="create-product-component">
           <Formik
+            data-test="form-test"
             initialValues={{
               name: "",
               description: "",
