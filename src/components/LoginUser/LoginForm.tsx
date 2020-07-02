@@ -45,13 +45,20 @@ const LoginForm = () => {
                   Inicia sesión
                 </Typography>
                 <TextInput
+                  className="email"
                   label="Correo electronico"
                   name="email"
                   type="email"
                   placeholder="danifuenmayor@gmail.com"
                 />
                 <br />
-                <TextInput label="Contraseña" name="password" type="password" />
+
+                <TextInput
+                  className="password"
+                  label="Contraseña"
+                  name="password"
+                  type="password"
+                />
                 <br />
                 {userState.accessToken ? (
                   <Redirect to="/user-profile" />
@@ -59,7 +66,12 @@ const LoginForm = () => {
                   <p>{userState.error}</p>
                 )}
                 <br />
-                <Button type="submit" variant="contained" color="secondary">
+                <Button
+                  id="submit-login"
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                >
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
                 </Button>
               </Form>

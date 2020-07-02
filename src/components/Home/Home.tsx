@@ -36,7 +36,7 @@ const Home = (props: any) => {
         </Typography>
       </Box>
       <Grid container>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box m={4}>
             <Typography color="primary" variant="h4">
               Conviertete en Selyt y gana dinero fácil y rápido. Registrate en
@@ -44,7 +44,7 @@ const Home = (props: any) => {
             </Typography>
           </Box>
         </Grid>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Card className={style.card}>
             <CardActionArea>
               <CardMedia
