@@ -32,6 +32,7 @@ import {
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_FAIL,
 } from "../reducers/products/types";
+import { findSpanishError } from "../helpers";
 
 const urlServer = "http://localhost:3000/";
 
@@ -44,10 +45,9 @@ function* getProducts() {
         payload: response.data,
       });
     } catch (err) {
-      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetProductsFailAction>({
         type: GET_PRODUCTS_FAIL,
-        payload: spanishError,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -63,10 +63,9 @@ function* getProduct() {
         payload: response.data,
       });
     } catch (err) {
-      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetProductFailAction>({
         type: GET_PRODUCT_FAIL,
-        payload: spanishError,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -90,10 +89,9 @@ function* deleteProduct() {
         payload: response.data,
       });
     } catch (err) {
-      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<DeleteProductFailAction>({
         type: DELETE_PRODUCT_FAIL,
-        payload: spanishError,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -137,10 +135,9 @@ function* editProduct() {
         payload: response.data,
       });
     } catch (err) {
-      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<EditProductFailAction>({
         type: EDIT_PRODUCT_FAIL,
-        payload: spanishError,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -185,11 +182,9 @@ function* createProduct() {
         payload: response.data,
       });
     } catch (err) {
-      const spanishError = err.response.data.error.errors[0].messages.es;
-
       yield put<CreateProductFailAction>({
         type: CREATE_PRODUCT_FAIL,
-        payload: spanishError,
+        payload: findSpanishError(err),
       });
     }
   });

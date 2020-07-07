@@ -31,15 +31,7 @@ const CreateBrand = (props: any) => {
       },
     });
   };
-  //   if (newBrand?.loading === true) {
-  //     return <CircularProgress color="secondary" />;
-  //   }
-  //   if (newBrand?.success === true) {
-  //     history.push(`/brands`);
-  //   }
-  //   if (newBrand?.error) {
-  //     return <h1>{newBrand.error}</h1>;
-  //   }
+
   return (
     <>
       <Box m={4}>
