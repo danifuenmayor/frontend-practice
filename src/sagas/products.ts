@@ -146,7 +146,6 @@ function* editProduct() {
 function* createProduct() {
   yield takeLatest(CREATE_PRODUCT, function* (action: CreateProductAction) {
     try {
-      console.log("hola mundo");
       const { payload } = action;
       const form = new FormData();
       form.append("image", payload.image);

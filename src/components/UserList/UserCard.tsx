@@ -55,7 +55,6 @@ const UserCard = (props: any) => {
           href={`/show-users/${props.user.id}/edit-user`}
           size="small"
           color="primary"
-          data-test="btn-edit-user"
         >
           Editar usuari@
         </Button>

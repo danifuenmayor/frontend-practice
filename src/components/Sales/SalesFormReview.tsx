@@ -7,15 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
 import { useField } from "formik";
 
-
-
 //examples
-const payments = [
-  { name: "Card type", detail: "Visa" },
-  { name: "Card holder", detail: "Persona Selyt" },
-  { name: "Card number", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date", detail: "04/2024" },
-];
 
 const useStyles = makeStyles((theme) => ({
   listItem: {
@@ -78,18 +70,6 @@ const SalesFormReview = (props: any) => {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Detalles del pago
           </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.name}</Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography gutterBottom>{payment.detail}</Typography>
-                </Grid>
-              </React.Fragment>
-            ))}
-          </Grid>
         </Grid>
       </Grid>
     </React.Fragment>

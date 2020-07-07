@@ -62,9 +62,6 @@ const SalesChartMixedData = () => {
   const commissiondataSort: any = sortObj(commissiondata);
   const pricedataSort: any = sortObj(pricedata);
 
-  console.log("comisión ", commissiondataSort);
-  console.log("precio ", pricedataSort);
-
   const data = {
     datasets: [
       {
@@ -127,7 +124,6 @@ const SalesChartMixedData = () => {
           },
           labels: {
             show: true,
-            
           },
         },
         {

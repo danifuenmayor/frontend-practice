@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory, Redirect } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 
@@ -107,10 +107,6 @@ const EditProduct = (props: any) => {
     });
   }, [dispatch, id]);
 
-  if (deletedProduct?.success) {
-    history.push("/brands");
-  }
-
   return (
     <>
       {product?.item && (
@@ -147,13 +143,6 @@ const EditProduct = (props: any) => {
             </CardActionArea>
             <CardActions>
               <Box>
-                {deletedProduct?.loading && (
-                  <Box m={5}>
-                    <CircularProgress color="secondary" />
-                  </Box>
-                )}
-                {deletedProduct?.error && deletedProduct.error}
-
                 <Button
                   onClick={() => handleOnClick()}
                   size="small"
@@ -169,6 +158,17 @@ const EditProduct = (props: any) => {
               </Box>
             </CardActions>
           </Card>
+          {deletedProduct?.loading && (
+            <Box m={5}>
+              <CircularProgress color="secondary" />
+            </Box>
+          )}
+          {deletedProduct?.error && deletedProduct.error}
+          {deletedProduct?.success && (
+            <Box m={5}>
+              <Alert>Producto ha sido eliminado con exito</Alert>
+            </Box>
+          )}
           {editedProduct?.loading && (
             <Box m={5}>
               <CircularProgress color="secondary" />

@@ -20,7 +20,6 @@ import SalesCharts from "../SalesChart/SalesChart";
 import SalesChartLine from "../SalesChart/SalesChartLine";
 import CreateProduct from "../CreateProduct/CreateProduct";
 import CreateBrand from "../CreateBrand/CreateBrand";
-import SalesChartMixedData from "../SalesChart/SalesChartLineMixedData";
 
 const App = () => {
   return (
@@ -47,7 +46,6 @@ const App = () => {
         <Route exact path={"/products/:productId/sales"} component={Sales} />
         <Route exact path={"/admin-chart"} component={AdminChart} />
         <Route exact path={"/sales-charts"} component={SalesCharts} />
-
         <Route exact path={"/sales-chart-line"} component={SalesChartLine} />
         <Route exact path={"/brands/:brandId"} component={EditBrand} />
         <Route
@@ -56,7 +54,6 @@ const App = () => {
           component={AdminEditUser}
         />
         <Route exact path={"/create-brand"} component={CreateBrand} />
-        <Route exact path={"/sales-mixed"} component={SalesChartMixedData} />
         <Route render={() => <h1>Not found!</h1>} />
       </Switch>
     </Router>
