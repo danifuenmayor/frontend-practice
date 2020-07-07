@@ -57,17 +57,17 @@ const AdminChart = () => {
                   datasets: [
                     {
                       type: "line",
-                      label: "Commission",
+                      label: "Comisión",
                       id: "Commission",
                       data: [...Object.values(commissiondata)],
                       backgroundColor: ["rgba(75,192,192,0.6)"],
                     },
                     {
-                      type: "line",
+                      type: "bar",
                       label: `Ventas Totales Por ${time === 7 ? "Día" : "Mes"}`,
                       id: "Total Sales Per Month",
                       data: [...Object.values(pricedata)],
-                      backgroundColor: ["rgba(228,23,73,1)"],
+                      backgroundColor: ["#d9d9f3"],
                     },
                   ],
                   options: {
@@ -80,7 +80,7 @@ const AdminChart = () => {
                         },
                         {
                           id: "Total Sales Per Month",
-                          type: "linear",
+                          type: "bar",
                           position: "right",
                           ticks: {
                             max: 100,
@@ -89,6 +89,13 @@ const AdminChart = () => {
                         },
                       ],
                     },
+                  },
+                }}
+                options={{
+                  title: {
+                    display: true,
+                    text: "Ventas por Marcas",
+                    fontSize: 20,
                   },
                 }}
               />

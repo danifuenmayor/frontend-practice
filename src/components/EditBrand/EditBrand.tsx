@@ -19,11 +19,16 @@ import {
   DialogContent,
   DialogActions,
 } from "@material-ui/core";
-import { GET_ONE_BRAND, EDIT_BRAND } from "../../reducers/brands/types";
+import {
+  GET_ONE_BRAND,
+  EDIT_BRAND,
+  EDIT_BRAND_CLEAR,
+} from "../../reducers/brands/types";
 import { Formik, Form } from "formik";
 import EditBrandSchema from "./EditBrandSchema";
 import TextInput from "../TextInput/TextInput";
 import ImageInput from "../ImageInput/ImageInput";
+import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles((theme) => ({
   card: {
     width: 400,
@@ -45,12 +50,16 @@ const EditBrand = (props: any) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const brand = useSelector((state: RootState) => state.brands.selected);
+  const brandClear = useSelector(
+    (state: RootState) => state.brands.editedBrand
+  );
   const handleClose = () => {
     setOpen(false);
   };
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleSubmit = (values: any) => {
     dispatch({
       type: EDIT_BRAND,
@@ -60,20 +69,19 @@ const EditBrand = (props: any) => {
       },
     });
     setOpen(false);
-    history.push(`/brands`);
   };
+
   useEffect(() => {
+    dispatch({
+      type: EDIT_BRAND_CLEAR,
+    });
+
     dispatch({
       type: GET_ONE_BRAND,
       payload: brandId,
     });
   }, [dispatch, brandId]);
-  if (brand?.loading) {
-    return <CircularProgress color="secondary" />;
-  }
-  if (brand?.error) {
-    return <h1>{brand.error}</h1>;
-  }
+
   return (
     <>
       {brand?.item && (
@@ -98,6 +106,14 @@ const EditBrand = (props: any) => {
               </Box>
             </CardActions>
           </Card>
+          {brandClear?.loading && <CircularProgress color="secondary" />}
+          {brandClear?.error && brandClear?.error}
+
+          {brandClear?.success && (
+            <Box m={5}>
+              <Alert>Marca ha sido editada con éxito</Alert>
+            </Box>
+          )}
           <Dialog
             open={open}
             onClose={handleClose}

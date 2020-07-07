@@ -22,7 +22,7 @@ const CreateProduct = (props: any) => {
   const newProduct = useSelector(
     (state: RootState) => state.products.newProduct
   );
-  console.log(newProduct);
+
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_PRODUCT,
@@ -53,7 +53,6 @@ const CreateProduct = (props: any) => {
         </Button>
         <Container maxWidth="xs">
           <Formik
-           
             initialValues={{
               name: "",
               description: "",
@@ -87,7 +86,14 @@ const CreateProduct = (props: any) => {
                 <TextInput label="Commisión" name="commission" type="number" />
                 <ImageInput label="image" name="image" />
                 <br />
-                <Button id="submit" type="submit" variant="contained" color="secondary">
+                <Button
+                  id="submit"
+                  data-test="btn-form"
+                  disabled={props.isSubmitting}
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                >
                   {props.isSubmitting ? (
                     <div id="submitting">Submitting</div>
                   ) : (

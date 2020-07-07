@@ -112,6 +112,7 @@ export const ProductReducer = (
         ...state,
         newProduct: {
           loading: true,
+          success: false,
         },
       };
     case CREATE_PRODUCT_FAIL:
@@ -119,6 +120,8 @@ export const ProductReducer = (
         ...state,
         newProduct: {
           error: action.payload,
+          success: false,
+          loading: false,
         },
       };
     case CREATE_PRODUCT_SUCCESS:
@@ -131,6 +134,7 @@ export const ProductReducer = (
           description: action.payload.description,
           commission: action.payload.commission,
           image: action.payload.image,
+          loading: false,
         },
       };
     default:

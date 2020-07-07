@@ -47,7 +47,13 @@ const Products = (props: any) => {
           products
             .filter((product: any) => product.brandId === brandId)
             .map((product: any) => {
-              return <ProductCard product={product} image={Imagedefault} />;
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  image={Imagedefault}
+                />
+              );
             })}
       </Grid>
     </>

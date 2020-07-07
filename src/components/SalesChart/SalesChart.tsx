@@ -7,6 +7,7 @@ import SalesChartLine from "./SalesChartLine";
 import SalesChartPie from "./SaleChartPie";
 import AdminChart from "./SalesChart2y";
 import SalesRanking from "./SalesRanking";
+import SalesChartMixedData from "./SalesChartLineMixedData";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,8 +26,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: any;
+  children?: any;
+  index: number;
   value: any;
 }
 
@@ -77,6 +78,7 @@ export default function SalesCharts(props: any) {
         <Tab label="Total de ventas por marca" {...a11yProps(1)} />
         <Tab label="Usuari@s con más ventas" {...a11yProps(2)} />
         <Tab label="Comisiones e Ingresos" {...a11yProps(3)} />
+        <Tab label="Comisiones e Ingresos" {...a11yProps(4)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <SalesChartLine />
@@ -89,6 +91,9 @@ export default function SalesCharts(props: any) {
       </TabPanel>
       <TabPanel value={value} index={3}>
         <AdminChart />
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <SalesChartMixedData />
       </TabPanel>
     </div>
   );

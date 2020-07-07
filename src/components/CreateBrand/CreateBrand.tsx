@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
@@ -11,15 +11,25 @@ import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CreateBrandSchema from "./CreateBrandSchema";
 import TextInput from "../TextInput/TextInput";
-import { CREATE_ONE_BRAND } from "../../reducers/brands/types";
+import {
+  CREATE_ONE_BRAND,
+  CREATE_ONE_BRAND_CLEAR,
+} from "../../reducers/brands/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
+
 const CreateBrand = (props: any) => {
   const { brandId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const newBrand = useSelector((state: RootState) => state.brands.editedBrand);
-  console.log(newBrand);
+  const newBrand = useSelector((state: RootState) => state.brands.newBrand);
+
+  useEffect(() => {
+    dispatch({
+      type: CREATE_ONE_BRAND_CLEAR,
+    });
+  }, [dispatch]);
+
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_ONE_BRAND,
@@ -28,16 +38,12 @@ const CreateBrand = (props: any) => {
         id: brandId,
       },
     });
-    if (newBrand?.loading === true) {
-      return <CircularProgress color="secondary" />;
-    }
-    if (newBrand?.success === true) {
-      history.push(`/brands`);
-    }
-    if (newBrand?.error) {
-      return <h1>{newBrand.error}</h1>;
-    }
   };
+
+  if (newBrand?.success) {
+    history.push(`/brands`);
+  }
+
   return (
     <>
       <Box m={4}>
@@ -70,6 +76,8 @@ const CreateBrand = (props: any) => {
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
                 </Button>
+                {newBrand?.loading && <CircularProgress color="secondary" />}
+                {newBrand?.error && newBrand?.error}
               </Form>
             )}
           </Formik>

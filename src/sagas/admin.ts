@@ -25,7 +25,7 @@ const urlServer = "http://localhost:3000/";
 function* getUsers() {
   yield takeLatest(GET_USERS, function* (action: GetUsersAction) {
     try {
-      const response = yield call(axios.get, `${urlServer}users`, {
+      const response = yield call(axios.get, `http://localhost:3000/users`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -89,12 +89,12 @@ function* editUser() {
           },
         }
       );
-    
+
       yield put<EditUserSuccessAction>({
         type: EDIT_USER_SUCCESS,
         payload: {
           ...response.data,
-          status: response.status
+          status: response.status,
         },
       });
     } catch (err) {

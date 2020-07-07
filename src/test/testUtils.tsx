@@ -2,7 +2,9 @@
 // import { middlewares } from "./../src/createStore";
 // import { rootReducer } from "../reducers";
 
-export const findByTestAttr = (wrapper, val) => {
+import { ReactWrapper } from "enzyme";
+
+export const findByTestAttr = (wrapper: ReactWrapper, val: ReactWrapper) => {
   return wrapper.find(`[data-test="${val}"]`);
 };
 

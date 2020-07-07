@@ -9,15 +9,8 @@ import { GET_ONE_BRAND } from "../../reducers/brands/types";
 // Brands component
 const Brands = (props: any) => {
   const history = useHistory();
-  const { brandId } = useParams();
-  const dispatch = useDispatch();
+
   const user = useSelector((state: RootState) => state.user);
-  const brands = useSelector((state: RootState) => state.brands.brands);
-  useEffect(() => {
-    dispatch({
-      type: GET_ONE_BRAND,
-    });
-  }, [dispatch]);
 
   return (
     <Container>

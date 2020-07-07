@@ -16,6 +16,8 @@ import {
   EDIT_BRAND,
   EDIT_BRAND_SUCCESS,
   EDIT_BRAND_FAIL,
+  EDIT_BRAND_CLEAR,
+  CREATE_ONE_BRAND_CLEAR,
 } from "./types";
 const initialStateBrand: BrandState = {
   name: "",
@@ -43,8 +45,9 @@ export const brandsReducer = (
     case CREATE_ONE_BRAND:
       return {
         ...state,
-        editedBrand: {
+        newBrand: {
           loading: true,
+          success: false,
         },
       };
 
@@ -56,10 +59,18 @@ export const brandsReducer = (
     case CREATE_ONE_BRAND_SUCCESS:
       return {
         ...state,
-        editedBrand: {
+        newBrand: {
           success: true,
           name: action.payload.name,
           image: action.payload.image,
+        },
+      };
+    case CREATE_ONE_BRAND_CLEAR:
+      return {
+        ...state,
+        newBrand: {
+          success: undefined,
+          loading: undefined,
         },
       };
     case DELETE_ONE_BRAND:
@@ -82,6 +93,7 @@ export const brandsReducer = (
         ...state,
         editedBrand: {
           loading: true,
+          success: false,
         },
       };
     case EDIT_BRAND_SUCCESS:
@@ -98,6 +110,14 @@ export const brandsReducer = (
         editedBrand: {
           success: false,
           error: action.payload,
+        },
+      };
+    case EDIT_BRAND_CLEAR:
+      return {
+        ...state,
+        editedBrand: {
+          loading: undefined,
+          success: undefined,
         },
       };
     case GET_ONE_BRAND:
@@ -122,6 +142,7 @@ export const brandsReducer = (
           error: action.payload,
         },
       };
+
     default:
       return state;
   }
