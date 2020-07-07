@@ -210,7 +210,7 @@ const Sales = (props: any) => {
                             // onClick={handleNext}
                             className={classes.button}
                           >
-                            Realizar Venta
+                            Realizar venta
                           </Button>
                         ) : (
                           <Button

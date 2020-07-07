@@ -14,6 +14,7 @@ import {
   GET_SALES_FAIL,
   GetSalesFailAction,
 } from "../reducers/sales/types";
+import { findSpanishError } from "../helpers";
 const urlServer = "http://localhost:3000/";
 function* saleProduct() {
   yield takeLatest(SALE_PRODUCT, function* (action: SaleProductAction) {
@@ -43,7 +44,7 @@ function* saleProduct() {
     } catch (err) {
       yield put<SaleProductFailAction>({
         type: SALE_PRODUCT_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -63,7 +64,7 @@ function* getAllSales() {
     } catch (err) {
       yield put<GetSalesFailAction>({
         type: GET_SALES_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });

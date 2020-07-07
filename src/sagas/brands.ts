@@ -32,6 +32,7 @@ import {
   GetBrandSuccessAction,
   GetBrandFailAction,
 } from "../reducers/brands/types";
+import { findSpanishError } from "../helpers";
 
 const urlServer = "http://localhost:3000/";
 
@@ -50,7 +51,7 @@ function* getAllBrands() {
     } catch (err) {
       yield put<GetAllBrandsFailAction>({
         type: GET_ALL_BRANDS_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -70,7 +71,7 @@ function* deleteBrand() {
     } catch (err) {
       yield put<DeleteOneBrandFailAction>({
         type: DELETE_ONE_BRAND_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -118,7 +119,7 @@ function* editBrand() {
     } catch (err) {
       yield put<EditBrandFailAction>({
         type: EDIT_BRAND_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -160,7 +161,7 @@ function* createBrand() {
     } catch (err) {
       yield put<CreateOneBrandFailAction>({
         type: CREATE_ONE_BRAND_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -182,7 +183,7 @@ function* getBrand() {
     } catch (err) {
       yield put<GetBrandFailAction>({
         type: GET_ONE_BRAND_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });

@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Button, Box } from "@material-ui/core";
 import ProductCard from "./productCard";
-import Imagedefault from "../images/default.jpg";
 import { GET_PRODUCTS } from "../../reducers/products/types";
 import { RootState } from "../../reducers";
 import { useParams, useHistory } from "react-router-dom";
@@ -47,13 +46,7 @@ const Products = (props: any) => {
           products
             .filter((product: any) => product.brandId === brandId)
             .map((product: any) => {
-              return (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  image={Imagedefault}
-                />
-              );
+              return <ProductCard key={product.id} product={product} />;
             })}
       </Grid>
     </>

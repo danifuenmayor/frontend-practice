@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 
 const UserList = (props: any) => {
   const history = useHistory();
-  const users = useSelector((state: RootState) => state.admin.users);
   const accessToken = useSelector((state: RootState) => state.user.accessToken);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -38,7 +37,7 @@ const UserList = (props: any) => {
       history.push("/");
     }
   }, [accessToken, dispatch, history]);
-
+  const users = useSelector((state: RootState) => state.admin.users);
   return (
     <Container>
       <Button

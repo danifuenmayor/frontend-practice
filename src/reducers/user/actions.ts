@@ -23,6 +23,8 @@ import {
   PayloadLogout,
   SEND_LOGOUT,
   SendLogoutAction,
+  SendLoginClearAction,
+  SEND_LOGIN_CLEAR,
 } from "./types";
 
 // Login Actions
@@ -44,6 +46,12 @@ export function sendLoginFail(error: string): SendLoginFailAction {
   return {
     type: SEND_LOGIN_FAIL,
     payload: error,
+  };
+}
+export function sendLoginClear(newLogin: PayloadLogin): SendLoginClearAction {
+  return {
+    type: SEND_LOGIN_CLEAR,
+    payload: newLogin,
   };
 }
 // Register Actions

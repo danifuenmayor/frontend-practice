@@ -17,6 +17,7 @@ import {
 } from "../../reducers/brands/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
+import Alert from "@material-ui/lab/Alert";
 
 const CreateBrand = (props: any) => {
   const { brandId } = useParams();
@@ -81,6 +82,11 @@ const CreateBrand = (props: any) => {
               </Form>
             )}
           </Formik>
+          {newBrand?.error && (
+            <Box m={5}>
+              <Alert>{newBrand.error}</Alert>
+            </Box>
+          )}
         </Container>
       </Box>
     </>

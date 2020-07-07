@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
@@ -11,9 +11,13 @@ import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CreateProductSchema from "./CreateProductSchema";
 import TextInput from "../TextInput/TextInput";
-import { CREATE_PRODUCT } from "../../reducers/products/types";
+import {
+  CREATE_PRODUCT,
+  CREATE_PRODUCT_CLEAR,
+} from "../../reducers/products/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
+import Alert from "@material-ui/lab/Alert";
 
 const CreateProduct = (props: any) => {
   const { brandId } = useParams();
@@ -23,6 +27,12 @@ const CreateProduct = (props: any) => {
     (state: RootState) => state.products.newProduct
   );
 
+  useEffect(() => {
+    dispatch({
+      type: CREATE_PRODUCT_CLEAR,
+    });
+  }, []);
+
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_PRODUCT,
@@ -31,16 +41,10 @@ const CreateProduct = (props: any) => {
         brandId: brandId,
       },
     });
-    if (newProduct?.loading) {
-      return <CircularProgress color="secondary" />;
-    }
-    if (newProduct?.success) {
-      history.push(`/brands/${brandId}/products`);
-    }
-    if (newProduct?.error) {
-      return <h1>{newProduct.error}</h1>;
-    }
   };
+  if (newProduct?.success) {
+    history.push(`/brands/${brandId}/products`);
+  }
   return (
     <>
       <Box m={4} data-test="component-create-product">
@@ -88,18 +92,24 @@ const CreateProduct = (props: any) => {
                 <br />
                 <Button
                   id="submit"
-                  data-test="btn-form"
+                  data-test="btn-submit"
                   disabled={props.isSubmitting}
                   type="submit"
                   variant="contained"
                   color="secondary"
                 >
                   {props.isSubmitting ? (
-                    <div id="submitting">Submitting</div>
+                    <div id="submitting">Enviando</div>
                   ) : (
                     "Enviar"
                   )}
                 </Button>
+                {newProduct?.loading && <CircularProgress color="secondary" />}
+                {newProduct?.error && (
+                  <Box m={5}>
+                    <Alert>{newProduct?.error}</Alert>
+                  </Box>
+                )}
               </Form>
             )}
           </Formik>
