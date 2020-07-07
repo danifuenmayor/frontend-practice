@@ -48,9 +48,10 @@ function* getAllBrands() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetAllBrandsFailAction>({
         type: GET_ALL_BRANDS_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -68,9 +69,10 @@ function* deleteBrand() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<DeleteOneBrandFailAction>({
         type: DELETE_ONE_BRAND_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -116,9 +118,10 @@ function* editBrand() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<EditBrandFailAction>({
         type: EDIT_BRAND_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -158,9 +161,10 @@ function* createBrand() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<CreateOneBrandFailAction>({
         type: CREATE_ONE_BRAND_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -180,9 +184,10 @@ function* getBrand() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetBrandFailAction>({
         type: GET_ONE_BRAND_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });

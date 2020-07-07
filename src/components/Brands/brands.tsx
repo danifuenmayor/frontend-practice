@@ -25,6 +25,7 @@ const Brands = (props: any) => {
       {user && user.role === "admin" && (
         <Box ml={120}>
           <Button
+            test-label="create-brand"
             variant="outlined"
             color="primary"
             onClick={() => history.push(`/create-brand`)}
@@ -34,18 +35,19 @@ const Brands = (props: any) => {
         </Box>
       )}
       <Grid container spacing={1}>
-        {props.brands.map((brand: any) => {
-          return (
-            <Grid item xs={12} sm={4}>
-              <BrandCardDescription
-                key={brand.id}
-                title={brand.name}
-                image={brand.image}
-                id={brand.id}
-              />
-            </Grid>
-          );
-        })}
+        {Array.isArray(brands) &&
+          props.brands.map((brand: any) => {
+            return (
+              <Grid item xs={12} sm={4}>
+                <BrandCardDescription
+                  key={brand.id}
+                  title={brand.name}
+                  image={brand.image}
+                  id={brand.id}
+                />
+              </Grid>
+            );
+          })}
       </Grid>
     </Container>
   );

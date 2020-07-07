@@ -36,9 +36,10 @@ function* getUsers() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetUsersFailAction>({
         type: GET_USERS_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -60,9 +61,10 @@ function* getOneUser() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetOneUserFailAction>({
         type: GET_ONE_USER_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -89,18 +91,19 @@ function* editUser() {
           },
         }
       );
-    
+
       yield put<EditUserSuccessAction>({
         type: EDIT_USER_SUCCESS,
         payload: {
           ...response.data,
-          status: response.status
+          status: response.status,
         },
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<EditUserFailAction>({
         type: EDIT_USER_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });

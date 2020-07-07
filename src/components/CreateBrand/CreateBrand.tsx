@@ -14,12 +14,14 @@ import TextInput from "../TextInput/TextInput";
 import { CREATE_ONE_BRAND } from "../../reducers/brands/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
+import Alert from "@material-ui/lab/Alert";
+
 const CreateBrand = (props: any) => {
   const { brandId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
   const newBrand = useSelector((state: RootState) => state.brands.editedBrand);
-  console.log(newBrand);
+
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_ONE_BRAND,
@@ -28,16 +30,16 @@ const CreateBrand = (props: any) => {
         id: brandId,
       },
     });
-    if (newBrand?.loading === true) {
-      return <CircularProgress color="secondary" />;
-    }
-    if (newBrand?.success === true) {
-      history.push(`/brands`);
-    }
-    if (newBrand?.error) {
-      return <h1>{newBrand.error}</h1>;
-    }
   };
+  //   if (newBrand?.loading === true) {
+  //     return <CircularProgress color="secondary" />;
+  //   }
+  //   if (newBrand?.success === true) {
+  //     history.push(`/brands`);
+  //   }
+  //   if (newBrand?.error) {
+  //     return <h1>{newBrand.error}</h1>;
+  //   }
   return (
     <>
       <Box m={4}>
@@ -73,6 +75,11 @@ const CreateBrand = (props: any) => {
               </Form>
             )}
           </Formik>
+          {newBrand?.error && (
+            <Box m={5}>
+              <Alert>{newBrand.error}</Alert>
+            </Box>
+          )}
         </Container>
       </Box>
     </>

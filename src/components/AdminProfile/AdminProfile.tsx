@@ -92,14 +92,6 @@ const AdminProfile = (props: any) => {
           </CardActions>
         </Card>
       ) : (
-        // <Typography
-        //   variant="h2"
-        //   color="secondary"
-        //   align="center"
-        //   className={classes.root}
-        // >
-        //   No eres admin o no has iniciado sesión
-        // </Typography>
         <CircularProgress color="secondary" />
       )}
     </>

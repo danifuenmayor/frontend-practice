@@ -48,9 +48,10 @@ function* login() {
       const { accessToken } = response.data;
       localStorage.setItem("accessToken", accessToken);
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<SendLoginFailAction>({
         type: SEND_LOGIN_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -82,9 +83,10 @@ function* register() {
         },
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<SendRegisterFailAction>({
         type: SEND_REGISTER_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -114,9 +116,10 @@ function* editUserProfile() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<EditProfileFailAction>({
         type: EDIT_PROFILE_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });

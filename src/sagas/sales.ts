@@ -41,9 +41,10 @@ function* saleProduct() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<SaleProductFailAction>({
         type: SALE_PRODUCT_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
@@ -61,9 +62,10 @@ function* getAllSales() {
         payload: response.data,
       });
     } catch (err) {
+      const spanishError = err.response.data.error.errors[0].messages.es;
       yield put<GetSalesFailAction>({
         type: GET_SALES_FAIL,
-        payload: err.message,
+        payload: spanishError,
       });
     }
   });
