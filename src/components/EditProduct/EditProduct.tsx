@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 
@@ -23,11 +23,13 @@ import {
   DELETE_PRODUCT,
   GET_PRODUCT,
   EDIT_PRODUCT,
+  EDIT_PRODUCT_CLEAR,
 } from "../../reducers/products/types";
 import { Formik, Form } from "formik";
 import EditProductSchema from "./EditProductSchema";
 import TextInput from "../TextInput/TextInput";
 import ImageInput from "../ImageInput/ImageInput";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -81,15 +83,6 @@ const EditProduct = (props: any) => {
       type: DELETE_PRODUCT,
       payload: id,
     });
-    if (deletedProduct?.success) {
-      return history.push("/brands");
-    }
-    if (deletedProduct?.loading) {
-      return <CircularProgress color="secondary" />;
-    }
-    if (deletedProduct?.error) {
-      return <h1>{deletedProduct.error}</h1>;
-    }
   };
 
   const handleSubmit = (values: any) => {
@@ -101,20 +94,22 @@ const EditProduct = (props: any) => {
       },
     });
     setOpen(false);
-    if (editedProduct?.success) {
-      history.push(`/products/${id}`);
-    }
-    if (editedProduct?.error) {
-      return <h1>{editedProduct.error}</h1>;
-    }
   };
 
   useEffect(() => {
+    dispatch({
+      type: EDIT_PRODUCT_CLEAR,
+    });
+
     dispatch({
       type: GET_PRODUCT,
       payload: id,
     });
   }, [dispatch, id]);
+
+  if (deletedProduct?.success) {
+    history.push("/brands");
+  }
 
   return (
     <>
@@ -153,7 +148,9 @@ const EditProduct = (props: any) => {
             <CardActions>
               <Box>
                 {deletedProduct?.loading && (
-                  <CircularProgress color="secondary" />
+                  <Box m={5}>
+                    <CircularProgress color="secondary" />
+                  </Box>
                 )}
                 {deletedProduct?.error && deletedProduct.error}
 
@@ -165,12 +162,28 @@ const EditProduct = (props: any) => {
                 >
                   Borrar
                 </Button>
+
                 <Button onClick={handleClickOpen} size="small" color="primary">
                   Editar
                 </Button>
               </Box>
             </CardActions>
           </Card>
+          {editedProduct?.loading && (
+            <Box m={5}>
+              <CircularProgress color="secondary" />
+            </Box>
+          )}
+          {editedProduct?.error && (
+            <Box m={5}>
+              <Alert>{editedProduct?.error}</Alert>
+            </Box>
+          )}
+          {editedProduct?.success && (
+            <Box m={5}>
+              <Alert>Producto ha sido editado con exito</Alert>
+            </Box>
+          )}
           <Dialog
             open={open}
             onClose={handleClose}

@@ -20,6 +20,7 @@ import {
   GetOneUserFailAction,
   GET_ONE_USER_FAIL,
 } from "../reducers/admin/types";
+import { findSpanishError } from "../helpers";
 const urlServer = "http://localhost:3000/";
 
 function* getUsers() {
@@ -38,7 +39,7 @@ function* getUsers() {
     } catch (err) {
       yield put<GetUsersFailAction>({
         type: GET_USERS_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -62,7 +63,7 @@ function* getOneUser() {
     } catch (err) {
       yield put<GetOneUserFailAction>({
         type: GET_ONE_USER_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -89,18 +90,18 @@ function* editUser() {
           },
         }
       );
-    
+
       yield put<EditUserSuccessAction>({
         type: EDIT_USER_SUCCESS,
         payload: {
           ...response.data,
-          status: response.status
+          status: response.status,
         },
       });
     } catch (err) {
       yield put<EditUserFailAction>({
         type: EDIT_USER_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });

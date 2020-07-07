@@ -44,6 +44,7 @@ const SalesChartLine = () => {
       }
     }
   }
+
   return (
     <Box mx="auto" p={1}>
       {userState.role === "user" ? (
