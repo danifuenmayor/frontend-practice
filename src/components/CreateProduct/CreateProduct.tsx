@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
@@ -11,9 +11,14 @@ import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CreateProductSchema from "./CreateProductSchema";
 import TextInput from "../TextInput/TextInput";
-import { CREATE_PRODUCT } from "../../reducers/products/types";
+import {
+  CREATE_PRODUCT,
+  CREATE_PRODUCT_CLEAR,
+} from "../../reducers/products/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
+import Alert from "@material-ui/lab/Alert";
+
 const CreateProduct = (props: any) => {
   const { brandId } = useParams();
   const history = useHistory();
@@ -21,7 +26,13 @@ const CreateProduct = (props: any) => {
   const newProduct = useSelector(
     (state: RootState) => state.products.newProduct
   );
-  console.log(newProduct);
+
+  useEffect(() => {
+    dispatch({
+      type: CREATE_PRODUCT_CLEAR,
+    });
+  }, [dispatch]);
+
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_PRODUCT,
@@ -30,19 +41,13 @@ const CreateProduct = (props: any) => {
         brandId: brandId,
       },
     });
-    if (newProduct?.loading) {
-      return <CircularProgress color="secondary" />;
-    }
-    if (newProduct?.success) {
-      history.push(`/brands/${brandId}/products`);
-    }
-    if (newProduct?.error) {
-      return <h1>{newProduct.error}</h1>;
-    }
   };
+  if (newProduct?.success) {
+    history.push(`/brands/${brandId}/products`);
+  }
   return (
     <>
-      <Box m={4}>
+      <Box m={4} data-test="component-create-product">
         <Button
           variant="outlined"
           onClick={() => history.goBack()}
@@ -65,19 +70,46 @@ const CreateProduct = (props: any) => {
             }}
           >
             {(props) => (
-              <Form>
+              <Form id="productForm">
                 <Typography color="secondary" variant="h4">
                   Crea un nuevo producto
                 </Typography>
-                <TextInput label="Nombre" name="name" type="text" />
-                <TextInput label="Descripción" name="description" type="text" />
+                <TextInput
+                  id="productForm-name"
+                  label="Nombre"
+                  name="name"
+                  type="text"
+                />
+                <TextInput
+                  data-testid="productForm-description"
+                  label="Descripción"
+                  name="description"
+                  type="text"
+                />
                 <TextInput label="Precio" name="price" type="number" />
                 <TextInput label="Commisión" name="commission" type="number" />
                 <ImageInput label="image" name="image" />
                 <br />
-                <Button type="submit" variant="contained" color="secondary">
-                  {props.isSubmitting ? "Enviando.." : "Enviar"}
+                <Button
+                  id="submit"
+                  data-test="btn-submit"
+                  disabled={props.isSubmitting}
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                >
+                  {props.isSubmitting ? (
+                    <div id="submitting">Enviando</div>
+                  ) : (
+                    "Enviar"
+                  )}
                 </Button>
+                {newProduct?.loading && <CircularProgress color="secondary" />}
+                {newProduct?.error && (
+                  <Box m={5}>
+                    <Alert>{newProduct?.error}</Alert>
+                  </Box>
+                )}
               </Form>
             )}
           </Formik>

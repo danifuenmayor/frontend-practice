@@ -2,18 +2,13 @@ import React from "react";
 import {
   Typography,
   Box,
-  // Button,
   makeStyles,
   Grid,
   Card,
   CardMedia,
   CardActionArea,
 } from "@material-ui/core";
-import vtrImage from "../images/vtr.png";
-import metrogasImage from "../images/metrogas.png";
-import maxusImage from "../images/maxus.png";
 import happypersonImage from "../images/happyperson.jpg";
-import mundangoImage from "../images/mundango.png";
 import classes from "../App/App.module.scss";
 import BrandCard from "./BrandCard";
 
@@ -36,7 +31,7 @@ const Home = (props: any) => {
         </Typography>
       </Box>
       <Grid container>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Box m={4}>
             <Typography color="primary" variant="h4">
               Conviertete en Selyt y gana dinero fácil y rápido. Registrate en
@@ -44,7 +39,7 @@ const Home = (props: any) => {
             </Typography>
           </Box>
         </Grid>
-        <Grid xs={6}>
+        <Grid item xs={6}>
           <Card className={style.card}>
             <CardActionArea>
               <CardMedia

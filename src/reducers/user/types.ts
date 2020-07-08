@@ -54,6 +54,7 @@ export interface UserState {
 export const SEND_LOGIN = "USER/SEND_LOGIN";
 export const SEND_LOGIN_SUCCESS = "USER/SEND_LOGIN_SUCCESS";
 export const SEND_LOGIN_FAIL = "USER/SEND_LOGIN_FAIL";
+export const SEND_LOGIN_CLEAR = "USER/SEND_LOGIN_CLEAR";
 
 // Logout action name
 export const SEND_LOGOUT = "USER/SEND_LOGOUT";
@@ -95,6 +96,10 @@ export interface SendLoginSuccessAction {
   type: typeof SEND_LOGIN_SUCCESS;
   payload: PayloadLogin;
 }
+export interface SendLoginClearAction {
+  type: typeof SEND_LOGIN_CLEAR;
+  payload: PayloadLogin;
+}
 // Logout action types
 export interface SendLogoutAction {
   type: typeof SEND_LOGOUT;
@@ -124,4 +129,5 @@ export type UserActions =
   | EditProfileAction
   | EditProfileFailAction
   | EditProfileSuccessAction
-  | SendLogoutAction;
+  | SendLogoutAction
+  | SendLoginClearAction;

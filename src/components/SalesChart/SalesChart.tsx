@@ -5,8 +5,8 @@ import Tab from "@material-ui/core/Tab";
 import { Container } from "@material-ui/core";
 import SalesChartLine from "./SalesChartLine";
 import SalesChartPie from "./SaleChartPie";
-import AdminChart from "./SalesChart2y";
 import SalesRanking from "./SalesRanking";
+import SalesChartMixedData from "./SalesChartLineMixedData";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: any;
+  children?: any;
+  index: number;
   value: any;
 }
 
@@ -88,7 +88,7 @@ export default function SalesCharts(props: any) {
         <SalesRanking />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <AdminChart />
+        <SalesChartMixedData />
       </TabPanel>
     </div>
   );

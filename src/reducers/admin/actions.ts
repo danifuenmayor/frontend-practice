@@ -19,7 +19,9 @@ import {
   GetOneUserSuccessAction,
   GET_ONE_USER,
   GET_ONE_USER_FAIL,
-  GET_ONE_USER_SUCCESS
+  GET_ONE_USER_SUCCESS,
+  EDIT_USER_CLEAR,
+  EditUserClearAction,
 } from "./types";
 
 // Get Users Actions
@@ -29,7 +31,9 @@ export function getUsers(users: PayloadGetUsers): GetUsersAction {
     payload: users,
   };
 }
-export function getUsersSuccess(users: PayloadGetOneUser[]): GetUsersSuccessAction {
+export function getUsersSuccess(
+  users: PayloadGetOneUser[]
+): GetUsersSuccessAction {
   return {
     type: GET_USERS_SUCCESS,
     payload: users,
@@ -49,7 +53,9 @@ export function getOneUser(user: PayloadGetOneUser): GetOneUserAction {
     payload: user,
   };
 }
-export function getOneUserSuccess(user: PayloadGetOneUser): GetOneUserSuccessAction {
+export function getOneUserSuccess(
+  user: PayloadGetOneUser
+): GetOneUserSuccessAction {
   return {
     type: GET_ONE_USER_SUCCESS,
     payload: user,
@@ -79,5 +85,12 @@ export function editUserFail(error: string): EditUserFailAction {
   return {
     type: EDIT_USER_FAIL,
     payload: error,
+  };
+}
+
+export function editUserClear(brand: PayloadEditUser): EditUserClearAction {
+  return {
+    type: EDIT_USER_CLEAR,
+    payload: brand,
   };
 }

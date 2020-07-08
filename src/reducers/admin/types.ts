@@ -12,14 +12,14 @@ export interface PayloadGetOneUser {
   isActive: any;
 }
 
-export interface PayloadEditUser{
+export interface PayloadEditUser {
   name?: string;
   lastName?: string;
   email?: string;
   password?: string;
   userId?: string;
   id?: string;
-  isActive?: null; 
+  isActive?: null;
 }
 // Admin state
 export interface AdminState {
@@ -49,7 +49,7 @@ export const EDIT_USER = "ADMIN/EDIT_USER";
 export const EDIT_USER_SUCCESS = "ADMIN/EDIT_USER_SUCCESS";
 export const EDIT_USER_FAIL = "ADMIN/EDIT_USER_FAIL";
 
-
+export const EDIT_USER_CLEAR = "ADMIN/EDIT_USER_CLEAR";
 
 // GetUser action types
 export interface GetUsersAction {
@@ -64,7 +64,6 @@ export interface GetUsersSuccessAction {
   type: typeof GET_USERS_SUCCESS;
   payload: PayloadGetOneUser[];
 }
-
 
 // Get one user action types
 export interface GetOneUserAction {
@@ -95,6 +94,11 @@ export interface EditUserSuccessAction {
   payload: PayloadEditUser;
 }
 
+export interface EditUserClearAction {
+  type: typeof EDIT_USER_CLEAR;
+  payload: PayloadEditUser;
+}
+
 export type AdminActions =
   | GetUsersAction
   | GetUsersFailAction
@@ -104,4 +108,5 @@ export type AdminActions =
   | GetOneUserFailAction
   | EditUserAction
   | EditUserFailAction
-  | EditUserSuccessAction;
+  | EditUserSuccessAction
+  | EditUserClearAction;

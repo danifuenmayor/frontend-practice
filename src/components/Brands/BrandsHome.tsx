@@ -40,7 +40,11 @@ const BrandsHome = (props: any) => {
         <Box m={5}>
           <Button
             variant="outlined"
-            onClick={() => history.push("/user-profile")}
+            onClick={
+              userState.role === "admin"
+                ? () => history.push("/admin-profile")
+                : () => history.push("/user-profile")
+            }
             color="secondary"
           >
             Volver a mi perfil

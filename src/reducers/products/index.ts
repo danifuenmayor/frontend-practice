@@ -16,6 +16,8 @@ import {
   CREATE_PRODUCT,
   CREATE_PRODUCT_FAIL,
   CREATE_PRODUCT_SUCCESS,
+  CREATE_PRODUCT_CLEAR,
+  EDIT_PRODUCT_CLEAR,
 } from "./types";
 const initialStateProducts: ProductState = {
   error: undefined,
@@ -107,11 +109,20 @@ export const ProductReducer = (
           image: action.payload.image,
         },
       };
+    case EDIT_PRODUCT_CLEAR:
+      return {
+        ...state,
+        editedProduct: {
+          success: undefined,
+          loading: undefined,
+        },
+      };
     case CREATE_PRODUCT:
       return {
         ...state,
         newProduct: {
           loading: true,
+          success: false,
         },
       };
     case CREATE_PRODUCT_FAIL:
@@ -119,6 +130,8 @@ export const ProductReducer = (
         ...state,
         newProduct: {
           error: action.payload,
+          success: false,
+          loading: false,
         },
       };
     case CREATE_PRODUCT_SUCCESS:
@@ -131,6 +144,15 @@ export const ProductReducer = (
           description: action.payload.description,
           commission: action.payload.commission,
           image: action.payload.image,
+          loading: false,
+        },
+      };
+    case CREATE_PRODUCT_CLEAR:
+      return {
+        ...state,
+        newProduct: {
+          loading: undefined,
+          success: undefined,
         },
       };
     default:

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Form } from "formik";
 import LoginSchema from "./LoginSchema";
 import TextInput from "../TextInput/TextInput";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Typography, Box } from "@material-ui/core";
-import { SEND_LOGIN } from "../../reducers/user/types";
+import { SEND_LOGIN, SEND_LOGIN_CLEAR } from "../../reducers/user/types";
 import { RootState } from "../../reducers";
 import { useHistory, Redirect } from "react-router-dom";
 
@@ -13,6 +13,12 @@ const LoginForm = () => {
   const userState = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   // This is Redux
+
+  useEffect(() => {
+    dispatch({
+      type: SEND_LOGIN_CLEAR,
+    });
+  }, []);
 
   const handleSubmit = (values: any) => {
     dispatch({
@@ -45,13 +51,20 @@ const LoginForm = () => {
                   Inicia sesión
                 </Typography>
                 <TextInput
+                  className="email"
                   label="Correo electronico"
                   name="email"
                   type="email"
                   placeholder="danifuenmayor@gmail.com"
                 />
                 <br />
-                <TextInput label="Contraseña" name="password" type="password" />
+
+                <TextInput
+                  className="password"
+                  label="Contraseña"
+                  name="password"
+                  type="password"
+                />
                 <br />
                 {userState.accessToken ? (
                   <Redirect to="/user-profile" />
@@ -59,7 +72,12 @@ const LoginForm = () => {
                   <p>{userState.error}</p>
                 )}
                 <br />
-                <Button type="submit" variant="contained" color="secondary">
+                <Button
+                  id="submit-login"
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                >
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
                 </Button>
               </Form>
