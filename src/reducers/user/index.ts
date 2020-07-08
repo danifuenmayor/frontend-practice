@@ -11,6 +11,7 @@ import {
   EDIT_PROFILE_FAIL,
   EDIT_PROFILE_SUCCESS,
   SEND_LOGOUT,
+  SEND_LOGIN_CLEAR,
 } from "./types";
 
 const initialStateUser: UserState = {
@@ -48,6 +49,11 @@ export const UserReducer = (
         id: action.payload.id,
         error: undefined,
         accessToken: action.payload.accessToken,
+      };
+    case SEND_LOGIN_CLEAR:
+      return {
+        ...state,
+        error: undefined,
       };
 
     case SEND_REGISTER:

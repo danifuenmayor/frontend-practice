@@ -46,7 +46,6 @@ const App = () => {
         <Route exact path={"/products/:productId/sales"} component={Sales} />
         <Route exact path={"/admin-chart"} component={AdminChart} />
         <Route exact path={"/sales-charts"} component={SalesCharts} />
-
         <Route exact path={"/sales-chart-line"} component={SalesChartLine} />
         <Route exact path={"/brands/:brandId"} component={EditBrand} />
         <Route

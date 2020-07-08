@@ -64,12 +64,16 @@ export const GET_PRODUCT_FAIL = "PRODUCTS/GET_PRODUCT_FAIL";
 export const CREATE_PRODUCT = "PRODUCTS/CREATE_PRODUCT";
 export const CREATE_PRODUCT_SUCCESS = "PRODUCTS/CREATE_PRODUCT_SUCCESS";
 export const CREATE_PRODUCT_FAIL = "PRODUCTS/CREATE_PRODUCT_FAIL";
+export const CREATE_PRODUCT_CLEAR = "PRODUCTS/CREATE_PRODUCT_CLEAR";
+
 export const DELETE_PRODUCT = "PRODUCTS/DELETE_PRODUCT";
 export const DELETE_PRODUCT_SUCCESS = "PRODUCTS/DELETE_PRODUCT_SUCCESS";
 export const DELETE_PRODUCT_FAIL = "PRODUCTS/DELETE_PRODUCT_FAIL";
 export const EDIT_PRODUCT = "PRODUCTS/EDIT_PRODUCT";
 export const EDIT_PRODUCT_SUCCESS = "PRODUCTS/EDIT_PRODUCT_SUCCESS";
 export const EDIT_PRODUCT_FAIL = "PRODUCTS/EDIT_PRODUCT_FAIL";
+export const EDIT_PRODUCT_CLEAR = "PRODUCT/EDIT_PRODUCT_CLEAR";
+
 // GetProducts action types
 export interface GetProductsAction {
   type: typeof GET_PRODUCTS;
@@ -122,6 +126,11 @@ export interface EditProductFailAction {
   type: typeof EDIT_PRODUCT_FAIL;
   payload: string;
 }
+export interface EditProductClearAction {
+  type: typeof EDIT_PRODUCT_CLEAR;
+  payload: PayloadEditProduct;
+}
+
 //Create one product
 export interface CreateProductAction {
   type: typeof CREATE_PRODUCT;
@@ -135,6 +144,11 @@ export interface CreateProductFailAction {
   type: typeof CREATE_PRODUCT_FAIL;
   payload: string;
 }
+export interface CreateProductClearAction {
+  type: typeof CREATE_PRODUCT_CLEAR;
+  payload: PayloadEditProduct;
+}
+
 export type ProductsActions =
   | GetProductsAction
   | GetProductsFailAction
@@ -148,6 +162,8 @@ export type ProductsActions =
   | EditProductAction
   | EditProductFailAction
   | EditProductSuccessAction
+  | EditProductClearAction
   | CreateProductAction
   | CreateProductFailAction
-  | CreateProductSuccessAction;
+  | CreateProductSuccessAction
+  | CreateProductClearAction;

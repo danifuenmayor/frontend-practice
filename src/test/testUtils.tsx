@@ -1,12 +1,16 @@
-// import { applyMiddleware, createStore } from 'redux';
-// import rootReducer from './../reducers';
-// import { middlewares } from './../store';
+// import { applyMiddleware, createStore } from "redux";
+// import { middlewares } from "./../src/createStore";
+// import { rootReducer } from "../reducers";
 
-export const findByTestAttr = (wrapper: any, val: string) => {
-  return wrapper.find(`[data-test='${val}']`);
+import { ReactWrapper } from "enzyme";
+
+export const findByTestAttr = (wrapper: ReactWrapper, val: ReactWrapper) => {
+  return wrapper.find(`[data-test="${val}"]`);
 };
 
 // export const testStore = (initialState) => {
-//     const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
-//     return createStoreWithMiddleware(rootReducer, initialState);
+//   const createStoreWithMiddleware = applyMiddleware(...middlewares)(
+//     createStore
+//   );
+//   return createStoreWithMiddleware(rootReducer, initialState);
 // };

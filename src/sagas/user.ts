@@ -20,6 +20,7 @@ import {
   EditProfileFailAction,
   EDIT_PROFILE_FAIL,
 } from "../reducers/user/types";
+import { findSpanishError } from "../helpers";
 
 const urlServer = "http://localhost:3000/";
 
@@ -50,7 +51,7 @@ function* login() {
     } catch (err) {
       yield put<SendLoginFailAction>({
         type: SEND_LOGIN_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -84,7 +85,7 @@ function* register() {
     } catch (err) {
       yield put<SendRegisterFailAction>({
         type: SEND_REGISTER_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -116,7 +117,7 @@ function* editUserProfile() {
     } catch (err) {
       yield put<EditProfileFailAction>({
         type: EDIT_PROFILE_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });

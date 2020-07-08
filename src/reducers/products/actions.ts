@@ -32,6 +32,10 @@ import {
   GetProductFailAction,
   GET_PRODUCT_FAIL,
   GET_PRODUCT,
+  CreateProductClearAction,
+  CREATE_PRODUCT_CLEAR,
+  EditProductClearAction,
+  EDIT_PRODUCT_CLEAR,
 } from "./types";
 // Get Products Actions
 export function getProducts(newProduct: ProductApi[]): GetProductsAction {
@@ -119,6 +123,15 @@ export function editProductFail(error: string): EditProductFailAction {
     payload: error,
   };
 }
+export function editProductClear(
+  editedProduct: PayloadEditProduct
+): EditProductClearAction {
+  return {
+    type: EDIT_PRODUCT_CLEAR,
+    payload: editedProduct,
+  };
+}
+
 export function createProduct(
   newProduct: PayloadEditProduct
 ): CreateProductAction {
@@ -139,5 +152,13 @@ export function createProductFail(error: string): CreateProductFailAction {
   return {
     type: CREATE_PRODUCT_FAIL,
     payload: error,
+  };
+}
+export function createProductClear(
+  newProduct: PayloadEditProduct
+): CreateProductClearAction {
+  return {
+    type: CREATE_PRODUCT_CLEAR,
+    payload: newProduct,
   };
 }

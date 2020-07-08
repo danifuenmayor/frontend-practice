@@ -48,18 +48,26 @@ export interface BrandState {
 export const GET_ONE_BRAND = "ADMIN/GET_ONE_BRAND";
 export const GET_ONE_BRAND_SUCCESS = "ADMIN/GET_ONE_BRAND_SUCCESS";
 export const GET_ONE_BRAND_FAIL = "ADMIN/GET_ONE_BRAND_FAIL";
+
 export const GET_ALL_BRANDS = "USER/GET_ALL_BRANDS";
 export const GET_ALL_BRANDS_SUCCESS = "USER/GET_ALL_BRANDS_SUCCESS";
 export const GET_ALL_BRANDS_FAIL = "USER/GET_ALL_BRANDS_FAIL";
+
 export const CREATE_ONE_BRAND = "ADMIN/CREATE_ONE_BRAND";
 export const CREATE_ONE_BRAND_SUCCESS = "ADMIN/CREATE_ONE_BRAND_SUCCESS";
 export const CREATE_ONE_BRAND_FAIL = "ADMIN/CREATE_ONE_BRAND_FAIL";
+
 export const DELETE_ONE_BRAND = "ADMIN/DELETE_ONE_BRAND";
 export const DELETE_ONE_BRAND_SUCCESS = "ADMIN/DELETE_ONE_BRAND_SUCCESS";
 export const DELETE_ONE_BRAND_FAIL = "ADMIN/DELETE_ONE_BRAND_FAIL";
+
 export const EDIT_BRAND = "ADMIN/EDIT_ONE_BRAND";
 export const EDIT_BRAND_SUCCESS = "ADMIN/EDIT_ONE BRAND_SUCCESS";
 export const EDIT_BRAND_FAIL = "ADMIN/EDIT_ONE_BRAND_FAIL";
+
+export const EDIT_BRAND_CLEAR = "ADMIN/EDIT_BRAND_CLEAR";
+export const CREATE_ONE_BRAND_CLEAR = "ADMIN/CREATE_ONE_BRAND_CLEAR";
+
 // Get All Brands action types
 export interface GetAllBrandsAction {
   type: typeof GET_ALL_BRANDS;
@@ -126,6 +134,18 @@ export interface GetBrandSuccessAction {
   type: typeof GET_ONE_BRAND_SUCCESS;
   payload: BrandApi;
 }
+
+// Edit Brand Clear action Types
+export interface EditBrandClearAction {
+  type: typeof EDIT_BRAND_CLEAR;
+  payload: PayLoadEditBrand;
+}
+
+export interface CreateBrandClearAction {
+  type: typeof CREATE_ONE_BRAND_CLEAR;
+  payload: PayloadBrands;
+}
+
 export type BrandsActions =
   | GetAllBrandsAction
   | GetAllBrandsFailAction
@@ -141,4 +161,6 @@ export type BrandsActions =
   | EditBrandFailAction
   | GetBrandAction
   | GetBrandFailAction
-  | GetBrandSuccessAction;
+  | GetBrandSuccessAction
+  | EditBrandClearAction
+  | CreateBrandClearAction;

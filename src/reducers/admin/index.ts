@@ -10,6 +10,7 @@ import {
   GET_ONE_USER,
   GET_ONE_USER_FAIL,
   GET_ONE_USER_SUCCESS,
+  EDIT_USER_CLEAR,
 } from "./types";
 
 const initialStateAdmin: AdminState = {
@@ -77,6 +78,12 @@ export const AdminReducer = (
       };
 
     case EDIT_USER_SUCCESS:
+      return {
+        ...state,
+        loadingEdit: false,
+      };
+
+    case EDIT_USER_CLEAR:
       return {
         ...state,
         loadingEdit: false,

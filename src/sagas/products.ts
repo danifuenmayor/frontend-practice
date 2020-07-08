@@ -32,6 +32,7 @@ import {
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_FAIL,
 } from "../reducers/products/types";
+import { findSpanishError } from "../helpers";
 
 const urlServer = "http://localhost:3000/";
 
@@ -46,7 +47,7 @@ function* getProducts() {
     } catch (err) {
       yield put<GetProductsFailAction>({
         type: GET_PRODUCTS_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -64,7 +65,7 @@ function* getProduct() {
     } catch (err) {
       yield put<GetProductFailAction>({
         type: GET_PRODUCT_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -90,7 +91,7 @@ function* deleteProduct() {
     } catch (err) {
       yield put<DeleteProductFailAction>({
         type: DELETE_PRODUCT_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -136,7 +137,7 @@ function* editProduct() {
     } catch (err) {
       yield put<EditProductFailAction>({
         type: EDIT_PRODUCT_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
@@ -183,7 +184,7 @@ function* createProduct() {
     } catch (err) {
       yield put<CreateProductFailAction>({
         type: CREATE_PRODUCT_FAIL,
-        payload: err.message,
+        payload: findSpanishError(err),
       });
     }
   });
