@@ -22,7 +22,6 @@ const SalesChartPie = () => {
 
   const salesState = useSelector((state: RootState) => state.sales.sales);
   const loading = useSelector((state: RootState) => state.sales.loading);
-  
 
   let data: any = {};
   if (userState.role === "admin") {

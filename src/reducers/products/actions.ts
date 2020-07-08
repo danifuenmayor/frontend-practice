@@ -37,7 +37,6 @@ import {
   EditProductClearAction,
   EDIT_PRODUCT_CLEAR,
 } from "./types";
-
 // Get Products Actions
 export function getProducts(newProduct: ProductApi[]): GetProductsAction {
   return {
@@ -59,7 +58,6 @@ export function getProductsFail(error: string): GetProductsFailAction {
     payload: error,
   };
 }
-
 // Get Product Actions
 export function getProduct(newProduct: ProductApi): GetProductAction {
   return {
@@ -81,7 +79,6 @@ export function getProductFail(error: string): GetProductFailAction {
     payload: error,
   };
 }
-
 // DeleteProduct Actions
 export function deleteProduct(deletedProduct: string): DeleteProductAction {
   return {
@@ -103,7 +100,6 @@ export function deleteProductFail(error: string): DeleteProductFailAction {
     payload: error,
   };
 }
-
 // Edit Product Actions
 export function editProduct(
   editedProduct: PayloadEditProduct

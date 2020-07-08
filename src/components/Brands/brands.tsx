@@ -16,6 +16,7 @@ const Brands = (props: any) => {
       {user && user.role === "admin" && (
         <Box ml={120}>
           <Button
+            id="create-brand"
             test-label="create-brand"
             variant="outlined"
             color="primary"
