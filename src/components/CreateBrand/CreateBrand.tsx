@@ -19,7 +19,6 @@ const CreateBrand = (props: any) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const newBrand = useSelector((state: RootState) => state.brands.editedBrand);
-  console.log(newBrand);
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_ONE_BRAND,

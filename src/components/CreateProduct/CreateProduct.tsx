@@ -21,7 +21,6 @@ const CreateProduct = (props: any) => {
   const newProduct = useSelector(
     (state: RootState) => state.products.newProduct
   );
-  console.log(newProduct);
   const handleSubmit = (values: any) => {
     dispatch({
       type: CREATE_PRODUCT,

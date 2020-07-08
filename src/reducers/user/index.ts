@@ -71,7 +71,7 @@ export const UserReducer = (
       };
 
     case EDIT_PROFILE:
-      return{
+      return {
         ...state,
         loading: true,
       };
