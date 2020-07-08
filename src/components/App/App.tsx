@@ -15,7 +15,6 @@ import Register from "../Register/Register";
 import Sales from "../Sales/Sales";
 import EditBrand from "../EditBrand/EditBrand";
 import AdminEditUser from "../AdminEditUser/AdminEditUser";
-import AdminChart from "../SalesChart/SalesChart2y";
 import SalesCharts from "../SalesChart/SalesChart";
 import SalesChartLine from "../SalesChart/SalesChartLine";
 import CreateProduct from "../CreateProduct/CreateProduct";
@@ -44,7 +43,6 @@ const App = () => {
         <Route exact path={"/admin-profile"} component={AdminProfile} />
         <Route exact path={"/show-users"} component={UserList} />
         <Route exact path={"/products/:productId/sales"} component={Sales} />
-        <Route exact path={"/admin-chart"} component={AdminChart} />
         <Route exact path={"/sales-charts"} component={SalesCharts} />
         <Route exact path={"/sales-chart-line"} component={SalesChartLine} />
         <Route exact path={"/brands/:brandId"} component={EditBrand} />
