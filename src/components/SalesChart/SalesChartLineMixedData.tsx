@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../reducers";
 import { useHistory } from "react-router-dom";
-
 import { GET_SALES } from "../../reducers/sales/types";
 import { Button } from "@material-ui/core";
 
@@ -23,6 +22,7 @@ const SalesChartMixedData = () => {
       history.push("/login");
     }
   }, [dispatch, history, userState.accessToken]);
+
   let commissiondata: any = {};
   let pricedata: any = {};
 

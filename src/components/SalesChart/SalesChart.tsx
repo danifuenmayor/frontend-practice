@@ -5,7 +5,6 @@ import Tab from "@material-ui/core/Tab";
 import { Container } from "@material-ui/core";
 import SalesChartLine from "./SalesChartLine";
 import SalesChartPie from "./SaleChartPie";
-import AdminChart from "./SalesChart2y";
 import SalesRanking from "./SalesRanking";
 import SalesChartMixedData from "./SalesChartLineMixedData";
 
@@ -78,7 +77,6 @@ export default function SalesCharts(props: any) {
         <Tab label="Total de ventas por marca" {...a11yProps(1)} />
         <Tab label="Usuari@s con más ventas" {...a11yProps(2)} />
         <Tab label="Comisiones e Ingresos" {...a11yProps(3)} />
-        <Tab label="Comisiones e Ingresos" {...a11yProps(4)} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <SalesChartLine />
@@ -90,9 +88,6 @@ export default function SalesCharts(props: any) {
         <SalesRanking />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <AdminChart />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
         <SalesChartMixedData />
       </TabPanel>
     </div>
