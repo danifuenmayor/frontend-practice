@@ -152,10 +152,7 @@ const Sales = (props: any) => {
                           Gracias por tu venta
                         </Typography>
                         <Typography variant="subtitle1">
-                          Tu número de orden es #2001539. Le enviaremos una
-                          actualización de sus ventas cuando el producto o
-                          servicio haya sido entregado. Gracias por confiar en
-                          Selyt
+                          Gracias por confiar en Selyt.
                         </Typography>
                         <Box mt={5}>
                           <Button

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Container,
@@ -11,7 +11,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import CreateBrandSchema from "./CreateBrandSchema";
 import TextInput from "../TextInput/TextInput";
-import { CREATE_ONE_BRAND } from "../../reducers/brands/types";
+import {
+  CREATE_ONE_BRAND,
+  CREATE_ONE_BRAND_CLEAR,
+} from "../../reducers/brands/types";
 import { RootState } from "../../reducers";
 import ImageInput from "../ImageInput/ImageInput";
 import Alert from "@material-ui/lab/Alert";
@@ -20,7 +23,13 @@ const CreateBrand = (props: any) => {
   const { brandId } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const newBrand = useSelector((state: RootState) => state.brands.editedBrand);
+  const newBrand = useSelector((state: RootState) => state.brands.newBrand);
+
+  useEffect(() => {
+    dispatch({
+      type: CREATE_ONE_BRAND_CLEAR,
+    });
+  }, [dispatch]);
 
   const handleSubmit = (values: any) => {
     dispatch({
@@ -31,6 +40,10 @@ const CreateBrand = (props: any) => {
       },
     });
   };
+
+  if (newBrand?.success) {
+    history.push(`/brands`);
+  }
 
   return (
     <>
@@ -64,6 +77,8 @@ const CreateBrand = (props: any) => {
                 <Button type="submit" variant="contained" color="secondary">
                   {props.isSubmitting ? "Enviando.." : "Enviar"}
                 </Button>
+                {newBrand?.loading && <CircularProgress color="secondary" />}
+                {newBrand?.error && newBrand?.error}
               </Form>
             )}
           </Formik>

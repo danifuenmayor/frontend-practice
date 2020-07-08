@@ -6,7 +6,9 @@ import {
   CardContent,
   Typography,
   Button,
+  Chip,
 } from "@material-ui/core";
+import FaceIcon from "@material-ui/icons/Face";
 
 const useStyles = makeStyles({
   root: {
@@ -49,13 +51,28 @@ const UserCard = (props: any) => {
       </CardContent>
       <CardActions>
         <Button
+          data-test="btn-edit-user"
           href={`/show-users/${props.user.id}/edit-user`}
           size="small"
           color="primary"
-          data-test="btn-edit-user"
         >
           Editar usuari@
         </Button>
+        {props.user.isActive ? (
+          <Chip
+            label="Usuario Activo"
+            color="primary"
+            size="small"
+            icon={<FaceIcon />}
+          />
+        ) : (
+          <Chip
+            label="Usuario Inactivo"
+            color="secondary"
+            size="small"
+            icon={<FaceIcon />}
+          />
+        )}
       </CardActions>
     </Card>
   );

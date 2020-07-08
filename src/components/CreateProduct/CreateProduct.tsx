@@ -31,7 +31,7 @@ const CreateProduct = (props: any) => {
     dispatch({
       type: CREATE_PRODUCT_CLEAR,
     });
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = (values: any) => {
     dispatch({

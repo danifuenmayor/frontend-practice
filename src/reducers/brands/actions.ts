@@ -26,6 +26,10 @@ import {
   EditBrandFailAction,
   PayLoadEditBrand,
   BrandApi,
+  EDIT_BRAND_CLEAR,
+  EditBrandClearAction,
+  CREATE_ONE_BRAND_CLEAR,
+  CreateBrandClearAction,
 } from "./types";
 // Get All Actions
 export function getAllBrands(newBrands: PayloadBrands): GetAllBrandsAction {
@@ -109,5 +113,22 @@ export function editBrandFail(error: string): EditBrandFailAction {
   return {
     type: EDIT_BRAND_FAIL,
     payload: error,
+  };
+}
+export function editBrandClear(
+  editedClearBrand: PayLoadEditBrand
+): EditBrandClearAction {
+  return {
+    type: EDIT_BRAND_CLEAR,
+    payload: editedClearBrand,
+  };
+}
+
+export function CreatBrandClear(
+  createClearBrand: PayloadBrands
+): CreateBrandClearAction {
+  return {
+    type: CREATE_ONE_BRAND_CLEAR,
+    payload: createClearBrand,
   };
 }

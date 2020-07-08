@@ -37,9 +37,6 @@ const BrandCardDescription = (props: any) => {
           <Typography gutterBottom variant="h6" component="h2">
             {props.title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lorem Ipsum
-          </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>

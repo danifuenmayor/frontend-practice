@@ -45,17 +45,32 @@ const SalesChartLine = () => {
     }
   }
 
+  const sortObj: any = (obj: any) => {
+    if (typeof obj !== "object" || obj === null) return obj;
+
+    if (Array.isArray(obj)) return obj.map((e) => sortObj(e)).sort();
+
+    return Object.keys(obj)
+      .sort()
+      .reduce((sorted: any, k: any) => {
+        sorted[k] = sortObj(obj[k]);
+        return sorted;
+      }, {});
+  };
+
+  const dataSort: any = sortObj(data);
+
   return (
     <Box mx="auto" p={1}>
       {userState.role === "user" ? (
         <Box mx="auto" p={6}>
           <Line
             data={{
-              labels: [...Object.keys(data)],
+              labels: [...Object.keys(dataSort)],
               datasets: [
                 {
                   label: `Comisión Por ${time === 7 ? "Mes" : "Día"}`,
-                  data: [...Object.values(data)],
+                  data: [...Object.values(dataSort)],
                   backgroundColor: ["rgba(75,192,192,0.6)"],
                 },
               ],
@@ -74,11 +89,11 @@ const SalesChartLine = () => {
           width={60}
           height={20}
           data={{
-            labels: [...Object.keys(data)],
+            labels: [...Object.keys(dataSort)],
             datasets: [
               {
                 label: `Ingresos Totales Por ${time === 7 ? "Mes" : "Día"}`,
-                data: [...Object.values(data)],
+                data: [...Object.values(dataSort)],
                 backgroundColor: ["rgba(75,192,192,0.6)"],
               },
             ],
