@@ -12,7 +12,7 @@ import SalesChartPie from "./SaleChartPie";
 import SalesRanking from "./SalesRanking";
 import SalesChartMixedData from "./SalesChartLineMixedData";
 
-describe("testing main sales chart component", () => {
+describe("testing admin sales chart component", () => {
   let wrapper: ReactWrapper;
   let container: ReactWrapper;
   let pieChart: ReactWrapper;
@@ -96,8 +96,10 @@ describe("testing main sales chart component", () => {
     lineChartButton.simulate("click");
     container.update();
     await (() => {
-      lineChart = container.find(SalesChartLine).find('button[type="button"]');
-      expect(lineChart.text()).toEqual("Mostrar por día");
+      lineChartButton = container
+        .find(SalesChartLine)
+        .find('button[type="button"]');
+      expect(lineChartButton.text()).toEqual("Mostrar por día");
     });
   });
   test("should render Pie Chart when clicked in tab", async () => {
@@ -134,6 +136,87 @@ describe("testing main sales chart component", () => {
     salesRanking = container.find(SalesRanking);
     await (() => {
       expect(salesRanking).toBeTruthy();
+    });
+  });
+});
+
+describe("testing user line chart", () => {
+  let wrapper: ReactWrapper;
+  let container: ReactWrapper;
+  let pieChart: ReactWrapper;
+  let lineChart: ReactWrapper;
+  let mixedChart: ReactWrapper;
+  let salesRanking: ReactWrapper;
+  const mockStore = configureStore();
+
+  beforeEach(() => {
+    const store = mockStore({
+      user: { accessToken: "someToken", role: "user" },
+      sales: {
+        sales: [
+          {
+            name: "DANIELA",
+            lastName: "FUENMAYOR",
+            rut: "181201649",
+            phone: "123456789",
+            address: "Santa Paula 875, Las Condes, Chile",
+            productId: {
+              name: "ESTUFA",
+              price: 100000,
+              image:
+                "https://upload-file-mern.s3.us-west-2.amazonaws.com/metrogas.png",
+              description: "Estufa mega potente 2000wts",
+              commission: 10000,
+              brandId: {
+                name: "METROGAS S.A",
+                image:
+                  "https://upload-file-mern.s3.us-west-2.amazonaws.com/metrogas.png",
+                createdAt: "2020-06-16T21:13:54.203Z",
+                id: "5ee936128dfd319fffc02fa2",
+              },
+              sku: "f25e9615",
+              createdAt: "2020-06-26T19:01:32.176Z",
+              updatedAt: "2020-06-26T19:01:32.176Z",
+              id: "5ef6460cf98acf2404cb4f75",
+            },
+            userId: {
+              isActive: true,
+              role: "user",
+              email: "vlarrondo1@gmail.com",
+              name: "MAGDALENA",
+              lastName: "LARRONDO",
+              createdAt: "2020-06-19T13:21:46.191Z",
+              updatedAt: "2020-06-19T13:21:46.191Z",
+              id: "5eecbbeaa6838d07e0bce2cb",
+            },
+            createdAt: "2020-07-06T23:14:18.427Z",
+            id: "5f03b04a70e42f1c88e25a81",
+          },
+        ],
+      },
+    });
+
+    wrapper = mount(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/sales-chart-line"]}>
+          <SalesChart>
+            <SalesChartLine />
+          </SalesChart>
+        </MemoryRouter>
+      </Provider>
+    );
+    container = wrapper.find(SalesChart);
+  });
+  test("should render the component", () => {
+    expect(container).toBeTruthy();
+  });
+  test("should change from daily view to monthly", async () => {
+    let lineChartButton = container.find('button[type="button"]').last();
+    lineChartButton.simulate("click");
+    container.update();
+    await (() => {
+      lineChartButton = container.find('button[type="button"]');
+      expect(lineChartButton.text()).toEqual("Mostrar por día");
     });
   });
 });
