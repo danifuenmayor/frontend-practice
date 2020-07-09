@@ -16,6 +16,7 @@ import {
 } from "../../reducers/admin/actions";
 import UserList from "./UserList";
 import UserCard from "./UserCard";
+
 describe("render get all users", () => {
   test("get users", () => {
     const expectedAction = {

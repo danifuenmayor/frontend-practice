@@ -20,6 +20,15 @@ const useStyles = makeStyles({
   title: {
     fontSize: 20,
   },
+  inactive: {
+    backgroundColor: "rgba(217,83,79,1)",
+    color: "secondary",
+    fontWeight: "bold",
+  },
+  active: {
+    backgroundColor: "rgba(120,254,224,1)",
+    fontWeight: "bold",
+  },
 });
 function capitalizeFirstLetter(string: any) {
   return string[0].toUpperCase() + string.slice(1);
@@ -55,25 +64,15 @@ const UserCard = (props: any) => {
           href={`/show-users/${props.user.id}/edit-user`}
           size="small"
           color="primary"
-          data-test="btn-edit-user"
         >
           Editar usuari@
         </Button>
-        {props.user.isActive ? (
-          <Chip
-            label="Usuario Activo"
-            color="primary"
-            size="small"
-            icon={<FaceIcon />}
-          />
-        ) : (
-          <Chip
-            label="Usuario Inactivo"
-            color="secondary"
-            size="small"
-            icon={<FaceIcon />}
-          />
-        )}
+        <Chip
+          label={props.user.isActive ? "Usuario Activo" : "Usuario Inactivo"}
+          className={props.user.isActive ? classes.active : classes.inactive}
+          size="small"
+          icon={<FaceIcon />}
+        />
       </CardActions>
     </Card>
   );

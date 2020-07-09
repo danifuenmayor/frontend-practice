@@ -7,7 +7,6 @@ import { SEND_LOGIN, SEND_LOGIN_CLEAR } from "../../reducers/user/types";
 import { RootState } from "../../reducers";
 import { useHistory, Redirect } from "react-router-dom";
 import LoginSchema from "../LoginUser/LoginSchema";
-import Alert from "@material-ui/lab/Alert";
 
 const AdminLogin = () => {
   const history = useHistory();

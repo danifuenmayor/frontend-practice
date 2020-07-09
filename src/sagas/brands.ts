@@ -44,6 +44,7 @@ function* getAllBrands() {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       });
+
       yield put<GetAllBrandsSuccessAction>({
         type: GET_ALL_BRANDS_SUCCESS,
         payload: response.data,
@@ -103,6 +104,7 @@ function* editBrand() {
         `${urlServer}brands/${payload.id}`,
         {
           name: payload.name,
+          isActive: payload.isActive,
           image: uploadResponse.data.Location,
         },
         {

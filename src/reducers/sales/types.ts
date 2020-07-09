@@ -7,7 +7,7 @@ export interface PayloadSales {
   address: string;
   accessToken: string;
   productId: string;
-  sales: any;
+  sales?: any;
 }
 // Sale state
 export interface SaleProductState {

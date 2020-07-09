@@ -12,6 +12,7 @@ const Products = (props: any) => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
   const products = useSelector((state: RootState) => state.products.products);
+ 
 
   useEffect(() => {
     dispatch({
@@ -30,25 +31,35 @@ const Products = (props: any) => {
           Volver
         </Button>
       </Box>
-      {user && user.role === "admin" && (
-        <Box ml={120}>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => history.push(`/${brandId}/create-product`)}
-          >
-            Crear nuevo producto
-          </Button>
-        </Box>
+      {user && user.role === "admin" ? (
+        <Grid container>
+          <Box ml={120}>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => history.push(`/${brandId}/create-product`)}
+            >
+              Crear nuevo producto
+            </Button>
+          </Box>
+          {Array.isArray(products) &&
+            products
+              .filter((product: any) => product.brandId === brandId)
+              .map((product: any) => {
+                return <ProductCard key={product.id} product={product} />;
+              })}
+        </Grid>
+      ) : (
+        <Grid container>
+          {Array.isArray(products) &&
+            products
+              .filter((product: any) => product.brandId === brandId)
+              .filter((product: any) => product.isActive === true)
+              .map((product: any) => {
+                return <ProductCard key={product.id} product={product} />;
+              })}
+        </Grid>
       )}
-      <Grid container>
-        {Array.isArray(products) &&
-          products
-            .filter((product: any) => product.brandId === brandId)
-            .map((product: any) => {
-              return <ProductCard key={product.id} product={product} />;
-            })}
-      </Grid>
     </>
   );
 };
