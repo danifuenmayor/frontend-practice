@@ -10,3 +10,9 @@ Enzyme.configure({
   adapter: new EnzymeAdapter(),
   disableLifecycleMethods: true,
 });
+
+jest.mock("react-chartjs-2", () => ({
+  Bar: () => null,
+  Line: () => null,
+  Pie: () => null,
+}));
