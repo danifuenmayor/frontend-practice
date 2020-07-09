@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
+import { Grid, Chip } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,6 +18,18 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     objectFit: "contain",
     borderRadius: "10%",
+  },
+  content: {
+    height: 70,
+  },
+  inactive: {
+    backgroundColor: "rgba(217,83,79,1)",
+    color: "secondary",
+    fontWeight: "bold",
+  },
+  active: {
+    backgroundColor: "rgba(120,254,224,1)",
+    fontWeight: "bold",
   },
 }));
 
@@ -33,26 +46,42 @@ const BrandCardDescription = (props: any) => {
           image={props.image}
           title={props.title}
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography gutterBottom variant="h6" component="h2">
             {props.title}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          // onClick={(e) => props.setProducts(e, props.id)}
-          href={`brands/${props.id}/products/`}
-          size="small"
-          color="primary"
-        >
-          Productos
-        </Button>
-        {userState.role === "admin" && (
-          <Button href={`brands/${props.id}`} size="small" color="primary">
-            Editar Marca
-          </Button>
-        )}
+        <Grid container>
+          <Grid item xs>
+            <Button
+              href={`brands/${props.id}/products/`}
+              size="small"
+              color="primary"
+            >
+              Productos
+            </Button>
+          </Grid>
+          <Grid container item xs justify="center" alignItems="center">
+            {userState.role === "admin" && (
+              <>
+                <Button
+                  href={`brands/${props.id}`}
+                  size="small"
+                  color="primary"
+                >
+                  Editar Marca
+                </Button>
+                <Chip
+                  label={props.isActive ? "Disponible" : "No Disponible"}
+                  className={props.isActive ? classes.active : classes.inactive}
+                  size="small"
+                />
+              </>
+            )}
+          </Grid>
+        </Grid>
       </CardActions>
     </Card>
   );

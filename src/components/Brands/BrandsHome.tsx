@@ -24,6 +24,7 @@ const BrandsHome = (props: any) => {
 
   const brandsState = useSelector((state: RootState) => state.brands.brands);
 
+
   return (
     <>
       <div className="brands">

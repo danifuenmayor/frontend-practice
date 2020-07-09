@@ -11,6 +11,7 @@ export interface PayloadEditProduct {
   image: any;
   id?: string;
   brandId?: string;
+  isActive?: undefined,
 }
 export interface ProductApi {
   name: string;
@@ -18,6 +19,7 @@ export interface ProductApi {
   commission: number;
   description: string;
   image: any;
+  isActive?: undefined,
 }
 // Products state
 export interface ProductState {

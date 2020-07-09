@@ -23,10 +23,14 @@ const SalesChartPie = () => {
   const salesState = useSelector((state: RootState) => state.sales.sales);
   const loading = useSelector((state: RootState) => state.sales.loading);
 
+
   let data: any = {};
   if (userState.role === "admin") {
     if (!loading) {
       for (let x of salesState) {
+        if (x.productId === null) {
+          continue;
+        }
         if (!data.hasOwnProperty(x.productId?.brandId.name)) {
           data[x.productId?.brandId.name] = 0;
         }

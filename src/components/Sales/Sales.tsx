@@ -152,7 +152,7 @@ const Sales = (props: any) => {
                           Gracias por tu venta
                         </Typography>
                         <Typography variant="subtitle1">
-                          Gracias por confiar en Selyt.
+                          {userState.name} gracias por confiar en Selyt!
                         </Typography>
                         <Box mt={5}>
                           <Button
@@ -199,6 +199,7 @@ const Sales = (props: any) => {
                         )}
                         {activeStep === steps.length - 1 ? (
                           <Button
+                            data-test="btn-submit-sales"
                             variant="contained"
                             type="submit"
                             color="primary"
@@ -211,6 +212,7 @@ const Sales = (props: any) => {
                           </Button>
                         ) : (
                           <Button
+                            data-test="btn-next"
                             variant="contained"
                             key="button-next"
                             type="button"

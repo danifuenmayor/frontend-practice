@@ -18,6 +18,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Switch,
+  Grid,
 } from "@material-ui/core";
 import {
   DELETE_PRODUCT,
@@ -193,11 +195,12 @@ const EditProduct = (props: any) => {
             <DialogContent>
               <Formik
                 initialValues={{
-                  name: "",
-                  description: "",
-                  price: "",
-                  commission: "",
+                  name: product?.item?.name,
+                  description: product?.item?.description,
+                  price: product?.item?.price,
+                  commission: product?.item?.commission,
                   image: null,
+                  isActive: product?.item?.isActive,
                 }}
                 validationSchema={EditProductSchema}
                 onSubmit={(values) => {
@@ -238,8 +241,23 @@ const EditProduct = (props: any) => {
                       type="text"
                       fullWidth
                     />
-
                     <ImageInput label="image" name="image" />
+                    <Box p={3}>
+                      {props.values.isActive
+                        ? "Producto Disponible"
+                        : "Producto No Disponible"}
+                      <Switch
+                        name="isActive"
+                        value={props.values.isActive}
+                        checked={props.values.isActive}
+                        onChange={(event, checked) => {
+                          props.setFieldValue(
+                            "isActive",
+                            checked ? true : false
+                          );
+                        }}
+                      />
+                    </Box>
                     <Button type="submit" color="primary" variant="outlined">
                       {props.isSubmitting ? "Enviando.." : "Enviar"}
                     </Button>

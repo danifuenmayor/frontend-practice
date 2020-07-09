@@ -122,6 +122,7 @@ function* editProduct() {
           description: payload.description,
           price: payload.price,
           commission: payload.commission,
+          isActive: payload.isActive,
           image: uploadResponse.data.Location,
         },
         {

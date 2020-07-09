@@ -9,10 +9,12 @@ export interface PayLoadEditBrand {
   name: string;
   id?: string;
   image?: any;
+  isActive?: boolean;
 }
 export interface BrandApi {
   name: string;
   image: any;
+  isActive: boolean;
 }
 export interface BrandState {
   name: string;
@@ -27,6 +29,7 @@ export interface BrandState {
   editedBrand?: {
     name?: string;
     image?: any;
+    isActive?: boolean;
     loading?: boolean;
     success?: boolean;
     error?: string;
