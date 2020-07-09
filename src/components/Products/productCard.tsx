@@ -12,7 +12,7 @@ import {
   Chip,
   Grid,
 } from "@material-ui/core";
-import FaceIcon from "@material-ui/icons/Face";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 

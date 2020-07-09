@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "contain",
     borderRadius: "10%",
   },
+  content: {
+    height: 70,
+  },
   inactive: {
     backgroundColor: "rgba(217,83,79,1)",
     color: "secondary",
@@ -43,7 +46,7 @@ const BrandCardDescription = (props: any) => {
           image={props.image}
           title={props.title}
         />
-        <CardContent>
+        <CardContent className={classes.content}>
           <Typography gutterBottom variant="h6" component="h2">
             {props.title}
           </Typography>
@@ -53,7 +56,6 @@ const BrandCardDescription = (props: any) => {
         <Grid container>
           <Grid item xs>
             <Button
-              // onClick={(e) => props.setProducts(e, props.id)}
               href={`brands/${props.id}/products/`}
               size="small"
               color="primary"
