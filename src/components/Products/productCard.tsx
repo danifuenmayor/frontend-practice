@@ -9,14 +9,17 @@ import {
   CardContent,
   Typography,
   Box,
+  Chip,
+  Grid,
 } from "@material-ui/core";
+
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 
 const useStyles = makeStyles((theme) => ({
   card: {
     width: 300,
-    height: 400,
+    height: 410,
     borderRadius: "10%",
     objectFit: "contain",
     margin: theme.spacing(7),
@@ -29,6 +32,15 @@ const useStyles = makeStyles((theme) => ({
   content: {
     width: 300,
     height: 120,
+  },
+  inactive: {
+    backgroundColor: "rgba(217,83,79,1)",
+    color: "secondary",
+    fontWeight: "bold",
+  },
+  active: {
+    backgroundColor: "rgba(120,254,224,1)",
+    fontWeight: "bold",
   },
 }));
 
@@ -78,13 +90,28 @@ const ProductCard = (props: any) => {
             </Button>
           </Box>
           {!!user && user.role === "admin" && (
-            <Button
-              href={`/products/${props.product.id}`}
-              size="small"
-              color="primary"
-            >
-              Editar producto
-            </Button>
+            <Grid container spacing={1}>
+              <Grid item xs={6}>
+                <Button
+                  href={`/products/${props.product.id}`}
+                  size="small"
+                  color="primary"
+                >
+                  Editar producto
+                </Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Chip
+                  label={
+                    props.product.isActive ? "Disponible" : "No Disponible"
+                  }
+                  className={
+                    props.product.isActive ? classes.active : classes.inactive
+                  }
+                  size="small"
+                />
+              </Grid>
+            </Grid>
           )}
         </CardActions>
       </Card>

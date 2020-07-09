@@ -19,10 +19,11 @@ const useStyles = makeStyles({
 });
 
 const SalesRanking = (props: any) => {
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
   const sales = useSelector((state: RootState) => state.sales.sales);
+  
 
   if (sales?.loading) {
     return <CircularProgress color="secondary" />;
@@ -57,27 +58,29 @@ const SalesRanking = (props: any) => {
     sales.forEach((element: any) => {
       if (data.hasOwnProperty(element.userId.id)) {
         data[element.userId.id].totalSales += 1;
-        data[element.userId.id].amount += element.productId?.price;
+        data[element.userId.id].amount += element.productId ? element.productId?.price : 0;
       } else {
         data[element.userId.id] = {
           name: element.userId.name,
           lastName: element.userId.lastName,
           mail: element.userId.email,
           totalSales: 1,
-          amount: element.productId?.price,
+          amount: element.productId ? element.productId?.price : 0,
         };
       }
     });
     return Object.values(data).sort(compareValues("totalSales", "desc"));
   };
+
   // Data variable with the arrays of objects sorted and ready to be used in the table
   const rows = usersData();
+
   return (
     // Table format in material UI
     <TableContainer component={Paper}>
-       <Typography variant="h6" id="tableTitle" component="div">
-          Ranking
-        </Typography>
+      <Typography variant="h6" id="tableTitle" component="div">
+        Ranking
+      </Typography>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>

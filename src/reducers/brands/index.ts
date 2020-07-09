@@ -101,6 +101,7 @@ export const brandsReducer = (
         ...state,
         editedBrand: {
           name: action.payload.name,
+          isActive: action.payload.isActive,
           success: true,
         },
       };

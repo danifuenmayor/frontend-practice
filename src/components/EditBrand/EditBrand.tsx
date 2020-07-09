@@ -18,6 +18,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Grid,
+  Switch,
 } from "@material-ui/core";
 import {
   GET_ONE_BRAND,
@@ -31,13 +33,22 @@ import ImageInput from "../ImageInput/ImageInput";
 import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: 400,
-    height: 550,
+    width: 300,
+    height: 300,
     borderRadius: "10%",
     objectFit: "contain",
     margin: "auto",
     marginTop: 15,
     marginBottom: 15,
+  },
+  image: {
+    width: 300,
+    height: 200,
+    objectFit: "contain",
+  },
+  content: {
+    width: 300,
+    height: 120,
   },
 }));
 function capitalizeFirstLetter(string: any) {
@@ -86,45 +97,39 @@ const EditBrand = (props: any) => {
     <>
       {brand?.item && (
         <>
-          <Button onClick={() => history.push(`/brands`)}>Volver</Button>
-          <Card className={classes.card}>
-            <CardActionArea>
-              <CardMedia component="img" alt="img" image={brand.item.image} />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {brand.item &&
-                    brand.item.name &&
-                    capitalizeFirstLetter(brand.item.name.toLowerCase())}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Box>
-                <Button onClick={handleClickOpen} size="small" color="primary">
-                  Editar
-                </Button>
-              </Box>
-            </CardActions>
-          </Card>
-          {brandClear?.loading && <CircularProgress color="secondary" />}
-          {brandClear?.error && brandClear?.error}
-
-          {brandClear?.success && (
-            <Box m={5}>
-              <Alert>Marca ha sido editada con éxito</Alert>
-            </Box>
-          )}
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => history.push(`/brands`)}
           >
-            <DialogTitle id="form-dialog-title">Editar Marca</DialogTitle>
-            <DialogContent>
+            Volver
+          </Button>
+          <Grid container justify="center" alignItems="center">
+            <Grid item xs={4}>
+              <Card className={classes.card}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.image}
+                    component="img"
+                    alt="img"
+                    image={brand.item.image}
+                  />
+                  <CardContent className={classes.content}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {brand.item &&
+                        brand.item.name &&
+                        capitalizeFirstLetter(brand?.item?.name.toLowerCase())}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+            <Grid item xs={4}>
               <Formik
                 initialValues={{
                   name: "",
                   image: null,
+                  isActive: brand?.item?.isActive,
                 }}
                 validationSchema={EditBrandSchema}
                 onSubmit={(values) => {
@@ -137,24 +142,42 @@ const EditBrand = (props: any) => {
                       margin="dense"
                       id="name"
                       name="name"
-                      label="Nombre"
+                      label="Nombre Marca"
                       type="text"
                       fullWidth
                     />
                     <ImageInput label="image" name="image" />
+                    <Box p={3}>
+                      {props.values.isActive
+                        ? "Marca Disponible"
+                        : "Marca No Disponible"}
+                      <Switch
+                        name="isActive"
+                        value={props.values.isActive}
+                        checked={props.values.isActive}
+                        onChange={(event, checked) => {
+                          props.setFieldValue(
+                            "isActive",
+                            checked ? true : false
+                          );
+                        }}
+                      />
+                    </Box>
                     <Button type="submit" color="primary" variant="outlined">
-                      {props.isSubmitting ? "Enviando.." : "Enviar"}
+                      {props.isSubmitting ? "Enviando.." : "Editar"}
                     </Button>
                   </Form>
                 )}
               </Formik>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Cancelar
-              </Button>
-            </DialogActions>
-          </Dialog>
+            </Grid>
+          </Grid>
+          {brandClear?.loading && <CircularProgress color="secondary" />}
+          {brandClear?.error && brandClear?.error}
+          {brandClear?.success && (
+            <Box m={5}>
+              <Alert>Marca ha sido editada con éxito</Alert>
+            </Box>
+          )}
         </>
       )}
     </>

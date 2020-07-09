@@ -16,12 +16,21 @@ import {
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_FAIL,
 } from "../../reducers/products/types";
+
 describe("actions Create Product", () => {
   it("should create an action post product", () => {
+    const product = {
+      name: "Product 1",
+      price: 20,
+      commission: 1,
+      description: "Image Description",
+      image: "http://image.er",
+    };
     const expectedAction = {
       type: CREATE_PRODUCT,
+      payload: product,
     };
-    expect(createProduct()).toEqual(expectedAction);
+    expect(createProduct(product)).toEqual(expectedAction);
   });
   it("should return an action post product success", () => {
     const product = {
@@ -33,9 +42,9 @@ describe("actions Create Product", () => {
     };
     const expectedAction = {
       type: CREATE_PRODUCT_SUCCESS,
-      payload: [product],
+      payload: product,
     };
-    expect(createProductSuccess([product])).toEqual(expectedAction);
+    expect(createProductSuccess(product)).toEqual(expectedAction);
   });
   it("should return an action post product success", () => {
     const product = {
@@ -47,9 +56,9 @@ describe("actions Create Product", () => {
     };
     const expectedAction = {
       type: CREATE_PRODUCT_FAIL,
-      payload: [product],
+      payload: "error",
     };
-    expect(createProductFail([product])).toEqual(expectedAction);
+    expect(createProductFail("error")).toEqual(expectedAction);
   });
 });
 

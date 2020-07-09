@@ -11,6 +11,7 @@ const SalesChartLine = () => {
   const userState = useSelector((state: RootState) => state.user);
   const history = useHistory();
   const salesState = useSelector((state: RootState) => state.sales.sales);
+
   const [time, setTime] = useState(10);
 
   useEffect(() => {
@@ -26,6 +27,9 @@ const SalesChartLine = () => {
   let data: any = {};
   if (userState.role === "user") {
     for (let x of salesState) {
+      if (x.productId === null) {
+        continue;
+      }
       if (!data.hasOwnProperty(x.createdAt.slice(0, time))) {
         data[x.createdAt.slice(0, time)] = 0;
       }
@@ -36,6 +40,9 @@ const SalesChartLine = () => {
     }
   } else {
     for (let x of salesState) {
+      if (x.productId === null) {
+        continue;
+      }
       if (!data.hasOwnProperty(x.createdAt.slice(0, time))) {
         data[x.createdAt.slice(0, time)] = 0;
       }
