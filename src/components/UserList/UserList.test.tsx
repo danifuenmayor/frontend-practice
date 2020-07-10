@@ -18,6 +18,17 @@ import UserList from "./UserList";
 import UserCard from "./UserCard";
 
 describe("render get all users", () => {
+  const users = {
+    users: [
+      {
+        isActive: true,
+        name: "Lucas",
+        lastName: "González",
+        email: "lucas@test.com",
+        id: "fakeUserId1234",
+      },
+    ],
+  };
   test("get users", () => {
     const users = {
       users: [],
