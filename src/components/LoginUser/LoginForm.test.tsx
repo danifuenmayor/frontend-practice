@@ -99,7 +99,6 @@ test("should submit data when submit button clicked", async () => {
   await (() => {
     expect(handleSubmit).toHaveBeenCalledTimes(1);
     expect(submitButton.props().disabled).toBe(false);
-    const file = new Blob(["fileContents"], { type: "text/plain" });
     const emailInput = container.find('input[name="email"]');
     const passwordInput = container.find('input[name="password"]');
     emailInput.simulate("change", {

@@ -1,5 +1,5 @@
 import "../../setupTests";
-import React from "react";
+import React, { Component } from "react";
 import { shallow, ReactWrapper, HTMLAttributes, mount } from "enzyme";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -19,10 +19,14 @@ import UserCard from "./UserCard";
 
 describe("render get all users", () => {
   test("get users", () => {
+    const users = {
+      users: [],
+    };
     const expectedAction = {
       type: GET_USERS,
+      payload: users,
     };
-    expect(getUsers()).toEqual(expectedAction);
+    expect(getUsers(users)).toEqual(expectedAction);
   });
   test("get users fail", () => {
     const expectedAction = {
@@ -82,7 +86,19 @@ describe("User List View", () => {
     expect(container.length).toBeTruthy();
   });
   test("test button for edit user", async () => {
-    const button = container.find("button[data-test='btn-edit-user']");
-    expect(button).toBeTruthy();
+    const EditButton = container.find('[data-test="btn-edit-user"]').first();
+    console.log(EditButton.html());
+    expect(EditButton.length).toBeTruthy();
+  });
+  test("should not render component after button is clicked", async () => {
+    const EditUserbutton = container
+      .find("[data-test='btn-edit-user']")
+      .first();
+    EditUserbutton.simulate("click");
+
+    container.update();
+    await (() => {
+      expect(container.length).toBe(0);
+    });
   });
 });
