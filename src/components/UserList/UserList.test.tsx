@@ -18,11 +18,23 @@ import UserList from "./UserList";
 import UserCard from "./UserCard";
 
 describe("render get all users", () => {
+  const users = {
+    users: [
+      {
+        isActive: true,
+        name: "Lucas",
+        lastName: "González",
+        email: "lucas@test.com",
+        id: "fakeUserId1234",
+      },
+    ],
+  };
   test("get users", () => {
     const expectedAction = {
       type: GET_USERS,
+      payload: users,
     };
-    expect(getUsers()).toEqual(expectedAction);
+    expect(getUsers(users)).toEqual(expectedAction);
   });
   test("get users fail", () => {
     const expectedAction = {
